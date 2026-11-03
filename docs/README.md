@@ -6,9 +6,11 @@
 |---|---|
 | 如何构建、启动、登录、配置设备和部署备份 | [项目README](../README.md) |
 | 如何维护版本、生成run安装包和部署升级systemd服务 | [发布与安装](installation.md)、[版本记录](../CHANGELOG.md) |
+| 服务已运行、curl成功，但浏览器无法打开网页 | [端口与访问排查](installation.md#服务运行但浏览器无法访问) |
 | 产品解决什么问题，哪些行为和边界必须保持 | [产品范围与行为约定](requirements.md) |
 | 模块如何分工，通信、存储和认证为何这样设计 | [架构说明](architecture.md) |
 | 如何调用项目服务，管理接口及错误如何处理 | [HTTP API说明](api.md) |
+| 如何再次复制Token、交付完整Agent说明、迁移旧Token及备份密钥 | [Token与Agent接入说明](tokens.md) |
 | USB/ACM编号变化后如何重连或重新选择串口 | [串口绑定说明](serial-binding.md) |
 | 龙威报文、寄存器、CRC及确认规则 | [龙威LW-3010E协议](protocols/longwei-lw3010e.md) |
 | IT6722命令、行结束符、身份和回读规则 | [ITECH IT6722协议](protocols/itech-it6722.md) |

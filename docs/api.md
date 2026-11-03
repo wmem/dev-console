@@ -34,6 +34,8 @@ JSON请求使用 `Content-Type: application/json`，大小不超过1MiB，只允
 | `GET, POST /admin/projects/{id}/services` | 服务列表或创建 |
 | `PATCH, DELETE /admin/projects/{id}/services/{serviceId}` | 编辑、启停、改绑或删除服务 |
 | `GET, POST /admin/projects/{id}/tokens` | Token元数据列表或创建 |
+| `POST /admin/projects/{id}/tokens/{tokenId}/reveal` | 管理员取回有效Token原文，请求体为空对象，要求Cookie及CSRF |
+| `PUT /admin/projects/{id}/tokens/{tokenId}/secret` | 以secret字段验证并补存旧Token原文，要求Cookie及CSRF |
 | `DELETE /admin/projects/{id}/tokens/{tokenId}` | 撤销Token |
 | `GET /admin/invocations` | 跨项目调用记录，可按project_id筛选 |
 
@@ -41,7 +43,9 @@ JSON请求使用 `Content-Type: application/json`，大小不超过1MiB，只允
 
 项目可编辑字段为key、display_name、purpose、usage_instructions、notes、enabled，更新需revision且key不可改。项目服务字段为key、display_name、description、usage_instructions、device_id、device_service_key、default_parameters、parameter_constraints和enabled；更新需revision，key不可改。契约快照由绑定生成，客户端不能自定契约绕过校验。
 
-创建Token使用 `name`、`scopes`及可选RFC3339 `expires_at`，scope省略或为空时使用三项默认scope。创建响应含 `token`元数据和一次性 `secret`；列表不返回secret。重新生成通过撤销旧Token后创建实现。
+创建Token使用 `name`、`scopes`及可选RFC3339 `expires_at`，scope省略或为空时使用三项默认scope。创建响应含token元数据和secret原文；有效Token可由管理员通过reveal再次取回相同结构。列表只返回元数据及recoverable标记，不含secret、摘要或密文。重新生成通过撤销旧Token后创建实现。
+
+旧Token缺少密文时reveal返回409 CONFIG_CONFLICT；持有原文可用secret接口补存，摘要不匹配返回400，且不改变旧Token。已撤销或过期时拒绝取回/补存。普通用户和项目Token没有这两个管理接口的权限，Cookie请求缺CSRF返回403，响应Cache-Control为no-store。完整说明由管理员页面临时组合，普通项目Markdown/OpenAPI仍使用凭据占位符，详见[Token说明](tokens.md)。
 
 ## 项目接口
 

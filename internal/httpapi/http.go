@@ -516,6 +516,40 @@ func (s *Server) projectRoutes() {
 		respond(w, 200, map[string]any{"ok": true})
 		return nil
 	})
+	s.handle("POST /api/v1/admin/projects/{id}/tokens/{tokenId}/reveal", true, func(w http.ResponseWriter, r *http.Request, p auth.Principal) error {
+		var in struct{}
+		if e := decode(r, &in); e != nil {
+			return e
+		}
+		if _, e := s.Core.ProjectByID(r.PathValue("id")); e != nil {
+			return e
+		}
+		t, raw, e := s.Auth.RevealToken(r.PathValue("id"), r.PathValue("tokenId"))
+		if e != nil {
+			return e
+		}
+		slog.Info("管理员读取项目Token", "用户ID", p.ID, "项目ID", t.ProjectID, "TokenID", t.ID)
+		respond(w, 200, map[string]any{"token": t, "secret": raw})
+		return nil
+	})
+	s.handle("PUT /api/v1/admin/projects/{id}/tokens/{tokenId}/secret", true, func(w http.ResponseWriter, r *http.Request, p auth.Principal) error {
+		var in struct {
+			Secret string `json:"secret"`
+		}
+		if e := decode(r, &in); e != nil {
+			return e
+		}
+		if _, e := s.Core.ProjectByID(r.PathValue("id")); e != nil {
+			return e
+		}
+		t, e := s.Auth.ImportTokenSecret(r.PathValue("id"), r.PathValue("tokenId"), in.Secret)
+		if e != nil {
+			return e
+		}
+		slog.Info("管理员补存旧Token原文", "用户ID", p.ID, "项目ID", t.ProjectID, "TokenID", t.ID)
+		respond(w, 200, t)
+		return nil
+	})
 	s.handle("GET /api/v1/admin/invocations", true, func(w http.ResponseWriter, r *http.Request, p auth.Principal) error {
 		return s.records(w, r, r.URL.Query().Get("project_id"))
 	})

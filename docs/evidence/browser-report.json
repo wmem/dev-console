@@ -1,5 +1,5 @@
 {
-  "finished_at": "2026-11-03T01:56:34.255Z",
+  "finished_at": "2026-11-03T09:48:11.081Z",
   "browser_executable": "/home/mem/work/software/playwright-browsers/chromium-1237/chrome-linux64/chrome",
   "scope": "Chromium桌面与手机视口及触摸模拟；未使用实体手机或第二台终端",
   "results": [
@@ -32,7 +32,7 @@
           "status": 401
         },
         {
-          "path": "/api/v1/admin/devices/009ddbc67eaf1335f5fed61a/services/measurement.read/invoke",
+          "path": "/api/v1/admin/devices/7ad51e30c0711b4047828559/services/measurement.read/invoke",
           "status": 503
         },
         {
@@ -50,7 +50,8 @@
         "实时采集与显式限频刷新",
         "页面隐藏事件停止刷新",
         "Markdown与OpenAPI下载及复制回退",
-        "Token一次性展示及调用与撤销",
+        "Token加密保存后重复复制、完整Agent说明及HTTP复制回退、调用与撤销",
+        "旧Token原文补存且原凭据保持有效",
         "项目成员权限",
         "调用记录及绑定快照",
         "离线错误提示",
@@ -91,7 +92,7 @@
           "status": 401
         },
         {
-          "path": "/api/v1/admin/devices/080759dbffb848540dfed4d9/services/measurement.read/invoke",
+          "path": "/api/v1/admin/devices/dcb3ed6c3470772c9ca3efa3/services/measurement.read/invoke",
           "status": 503
         },
         {
@@ -109,7 +110,8 @@
         "实时采集与显式限频刷新",
         "页面隐藏事件停止刷新",
         "Markdown与OpenAPI下载及复制回退",
-        "Token一次性展示及调用与撤销",
+        "Token加密保存后重复复制、完整Agent说明及HTTP复制回退、调用与撤销",
+        "旧Token原文补存且原凭据保持有效",
         "项目成员权限",
         "调用记录及绑定快照",
         "离线错误提示",
@@ -150,7 +152,7 @@
           "status": 401
         },
         {
-          "path": "/api/v1/admin/devices/d7374902478deaff83d8611c/services/measurement.read/invoke",
+          "path": "/api/v1/admin/devices/d9828fb889f03501032b21ac/services/measurement.read/invoke",
           "status": 503
         },
         {
@@ -168,7 +170,8 @@
         "实时采集与显式限频刷新",
         "页面隐藏事件停止刷新",
         "Markdown与OpenAPI下载及复制回退",
-        "Token一次性展示及调用与撤销",
+        "Token加密保存后重复复制、完整Agent说明及HTTP复制回退、调用与撤销",
+        "旧Token原文补存且原凭据保持有效",
         "项目成员权限",
         "调用记录及绑定快照",
         "离线错误提示",

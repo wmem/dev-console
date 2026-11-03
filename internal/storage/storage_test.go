@@ -19,7 +19,7 @@ func TestReadOnlySchemaInspection(t *testing.T) {
 		t.Fatal(e)
 	}
 	defer s.Close()
-	if version, e := InspectVersion(dir); e != nil || version != 1 {
+	if version, e := InspectVersion(dir); e != nil || version != CurrentVersion {
 		t.Fatal(version, e)
 	}
 }
@@ -30,7 +30,7 @@ func TestRefuseNewerDatabase(t *testing.T) {
 	if e != nil {
 		t.Fatal(e)
 	}
-	if _, e = s.DB.Exec("INSERT INTO schema_migrations VALUES(2)"); e != nil {
+	if _, e = s.DB.Exec("INSERT INTO schema_migrations VALUES(?)", CurrentVersion+1); e != nil {
 		t.Fatal(e)
 	}
 	s.Close()

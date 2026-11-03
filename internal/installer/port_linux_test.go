@@ -15,10 +15,16 @@ func TestPortParsing(t *testing.T) {
 			t.Fatalf("非法端口被接受：%q", text)
 		}
 	}
-	for _, text := range []string{"1", "8080", "65535"} {
+	for _, text := range []string{"80", "443", "8080", "10081", "65535"} {
 		if _, err := parsePort(text); err != nil {
 			t.Fatal(text, err)
 		}
+	}
+	if _, err := parsePort("10080"); err == nil || !strings.Contains(err.Error(), "浏览器禁止") {
+		t.Fatal("安装输入未解释10080无法浏览的原因", err)
+	}
+	if err := portAvailable(10080); err == nil || !strings.Contains(err.Error(), "浏览器禁止") {
+		t.Fatal("直接端口预检绕过浏览器限制", err)
 	}
 }
 
@@ -35,7 +41,7 @@ func TestPortPromptPreservesNextInput(t *testing.T) {
 	}
 	selected := free.Addr().(*net.TCPAddr).Port
 	free.Close()
-	input := strings.NewReader(fmt.Sprintf("wrong\n65536\n%d\n%d\nnext-secret-line\n", busy, selected))
+	input := strings.NewReader(fmt.Sprintf("wrong\n65536\n10080\n%d\n%d\nnext-secret-line\n", busy, selected))
 	var output bytes.Buffer
 	port, err := promptPort(input, &output)
 	if err != nil || port != selected {
@@ -47,6 +53,9 @@ func TestPortPromptPreservesNextInput(t *testing.T) {
 	}
 	if !strings.Contains(output.String(), "无法监听") {
 		t.Fatal("占用端口未提示")
+	}
+	if !strings.Contains(output.String(), "浏览器禁止") {
+		t.Fatal("交互输入未提示浏览器端口限制")
 	}
 	port, err = readPort(strings.NewReader("\n"), io.Discard, func(p int) error {
 		if p != 8080 {

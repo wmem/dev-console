@@ -42,6 +42,12 @@ type Token struct {
 	ExpiresAt *time.Time `json:"expires_at,omitempty"`
 	CreatedAt time.Time  `json:"created_at"`
 }
+
+// TokenMetadata仅用于管理接口，不把可恢复状态或原文混入鉴权记录。
+type TokenMetadata struct {
+	Token
+	Recoverable bool `json:"recoverable"`
+}
 type Principal struct {
 	ID, Kind, Role, ProjectID, CSRF string
 	Scopes                          []string
@@ -246,26 +252,34 @@ func (a *Auth) Update(id, role string, enabled bool) (User, error) {
 	e = a.Store.Batch(cs...)
 	return publicUser(u), e
 }
-func (a *Auth) NewToken(project, name string, scopes []string, expires *time.Time) (Token, string, error) {
+func (a *Auth) NewToken(project, name string, scopes []string, expires *time.Time) (TokenMetadata, string, error) {
+	a.mu.Lock()
+	defer a.mu.Unlock()
 	if strings.TrimSpace(name) == "" {
-		return Token{}, "", contracts.Fail("INVALID_ARGUMENT", "请输入Token名称")
+		return TokenMetadata{}, "", contracts.Fail("INVALID_ARGUMENT", "请输入Token名称")
 	}
 	if len(scopes) == 0 {
 		scopes = []string{"docs:read", "services:read", "services:invoke"}
 	}
 	for _, s := range scopes {
 		if s != "docs:read" && s != "services:read" && s != "services:invoke" {
-			return Token{}, "", contracts.Fail("INVALID_ARGUMENT", "Token作用域无效")
+			return TokenMetadata{}, "", contracts.Fail("INVALID_ARGUMENT", "Token作用域无效")
 		}
 	}
 	if expires != nil && !expires.After(time.Now()) {
-		return Token{}, "", contracts.Fail("INVALID_ARGUMENT", "有效期必须在未来")
+		return TokenMetadata{}, "", contracts.Fail("INVALID_ARGUMENT", "有效期必须在未来")
 	}
 	raw := "dc_" + Random()
 	t := Token{ID: ID(), ProjectID: project, Name: name, Prefix: raw[:11], Digest: Digest(raw), Scopes: scopes, Enabled: true, ExpiresAt: expires, CreatedAt: time.Now().UTC()}
-	e := a.Store.Put("access_tokens", t.ID, t)
-	t.Digest = ""
-	return t, raw, e
+	if a.Store.Secrets == nil {
+		return TokenMetadata{}, "", contracts.Fail("INTERNAL_ERROR", "Token加密不可用")
+	}
+	encrypted := encryptedToken{Version: 1, Payload: a.Store.Secrets.Seal(raw, tokenAAD(t))}
+	e := a.Store.Batch(storage.Change{Table: "access_tokens", ID: t.ID, Value: t}, storage.Change{Table: "token_secrets", ID: t.ID, Value: encrypted})
+	if e != nil {
+		return TokenMetadata{}, "", e
+	}
+	return publicToken(t, true), raw, nil
 }
 func (a *Auth) Bearer(raw string) (Principal, error) {
 	ts, e := storage.List[Token](a.Store, "access_tokens")
@@ -280,26 +294,38 @@ func (a *Auth) Bearer(raw string) (Principal, error) {
 	}
 	return Principal{}, contracts.Fail("UNAUTHENTICATED", "Token无效、已撤销或过期")
 }
-func (a *Auth) Tokens(project string) ([]Token, error) {
+func (a *Auth) Tokens(project string) ([]TokenMetadata, error) {
 	ts, e := storage.List[Token](a.Store, "access_tokens")
-	out := []Token{}
+	if e != nil {
+		return nil, e
+	}
+	out := []TokenMetadata{}
 	for _, t := range ts {
 		if t.ProjectID == project {
-			t.Digest = ""
-			out = append(out, t)
+			var secret encryptedToken
+			err := a.Store.Get("token_secrets", t.ID, &secret)
+			if err != nil && !errors.Is(err, sql.ErrNoRows) {
+				return nil, err
+			}
+			out = append(out, publicToken(t, err == nil))
 		}
 	}
 	return out, e
 }
 func (a *Auth) Revoke(project, id string) error {
+	a.mu.Lock()
+	defer a.mu.Unlock()
 	var t Token
 	e := a.Store.Get("access_tokens", id, &t)
-	if errors.Is(e, sql.ErrNoRows) || t.ProjectID != project {
+	if errors.Is(e, sql.ErrNoRows) {
 		return contracts.Fail("SERVICE_NOT_FOUND", "Token不存在")
 	}
 	if e != nil {
 		return e
 	}
+	if t.ProjectID != project {
+		return contracts.Fail("SERVICE_NOT_FOUND", "Token不存在")
+	}
 	t.Enabled = false
-	return a.Store.Put("access_tokens", id, t)
+	return a.Store.Batch(storage.Change{Table: "access_tokens", ID: id, Value: t}, storage.Change{Table: "token_secrets", ID: id, Delete: true})
 }

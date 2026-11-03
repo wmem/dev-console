@@ -24,7 +24,7 @@ npm run build
 
 浏览器访问 `http://<服务器局域网IP>:8080`，使用刚初始化的账号和密码登录。没有固定默认密码，也没有远程开放注册入口。程序日志输出实际访问地址。`0.0.0.0` 是监听地址，不能作为客户端访问地址。
 
-管理员依次创建设备、创建项目、添加项目服务并绑定设备能力，再创建项目 Token。将项目文档 URL 与单独保存的 Token 交给 Agent 即可调用。Token 原文只展示一次。
+管理员依次创建设备、创建项目、添加项目服务并绑定设备能力，再创建项目Token。复制“完整Agent接入说明”交给Agent，内容包含文档地址、真实Token、鉴权和文档读取命令。Token加密保存，管理员以后可再次复制；旧Token有原文可补存，没有原文需新建。详见[Token与Agent接入说明](docs/tokens.md)。
 
 运行无需 Node/npm、Go、Python、外部数据库服务器或 CDN。数据、日志配置不嵌入可执行文件。`--password-stdin` 仅供明确指定的自动化初始化，从标准输入读取密码，不把密码放入命令行。
 
@@ -32,8 +32,8 @@ npm run build
 
 ```sh
 npm run package
-# 将生成的dist/dconsole-0.1.1-install.run复制到目标Linux/amd64机器
-sudo bash dconsole-0.1.1-install.run
+# 将生成的dist/dconsole-0.2.0-install.run复制到目标Linux/amd64机器
+sudo bash dconsole-0.2.0-install.run
 ```
 
 安装到 `/opt/dconsole`，首次交互设置监听端口（默认8080）和管理员密码，再部署systemd服务；也可用 `--port 9000`明确指定首次端口，升级保留原值。配置、数据库、日志和升级备份均保留在该目录。应用版本来自 [VERSION](VERSION)，查看版本使用 `./dist/platform-linux-amd64 version`。首次安装、串口组参数、升级、修复与正式发布见 [发布与安装](docs/installation.md)。
@@ -95,8 +95,12 @@ npm run test:race
 # 已有playwright-cli + 指定目录Chromium；不会下载浏览器
 npm run test:browser
 
+# 复现浏览器对10080的阻断，并验证可访问端口的桌面/手机登录页
+npm run test:browser-port
+
 # 最终单程序无工具链运行、停机备份恢复，以及测试工具中断恢复的模拟验证
 npm run test:runtime
+npm run test:token-upgrade -- --legacy-package ./dist/dconsole-0.1.2-install.run
 npm run test:hardware-cancel
 npm run test:hardware-cancel -- longwei-lw3010e
 ```
@@ -141,8 +145,8 @@ npm run test:hardware-cancel -- longwei-lw3010e
 停机备份和恢复：
 
 1. 正常停止平台进程，确认退出。
-2. 备份整个数据目录及配置，保留权限；不要只复制运行中的SQLite主文件。
-3. 升级时替换二进制，保留数据目录，启动后自动检查数据库版本。当前数据库版本为1，不支持读取更高版本数据库。
+2. 备份整个数据目录及配置，保留权限；包含token.key，不要只复制运行中的SQLite主文件。
+3. 升级时替换二进制，保留数据目录，启动后自动检查数据库版本。当前格式为2，支持格式1迁移，不支持读取更高版本数据库；回退0.1.x必须同时恢复升级前整份数据。
 4. 恢复时先停进程，恢复整份备份及配置，再用匹配版本的程序启动。不要将新旧数据库文件或WAL混合。
 5. 检查登录、项目、Token和绑定；启动只读探测，不会重放未完成调用。服务中断时未终结记录标为结果未知。
 

@@ -1,0 +1,25 @@
+{
+  "observed_at": "2026-11-03T08:09:51.630Z",
+  "initial_confirmed": {
+    "observed_at": "2026-11-03T08:03:23Z",
+    "health_url": "http://192.168.252.195:10080/healthz",
+    "health_status": 200,
+    "page_status": 200,
+    "version": "0.1.1",
+    "commit": "57c3dc3965b3c2411c6bc19a6a63324ed45f312d",
+    "fetch_error": "bad port"
+  },
+  "recheck": [
+    {
+      "url": "http://192.168.252.195:10080/healthz",
+      "status": 200,
+      "version": "0.1.1",
+      "commit": "57c3dc3965b3c2411c6bc19a6a63324ed45f312d"
+    },
+    {
+      "url": "http://192.168.252.195:10081/healthz",
+      "error": "ECONNREFUSED"
+    }
+  ],
+  "scope": "从192.168.252.200只读访问用户N4505，不执行远程配置、登录、重启或设备操作"
+}

@@ -18,6 +18,7 @@ try{
  const info=JSON.parse(run(binary,['version'],{env:{...process.env,PATH:'/nonexistent'}}));if(info.version!==version||info.target!=='linux/amd64')throw Error('内嵌版本或目标错误');
  run('bash',[archive,'--help']);const archiveInfo=JSON.parse(run('bash',[archive,'--version']));if(archiveInfo.version!==version)throw Error('包内版本不匹配');
  const invalidPort=spawnSync('bash',[archive,'--port','65536'],{encoding:'utf8'});if(invalidPort.status===0||!invalidPort.stderr.includes('端口必须'))throw Error('安装包未在执行前拒绝非法端口');checks.push('安装包端口参数校验');
+ const blockedPort=spawnSync('bash',[archive,'--port','10080'],{encoding:'utf8'});if(blockedPort.status===0||!blockedPort.stderr.includes('浏览器禁止'))throw Error('安装包未在执行前拒绝浏览器禁用端口');checks.push('安装包拒绝浏览器禁用端口10080');
  reject('bash',[archive,'--extract',extracted]);
  const broken=path.join(work,'broken.run');const contents=readFileSync(archive);writeFileSync(broken,contents.subarray(0,contents.length-64));const brokenDir=path.join(work,'broken');reject('bash',[broken,'--extract',brokenDir]);if(existsSync(brokenDir))throw Error('损坏包留下了解压目录');
  if(process.getuid()!==0)reject('bash',[archive,'--reinstall'],{input:''});
@@ -27,7 +28,7 @@ try{
  const fixtureVersions=['0.0.1','0.0.2','0.0.3'],binaries=[];
  for(const v of fixtureVersions){const target=path.join(work,`dconsole-${v}`);run('go',['build','-trimpath','-ldflags',`-X devconsole/internal/buildinfo.Version=${v} -X devconsole/internal/buildinfo.Commit=install-regression -X devconsole/internal/buildinfo.Dirty=true`,'-o',target,'./cmd/platform'],{env:{...process.env,CGO_ENABLED:'0',GOOS:'linux',GOARCH:'amd64'}});binaries.push(target)}
  const output=run('go',['test','-race','-count=1','-json','./internal/installer'],{env:{...process.env,DCONSOLE_TEST_OLD:binaries[0],DCONSOLE_TEST_NEW:binaries[1],DCONSOLE_TEST_FAILED:binaries[2]}});
- const events=output.trim().split('\n').map(s=>JSON.parse(s));const passed=events.filter(e=>e.Action==='pass'&&e.Test).map(e=>e.Test);if(events.some(e=>e.Action==='skip')||passed.length<9)throw Error('安装事务测试没有完整运行');
+ const events=output.trim().split('\n').map(s=>JSON.parse(s));const passed=events.filter(e=>e.Action==='pass'&&e.Test).map(e=>e.Test);if(events.some(e=>e.Action==='skip'&&e.Test&&e.Test!=='TestLegacyInstallerTokenUpgradeRollback')||passed.length<9)throw Error('安装事务测试没有完整运行');
  checks.push(...passed);
  // 在独立Git仓库检查发布门禁；该处替代编译步骤，真实构建与打包已由前面的run包验证。
  const policy=path.join(work,'release-policy');mkdirSync(policy);for(const name of ['scripts','deploy'])mkdirSync(path.join(policy,name));

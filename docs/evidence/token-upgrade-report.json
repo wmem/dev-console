@@ -1,0 +1,34 @@
+{
+  "finished_at": "2026-11-03T09:36:07.331Z",
+  "passed": true,
+  "legacy": {
+    "version": "0.1.2",
+    "commit": "57c3dc3965b3c2411c6bc19a6a63324ed45f312d",
+    "dirty": true,
+    "target": "linux/amd64",
+    "database_min": 1,
+    "database_max": 1
+  },
+  "current": {
+    "version": "0.2.0",
+    "commit": "57c3dc3965b3c2411c6bc19a6a63324ed45f312d",
+    "dirty": true,
+    "target": "linux/amd64",
+    "database_min": 1,
+    "database_max": 2
+  },
+  "checks": [
+    "使用真实格式1旧程序初装并创建旧Token",
+    "真实升级到格式2后故障注入，安装器恢复旧二进制及格式1数据",
+    "失败迁移密钥随failed-data保留，恢复目录没有错配密钥",
+    "成功升级后旧Token继续鉴权，管理员可补存同一原文",
+    "新Token加密保存并可恢复",
+    "停机备份包含密钥；密钥丢失时拒绝启动且不自动重建",
+    "恢复配套密钥后原加密Token可恢复",
+    "真实旧程序拒绝读取格式2数据库"
+  ],
+  "limits": [
+    "临时目录及真实程序/SQLite，替代系统账号、chown和系统级systemctl",
+    "未在目标机器执行root升级或真实硬件操作"
+  ]
+}

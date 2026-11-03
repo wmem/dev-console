@@ -1,0 +1,19 @@
+{
+  "finished_at": "2026-11-03T09:46:27.983Z",
+  "browser_executable": "/home/mem/work/software/playwright-browsers/chromium-1237/chrome-linux64/chrome",
+  "blocked_port": 10080,
+  "raw_http_status": 200,
+  "fetch_error": "bad port",
+  "result": {
+    "passed": true,
+    "browser": "152.0.7977.8",
+    "blocked_error": "page.goto: net::ERR_UNSAFE_PORT at http://127.0.0.1:10080/\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:10080/\", waiting until \"load\"\u001b[22m\n",
+    "allowed_port": 44725,
+    "views": [
+      "1440x900",
+      "390x844触摸模拟"
+    ],
+    "health_status": 200
+  },
+  "scope": "10080使用独立HTTP对照服务；可访问端口使用最终Go程序嵌入页面；未执行登录或设备操作，手机为视口触摸模拟"
+}

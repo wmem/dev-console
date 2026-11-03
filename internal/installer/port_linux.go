@@ -9,6 +9,7 @@ import (
 	"strconv"
 	"strings"
 
+	"devconsole/internal/webport"
 	"golang.org/x/term"
 )
 
@@ -40,12 +41,15 @@ func parsePort(text string) (int, error) {
 	if err != nil || port < 1 || port > 65535 {
 		return 0, errors.New("端口必须是1～65535的整数")
 	}
+	if err = webport.Validate(port); err != nil {
+		return 0, err
+	}
 	return port, nil
 }
 
 func portAvailable(port int) error {
-	if port < 1 || port > 65535 {
-		return errors.New("端口必须是1～65535的整数")
+	if err := webport.Validate(port); err != nil {
+		return err
 	}
 	listener, err := net.Listen("tcp", net.JoinHostPort("0.0.0.0", strconv.Itoa(port)))
 	if err != nil {

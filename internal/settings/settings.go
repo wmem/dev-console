@@ -3,11 +3,14 @@ package settings
 import (
 	"bytes"
 	"errors"
+	"fmt"
 	"net"
 	"net/url"
 	"os"
+	"strconv"
 	"strings"
 
+	"devconsole/internal/webport"
 	"gopkg.in/yaml.v3"
 )
 
@@ -55,6 +58,15 @@ func Load(file string) (Config, error) {
 	}
 	if u.Hostname() == "0.0.0.0" || u.Hostname() == "::" {
 		return cfg, errors.New("public_base_url不能是监听通配地址")
+	}
+	if u.Port() != "" {
+		externalPort, err := strconv.Atoi(u.Port())
+		if err != nil {
+			return cfg, errors.New("public_base_url端口无效")
+		}
+		if err = webport.Validate(externalPort); err != nil {
+			return cfg, fmt.Errorf("public_base_url不可用于网页访问：%w", err)
+		}
 	}
 	cfg.PublicBaseURL = strings.TrimRight(cfg.PublicBaseURL, "/")
 	if cfg.DataDir == "" {

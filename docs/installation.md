@@ -16,8 +16,8 @@ npm run package
 
 ```sh
 # 在不安装的情况下查看包内版本，或解压到一个不存在的目录
-bash dist/dconsole-0.1.1-install.run --version
-bash dist/dconsole-0.1.1-install.run --extract ./unpacked
+bash dist/dconsole-0.2.0-install.run --version
+bash dist/dconsole-0.2.0-install.run --extract ./unpacked
 ./unpacked/dconsole version
 ```
 
@@ -33,7 +33,7 @@ bash dist/dconsole-0.1.1-install.run --extract ./unpacked
 
 版本比较按数值逐段进行，0.1.10大于0.1.9。二进制的 `version`命令输出JSON，包含version、完整Git提交、dirty、target及支持的数据库格式范围；启动日志和healthz也报告版本及提交。安装目录不另存一份可漂移的版本文件。
 
-数据库格式版本由[存储实现](../internal/storage/storage.go)维护，服务contract_version由[设备服务定义](../internal/access/power/power.go)维护，两者均不随应用版本机械递增。当前数据库格式为1，支持范围1～1，首批服务契约为1；出现迁移或不兼容变化时须在版本记录明确升级顺序、数据兼容性和恢复要求，并增加对应测试。
+数据库格式版本由[存储实现](../internal/storage/storage.go)维护，服务contract_version由[设备服务定义](../internal/access/power/power.go)维护，两者均不随应用版本机械递增。当前数据库格式为2，支持范围1～2，首批服务契约为1；0.2.0启动时迁移格式1，为Token增加独立密文表及配套密钥，旧摘要Token继续有效。回退0.1.x须恢复升级前的整份数据，不能只替换二进制；详见[Token保存与恢复](tokens.md)。后续迁移须同样明确升级顺序、数据兼容性和恢复要求，并增加对应测试。
 
 正式发布流程：
 
@@ -48,19 +48,21 @@ bash dist/dconsole-0.1.1-install.run --extract ./unpacked
 把run文件复制到目标机器后：
 
 ```sh
-sudo bash dconsole-0.1.1-install.run
+sudo bash dconsole-0.2.0-install.run
 
 # 首次安装也可以显式指定端口，跳过端口提问，仍需设置管理员密码
-sudo bash dconsole-0.1.1-install.run --port 9000
+sudo bash dconsole-0.2.0-install.run --port 9000
 
 # 串口需要补充组权限时，先查看实际节点所属组，再明确传入，例如：
 ls -l /dev/ttyUSB0
-sudo bash dconsole-0.1.1-install.run --serial-group dialout
+sudo bash dconsole-0.2.0-install.run --serial-group dialout
 ```
 
 `dialout`仅为示例，安装器不会猜测或修改设备节点权限。指定组必须已存在。模板不隐藏/dev，因此ttyUSB、ttyACM、by-id和by-path均可按原有规则使用；不会创建udev规则。
 
 安装器检查平台、工具和systemd，首次先提示 `设置HTTP监听端口 [8080]`，回车使用8080；非法或已占用端口提示后重输，也可用--port跳过提问。端口范围1～65535，先检查能否监听，再创建账号和暂存安装；预检不会关闭占用端口的其他进程。预检与实际启动之间仍有时间窗口，最终是否可用以服务启动和健康检查为准。
+
+端口范围还排除[WHATWG Fetch规定的浏览器禁用端口](https://fetch.spec.whatwg.org/#port-blocking)，例如10080、6000和6667。此类端口可能可监听、curl也返回200，但浏览器会在发出请求前拒绝，Chromium报ERR_UNSAFE_PORT；安装器会提示改选8080、9000或10081等可访问端口。
 
 端口确定后创建无登录shell的dconsole专用用户及同名组，暂存程序、配置和服务模板，以该用户身份交互设置admin密码，无默认密码；成功后才将目录正式放到 `/opt/dconsole`、登记并启动服务、核对健康响应的版本/提交，最后启用开机启动。账号已存在时必须是普通用户、同名主组且主目录匹配，不能自动接管其他账号。所选端口写入config.yaml的listen，public_base_url留空时自动生成的访问地址也使用该端口。
 
@@ -74,6 +76,8 @@ sudo bash dconsole-0.1.1-install.run --serial-group dialout
 ├── config.yaml           # root:dconsole，0640，保存首次所选局域网监听端口
 ├── dconsole.service      # root拥有；升级保留原文件
 ├── data/                 # dconsole拥有，0700，数据库文件0600
+│   ├── platform.db       # SQLite及可能存在的WAL/SHM文件
+│   └── token.key         # Token加密主密钥，新建文件0600，随数据库配套备份
 ├── logs/                 # dconsole拥有，0700
 │   └── dconsole.log
 └── backups/              # root拥有，0700，升级时创建
@@ -99,10 +103,10 @@ sudo tail -n 100 /opt/dconsole/logs/dconsole.log
 执行较新版本的同类安装包即可：
 
 ```sh
-sudo bash dconsole-0.1.2-install.run
+sudo bash dconsole-0.2.1-install.run
 
 # 同版本重复执行默认无操作；显式修复程序/服务登记：
-sudo bash dconsole-0.1.1-install.run --reinstall
+sudo bash dconsole-0.2.0-install.run --reinstall
 ```
 
 升级在停止服务之前检查版本、配置、固定数据目录与数据库格式。默认拒绝降级；配置的data_dir须解析到/opt/dconsole/data，不能通过安装器把数据放到目录外。升级流程为：正常停止服务 → 备份旧程序、配置、服务定义及整个数据目录 → 同文件系统原子替换二进制 → 启动 → 核对版本/提交与健康状态 → 确认运行并启用开机启动。
@@ -116,6 +120,8 @@ sudo bash dconsole-0.1.1-install.run --reinstall
 升级保持现有服务定义，不能用 `--serial-group`覆盖。需调整串口组时，由管理员修改/opt/dconsole/dconsole.service中的SupplementaryGroups，再执行 `systemctl daemon-reload`和重启。未来版本如果必须改变服务定义或配置格式，应单独说明迁移步骤，不能偷偷在普通二进制升级中覆盖。
 
 每次实际升级/修复保留一个 `backups/<UTC时间>-<原版本>-<唯一后缀>/`，含旧程序、配置、服务及停机数据。备份不自动清理，需要按空间和保留策略管理。备份复制失败时不替换原程序，并尝试重新启动旧服务；可读写文件系统及足够备份空间是升级前提。
+
+0.2.0起，加密Token的恢复依赖data/token.key，手工备份也必须包含整个数据目录。已有密文而密钥缺失时程序拒绝启动，不会生成替代密钥；恢复错误密钥不能解密。不要把其他实例的密钥与当前数据库混用。仅有摘要的旧Token无法从摘要还原，可在页面补存已持有的原文。
 
 ## 失败与恢复
 
@@ -134,11 +140,30 @@ sudo bash dconsole-0.1.1-install.run --reinstall
 ```sh
 npm run package
 npm run test:install
+npm run test:token-upgrade -- --legacy-package ./dist/dconsole-0.1.2-install.run
 npm run test:race
 go vet ./...
 npm run test:runtime
+npm run test:browser-port
 ```
 
 安装验证使用真实run解压、三个不同版本标记的真实程序、HTTP与SQLite，在临时目录执行同一安装事务，验证首次端口输入/范围/占用与配置保存、输入不预取密码、升级端口保留、首次失败/修复、重装、降级拒绝、备份失败、健康失败及格式变化恢复；不操作真实设备。特权账号、所有权及系统级systemctl使用替代实现，另通过实际用户级systemd验证启动、登录、页面与日志。后者不能替代系统级身份、权限隔离、低端口能力和开机启动验收。
 
-当前环境无免密sudo且不允许用户命名空间，尚未在独立目标机上执行真实root安装、系统级自启动和真实串口组权限验收。完整证据见[安装验证结果](evidence/install-report.json)和[验收报告](verification.md)。
+test:token-upgrade需要另行保留的格式1旧安装包，默认使用dist/dconsole-0.1.2-install.run，也可显式传入路径；不会从当前源码伪造旧格式实现。该检查用真实旧程序创建数据，验证迁移到格式2、失败后的二进制与完整旧数据恢复、旧Token补存、配套密钥备份恢复，以及旧程序拒绝新格式。证据见[跨格式升级验证](evidence/token-upgrade-report.json)。
+
+自动验证环境无免密sudo且不允许用户命名空间。用户另已在N4505完成0.1.1的root安装，并提供systemd enabled/active状态，跨终端HTTP200已独立复核；当前0.2.0的目标机root升级、重启后的自启动、低端口能力和真实串口组权限仍未实测。完整证据见[安装验证结果](evidence/install-report.json)和[验收报告](verification.md)。
+
+## 服务运行但浏览器无法访问
+
+先区分HTTP服务和浏览器限制：systemd active只说明进程运行；安装时健康检查成功也不代表浏览器允许该端口。如果curl可返回200，而浏览器提示ERR_UNSAFE_PORT，应检查实际访问端口是否在标准禁用列表中，不需要反复start服务。
+
+0.1.1及更早的安装器曾允许10080。已有实例无需删除或重装，在目标机将原监听端口改为可用端口并重启，例如：
+
+```sh
+sudo sed -i.bak '/^listen:/s/:10080/:10081/' /opt/dconsole/config.yaml
+sudo systemctl restart dconsole
+```
+
+随后访问 `http://<目标机器IP>:10081`，原配置备份在config.yaml.bak，账号和数据库保留。如果手动设置过public_base_url并包含10080，也要同步修正；留空时会自动使用新的监听端口。改端口前确认新端口可用。
+
+升级0.1.2不会擅自改写现有端口；已有禁用外部端口会在升级预检中明确报错，须先修正配置再升级，原服务不会因预检失败而被停止。若内部10080只供反向代理使用，显式设置浏览器可访问的public_base_url，例如 `https://console.example.test`，配置检查只限制外部访问端口，保留内部监听能力。

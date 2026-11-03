@@ -186,6 +186,18 @@ func TestInstallLifecycle(t *testing.T) {
 			return cmd.Run()
 		}}
 	}
+	t.Run("browser_blocked_port_rejected_before_preparation", func(t *testing.T) {
+		failed := makeEngine(oldBinary)
+		prepared := false
+		failed.prepare = func() error { prepared = true; return nil }
+		failed.choosePort = func() (int, error) { return 10080, nil }
+		if err := failed.apply(); err == nil || !strings.Contains(err.Error(), "浏览器禁止") {
+			t.Fatal("浏览器禁用端口未拦截", err)
+		}
+		if prepared || len(commands) != 0 {
+			t.Fatal("浏览器禁用端口仍触发安装准备")
+		}
+	})
 	t.Run("occupied_port_rejected_before_preparation", func(t *testing.T) {
 		busy, err := net.Listen("tcp", "0.0.0.0:0")
 		if err != nil {
@@ -350,6 +362,21 @@ func TestInstallLifecycle(t *testing.T) {
 			t.Fatal("拒绝端口修改时仍改变服务或配置")
 		}
 	})
+	t.Run("blocked_public_url_refused_without_stopping_existing_service", func(t *testing.T) {
+		before := len(commands)
+		// 保留实际监听端口，只把对外URL改为浏览器禁用端口，核对升级预检。
+		broken := fmt.Sprintf("listen: %q\npublic_base_url: \"http://127.0.0.1:10080\"\ndata_dir: %q\n", address, filepath.Join(root, "data"))
+		if err := os.WriteFile(filepath.Join(root, "config.yaml"), []byte(broken), 0640); err != nil {
+			t.Fatal(err)
+		}
+		defer os.WriteFile(filepath.Join(root, "config.yaml"), configBefore, 0640)
+		if err := makeEngine(newBinary).apply(); err == nil || !strings.Contains(err.Error(), "浏览器禁止") {
+			t.Fatal("升级预检未拒绝无法浏览的URL", err)
+		}
+		if len(commands) != before {
+			t.Fatal("配置预检失败仍停止了原服务")
+		}
+	})
 	t.Run("upgrade_preserves_state", func(t *testing.T) {
 		for _, p := range []string{root, filepath.Join(root, "dconsole")} {
 			if err := os.Chmod(p, 0777); err != nil {
@@ -429,7 +456,7 @@ func TestInstallLifecycle(t *testing.T) {
 				if e != nil {
 					return e
 				}
-				_, e = s.DB.Exec("INSERT INTO schema_migrations VALUES(2)")
+				_, e = s.DB.Exec("INSERT INTO schema_migrations VALUES(?)", storage.CurrentVersion+1)
 				s.Close()
 				if e != nil {
 					return e
@@ -441,7 +468,7 @@ func TestInstallLifecycle(t *testing.T) {
 		if e = failed.apply(); e == nil || !strings.Contains(e.Error(), "已恢复旧版本") {
 			t.Fatal(e)
 		}
-		if v, e := storage.InspectVersion(filepath.Join(root, "data")); e != nil || v != 1 {
+		if v, e := storage.InspectVersion(filepath.Join(root, "data")); e != nil || v != storage.CurrentVersion {
 			t.Fatal("停机数据备份未恢复", v, e)
 		}
 		verifyBusiness(t)

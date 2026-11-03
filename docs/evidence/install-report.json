@@ -1,17 +1,18 @@
 {
-  "finished_at": "2026-11-03T07:23:14.431Z",
+  "finished_at": "2026-11-03T09:36:04.420Z",
   "passed": true,
-  "version": "0.1.1",
+  "version": "0.2.0",
   "build": {
-    "version": "0.1.1",
-    "commit": "0b75649ab959520da6cc96bc2d285c95fd12519f",
+    "version": "0.2.0",
+    "commit": "57c3dc3965b3c2411c6bc19a6a63324ed45f312d",
     "dirty": true,
     "target": "linux/amd64",
     "database_min": 1,
-    "database_max": 1
+    "database_max": 2
   },
   "checks": [
     "安装包端口参数校验",
+    "安装包拒绝浏览器禁用端口10080",
     "真实run包解压、含空格路径、版本与二进制一致",
     "无Go/Node的PATH运行版本查询",
     "损坏包和已有解压目录拒绝",
@@ -19,11 +20,13 @@
     "拒绝非Linux/amd64构建目标",
     "TestWritableInstallationPathsAccepted",
     "TestInstallationLockAndUnsafeFiles",
+    "TestInstallLifecycle/browser_blocked_port_rejected_before_preparation",
     "TestInstallLifecycle/occupied_port_rejected_before_preparation",
     "TestInstallLifecycle/bootstrap_failure_leaves_no_installation",
     "TestInstallLifecycle/first_start_failure_keeps_initialized_data",
     "TestInstallLifecycle/same_version_noop",
     "TestInstallLifecycle/existing_port_cannot_be_overridden",
+    "TestInstallLifecycle/blocked_public_url_refused_without_stopping_existing_service",
     "TestInstallLifecycle/upgrade_preserves_state",
     "TestInstallLifecycle/refuse_downgrade",
     "TestInstallLifecycle/same_version_repair_missing_unit",

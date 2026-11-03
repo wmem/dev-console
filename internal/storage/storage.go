@@ -8,10 +8,12 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+
+	"devconsole/internal/secretbox"
 )
 
 const MinVersion = 1
-const CurrentVersion = 1
+const CurrentVersion = 2
 
 // InspectVersion只读检查已有数据库，不建目录、不迁移，供升级与回退判断兼容性。
 func InspectVersion(dir string) (int, error) {
@@ -32,9 +34,12 @@ func InspectVersion(dir string) (int, error) {
 	return version, nil
 }
 
-var tables = []string{"users", "sessions", "projects", "project_members", "devices", "device_services", "project_services", "access_tokens", "access_configs", "invocations"}
+var tables = []string{"users", "sessions", "projects", "project_members", "devices", "device_services", "project_services", "access_tokens", "token_secrets", "access_configs", "invocations"}
 
-type Store struct{ DB *sql.DB }
+type Store struct {
+	DB      *sql.DB
+	Secrets *secretbox.Box
+}
 type Change struct {
 	Table, ID string
 	Value     any
@@ -51,7 +56,7 @@ func Open(dir string) (*Store, error) {
 		return nil, e
 	}
 	db.SetMaxOpenConns(1)
-	s := &Store{db}
+	s := &Store{DB: db}
 	if _, e = db.Exec("PRAGMA journal_mode=WAL; PRAGMA busy_timeout=5000; PRAGMA foreign_keys=ON; CREATE TABLE IF NOT EXISTS schema_migrations(version INTEGER PRIMARY KEY);"); e != nil {
 		db.Close()
 		return nil, e
@@ -73,7 +78,18 @@ func Open(dir string) (*Store, error) {
 			return nil, e
 		}
 	}
-	if _, e = tx.Exec("INSERT OR IGNORE INTO schema_migrations VALUES(1)"); e != nil {
+	var encrypted int
+	if e = tx.QueryRow("SELECT COUNT(*) FROM token_secrets").Scan(&encrypted); e != nil {
+		tx.Rollback()
+		db.Close()
+		return nil, e
+	}
+	if s.Secrets, e = secretbox.Open(dir, encrypted > 0); e != nil {
+		tx.Rollback()
+		db.Close()
+		return nil, e
+	}
+	if _, e = tx.Exec("INSERT OR IGNORE INTO schema_migrations VALUES(?)", CurrentVersion); e != nil {
 		tx.Rollback()
 		db.Close()
 		return nil, e

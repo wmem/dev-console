@@ -1,0 +1,52 @@
+{
+  "finished_at": "2026-11-03T03:45:16.948Z",
+  "passed": true,
+  "version": "0.1.0",
+  "build": {
+    "version": "0.1.0",
+    "commit": "edd5292b96f444577c7e81b7fe3e8d766eaf201e",
+    "dirty": true,
+    "target": "linux/amd64",
+    "database_min": 1,
+    "database_max": 1
+  },
+  "checks": [
+    "安装包端口参数校验",
+    "真实run包解压、含空格路径、版本与二进制一致",
+    "无Go/Node的PATH运行版本查询",
+    "损坏包和已有解压目录拒绝",
+    "安装帮助无需root、非root安装拒绝",
+    "拒绝非Linux/amd64构建目标",
+    "TestInstallationLockAndUnsafeFiles",
+    "TestInstallLifecycle/occupied_port_rejected_before_preparation",
+    "TestInstallLifecycle/bootstrap_failure_leaves_no_installation",
+    "TestInstallLifecycle/first_start_failure_keeps_initialized_data",
+    "TestInstallLifecycle/same_version_noop",
+    "TestInstallLifecycle/existing_port_cannot_be_overridden",
+    "TestInstallLifecycle/upgrade_preserves_state",
+    "TestInstallLifecycle/refuse_downgrade",
+    "TestInstallLifecycle/same_version_repair_missing_unit",
+    "TestInstallLifecycle/health_failure_restores_binary",
+    "TestInstallLifecycle/schema_change_failure_restores_full_data",
+    "TestInstallLifecycle/backup_failure_keeps_original",
+    "TestInstallLifecycle/cannot_stop_failed_version_keeps_backup_without_restore",
+    "TestInstallLifecycle",
+    "TestPortParsing",
+    "TestPortPromptPreservesNextInput",
+    "TestPortServicePrivileges",
+    "发布门禁：干净工作区和正确标签允许打包",
+    "发布门禁：缺失标签、错误标签及未提交修改拒绝",
+    "发布门禁：构建期间修改版本文件拒绝",
+    "系统级服务模板通过systemd-analyze语法及路径检查",
+    "真实用户级systemd启动、健康检查、登录、嵌入页面及目录内日志",
+    "用户级测试服务正常停止并清理"
+  ],
+  "limits": [
+    "事务测试使用真实二进制及数据库，替代系统账号、chown和系统级systemctl",
+    "正式发布门禁使用独立Git仓库及替代编译步骤，真实编译打包由主路径验证",
+    "用户级systemd不覆盖系统级User/Group、串口补充组及文件系统隔离",
+    "当前无免密sudo且用户命名空间受限，未执行真实root首次安装或系统级开机启动验证",
+    "失败恢复使用当前代码的三个独立版本标记构建及故障注入，不代表未来数据库迁移已验收",
+    "未操作真实串口或现有体验服务"
+  ]
+}

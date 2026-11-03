@@ -3,6 +3,8 @@
   "private": true,
   "scripts": {
     "build": "node scripts/build.mjs",
+    "package": "node scripts/package.mjs",
+    "test:install": "node scripts/install-check.mjs",
     "test": "go test ./...",
     "test:race": "go test -race ./...",
     "test:browser": "node scripts/browser-test.mjs",

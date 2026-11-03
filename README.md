@@ -6,11 +6,11 @@
 
 ## 构建与启动
 
-实际验证环境：Linux/amd64，Go **1.26.3**、Node.js **24.15.0**、npm **11.12.1**。构建需要现有 Go、Node、npm 及依赖源网络访问；脚本不会安装全局工具。依赖版本已锁定。
+仅支持Linux/amd64构建与运行。实际验证工具链：Go **1.26.3**、Node.js **24.15.0**、npm **11.12.1**。构建需要现有 Go、Node、npm 及依赖源网络访问；脚本不会安装全局工具。依赖版本已锁定。
 
 ```sh
 # 在仓库根目录执行；自动npm ci、类型检查、前端构建、Go依赖下载和CGO_ENABLED=0编译
-npm run build -- --target linux/amd64
+npm run build
 
 # 首次初始化，交互输入密码；至少10个字符、不超过72字节
 ./dist/platform-linux-amd64 admin bootstrap --data-dir ./data --username admin
@@ -27,6 +27,16 @@ npm run build -- --target linux/amd64
 管理员依次创建设备、创建项目、添加项目服务并绑定设备能力，再创建项目 Token。将项目文档 URL 与单独保存的 Token 交给 Agent 即可调用。Token 原文只展示一次。
 
 运行无需 Node/npm、Go、Python、外部数据库服务器或 CDN。数据、日志配置不嵌入可执行文件。`--password-stdin` 仅供明确指定的自动化初始化，从标准输入读取密码，不把密码放入命令行。
+
+发布到目标机器可使用自解压安装包：
+
+```sh
+npm run package
+# 将生成的dist/dconsole-0.1.0-install.run复制到目标Linux/amd64机器
+sudo bash dconsole-0.1.0-install.run
+```
+
+安装到 `/opt/dconsole`，首次交互设置监听端口（默认8080）和管理员密码，再部署systemd服务；也可用 `--port 9000`明确指定首次端口，升级保留原值。配置、数据库、日志和升级备份均保留在该目录。应用版本来自 [VERSION](VERSION)，查看版本使用 `./dist/platform-linux-amd64 version`。首次安装、串口组参数、升级、修复与正式发布见 [发布与安装](docs/installation.md)。
 
 ## 配置与设备
 
@@ -124,9 +134,9 @@ npm run test:hardware-cancel -- longwei-lw3010e
 
 ## 部署、升级与备份
 
-[systemd样例](deploy/platform.service) 假设二进制放 `/opt/devconsole/platform`，配置在 `/etc/devconsole/config.yaml`，数据目录设为 `/var/lib/devconsole`。按实际环境创建专用用户、目录及串口权限，然后自行安装服务文件。仓库不会自动修改系统服务、防火墙或全局配置。手机或其他电脑应在可路由网络内访问服务器局域网地址。
+正式部署使用上述安装包及内嵌的 [systemd模板](deploy/dconsole.service)，固定程序 `/opt/dconsole/dconsole`、配置 `/opt/dconsole/config.yaml`、数据 `/opt/dconsole/data`、日志 `/opt/dconsole/logs`，以普通服务用户dconsole运行。安装时显式创建系统用户和systemd登记；`build`、`package`及普通服务启动不安装系统服务或修改防火墙。手机或其他电脑应在可路由网络内访问服务器局域网地址。
 
-存活检查为 `GET /healthz`，单台设备离线不会让平台检查失败。
+存活检查为 `GET /healthz`，包含程序版本和Git提交；单台设备离线不会让平台检查失败。安装包升级自动停机备份、替换程序、保留原配置和数据并核验新服务，详见发布与安装。以下为手动部署的备份原则。
 
 停机备份和恢复：
 

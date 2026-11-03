@@ -5,9 +5,32 @@ import (
 	"encoding/json"
 	"fmt"
 	_ "modernc.org/sqlite"
+	"net/url"
 	"os"
 	"path/filepath"
 )
+
+const MinVersion = 1
+const CurrentVersion = 1
+
+// InspectVersion只读检查已有数据库，不建目录、不迁移，供升级与回退判断兼容性。
+func InspectVersion(dir string) (int, error) {
+	p, err := filepath.Abs(filepath.Join(dir, "platform.db"))
+	if err != nil {
+		return 0, err
+	}
+	u := url.URL{Scheme: "file", Path: p, RawQuery: "mode=ro"}
+	db, err := sql.Open("sqlite", u.String())
+	if err != nil {
+		return 0, err
+	}
+	defer db.Close()
+	var version int
+	if err = db.QueryRow("SELECT COALESCE(MAX(version),0) FROM schema_migrations").Scan(&version); err != nil {
+		return 0, err
+	}
+	return version, nil
+}
 
 var tables = []string{"users", "sessions", "projects", "project_members", "devices", "device_services", "project_services", "access_tokens", "access_configs", "invocations"}
 
@@ -34,7 +57,7 @@ func Open(dir string) (*Store, error) {
 		return nil, e
 	}
 	var version int
-	if e = db.QueryRow("SELECT COALESCE(MAX(version),0) FROM schema_migrations").Scan(&version); e != nil || version > 1 {
+	if e = db.QueryRow("SELECT COALESCE(MAX(version),0) FROM schema_migrations").Scan(&version); e != nil || version > CurrentVersion {
 		db.Close()
 		return nil, fmt.Errorf("数据库版本不受当前程序支持：%d", version)
 	}

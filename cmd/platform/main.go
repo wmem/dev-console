@@ -4,35 +4,31 @@ import (
 	"bufio"
 	"bytes"
 	"context"
+	"encoding/json"
 	"errors"
 	"flag"
 	"fmt"
 	"log/slog"
-	"net"
 	"net/http"
-	"net/url"
 	"os"
 	"os/signal"
 	"path/filepath"
-	"strings"
 	"syscall"
 	"time"
 
 	"devconsole/internal/access/manager"
 	"devconsole/internal/auth"
+	"devconsole/internal/buildinfo"
 	"devconsole/internal/core"
 	"devconsole/internal/httpapi"
+	"devconsole/internal/installer"
+	"devconsole/internal/settings"
 	"devconsole/internal/storage"
 	"devconsole/web"
 	"golang.org/x/term"
-	"gopkg.in/yaml.v3"
 )
 
-type config struct {
-	Listen        string `yaml:"listen"`
-	PublicBaseURL string `yaml:"public_base_url"`
-	DataDir       string `yaml:"data_dir"`
-}
+type config = settings.Config
 
 func main() {
 	if e := run(); e != nil {
@@ -42,9 +38,13 @@ func main() {
 }
 func run() error {
 	if len(os.Args) < 2 {
-		return errors.New("用法：platform admin bootstrap | serve | hardware-test")
+		return errors.New("用法：dconsole version | install | admin bootstrap | serve | hardware-test")
 	}
 	switch os.Args[1] {
+	case "version", "--version":
+		return json.NewEncoder(os.Stdout).Encode(buildinfo.Current())
+	case "install":
+		return installer.Run(os.Args[2:])
 	case "admin":
 		return bootstrap(os.Args[2:])
 	case "serve":
@@ -106,50 +106,7 @@ func bootstrap(args []string) error {
 	}
 	return e
 }
-func loadConfig(file string) (config, error) {
-	cfg := config{Listen: "0.0.0.0:8080", DataDir: "./data"}
-	if file != "" {
-		b, e := os.ReadFile(file)
-		if e != nil {
-			return cfg, e
-		}
-		d := yaml.NewDecoder(bytes.NewReader(b))
-		d.KnownFields(true)
-		if e = d.Decode(&cfg); e != nil {
-			return cfg, e
-		}
-	}
-	host, port, e := net.SplitHostPort(cfg.Listen)
-	if e != nil {
-		return cfg, errors.New("listen需为IP:端口")
-	}
-	if cfg.PublicBaseURL == "" {
-		if host == "" || host == "0.0.0.0" || host == "::" {
-			host = "127.0.0.1"
-			as, _ := net.InterfaceAddrs()
-			for _, a := range as {
-				ip, _, e := net.ParseCIDR(a.String())
-				if e == nil && ip.To4() != nil && !ip.IsLoopback() {
-					host = ip.String()
-					break
-				}
-			}
-		}
-		cfg.PublicBaseURL = "http://" + net.JoinHostPort(host, port)
-	}
-	u, e := url.Parse(cfg.PublicBaseURL)
-	if e != nil || u.Host == "" || (u.Scheme != "http" && u.Scheme != "https") || u.RawQuery != "" || u.Fragment != "" || u.User != nil || (u.Path != "" && u.Path != "/") {
-		return cfg, errors.New("public_base_url需为不含凭据、路径、查询参数的HTTP(S)地址")
-	}
-	if u.Hostname() == "0.0.0.0" || u.Hostname() == "::" {
-		return cfg, errors.New("public_base_url不能是监听通配地址")
-	}
-	cfg.PublicBaseURL = strings.TrimRight(cfg.PublicBaseURL, "/")
-	if cfg.DataDir == "" {
-		return cfg, errors.New("data_dir不能为空")
-	}
-	return cfg, nil
-}
+func loadConfig(file string) (config, error) { return settings.Load(file) }
 func serve(args []string) error {
 	f := flag.NewFlagSet("serve", flag.ContinueOnError)
 	file := f.String("config", "", "YAML配置文件")
@@ -190,7 +147,7 @@ func serve(args []string) error {
 	defer stop()
 	done := make(chan error, 1)
 	go func() {
-		slog.Info("平台启动", "监听", cfg.Listen, "访问地址", cfg.PublicBaseURL, "数据目录", filepath.Clean(cfg.DataDir))
+		slog.Info("平台启动", "版本", buildinfo.Version, "提交", buildinfo.Commit, "监听", cfg.Listen, "访问地址", cfg.PublicBaseURL, "数据目录", filepath.Clean(cfg.DataDir))
 		done <- httpServer.ListenAndServe()
 	}()
 	select {

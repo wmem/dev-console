@@ -1,6 +1,6 @@
 # HTTP API说明
 
-所有下表路径相对于 `/api/v1`；存活检查单独为 `GET /healthz`，设备离线不使其失败。具体路由和请求解码见[HTTP实现](../internal/httpapi/http.go)，实体字段见[核心模型](../internal/core/core.go)、[通用契约](../internal/contracts/contracts.go)及[认证模型](../internal/auth/auth.go)。
+所有下表路径相对于 `/api/v1`；存活检查单独为 `GET /healthz`，返回status、version和commit，设备离线不使其失败。具体路由和请求解码见[HTTP实现](../internal/httpapi/http.go)，实体字段见[核心模型](../internal/core/core.go)、[通用契约](../internal/contracts/contracts.go)及[认证模型](../internal/auth/auth.go)。
 
 ## 鉴权与请求
 

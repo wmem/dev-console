@@ -15,6 +15,7 @@ import (
 	"time"
 
 	"devconsole/internal/auth"
+	"devconsole/internal/buildinfo"
 	c "devconsole/internal/contracts"
 	"devconsole/internal/core"
 )
@@ -131,7 +132,9 @@ func (s *Server) cookie(w http.ResponseWriter, raw string, maxAge int) {
 	http.SetCookie(w, &http.Cookie{Name: "dc_session", Value: raw, Path: "/", HttpOnly: true, SameSite: http.SameSiteLaxMode, Secure: strings.HasPrefix(s.BaseURL, "https://"), MaxAge: maxAge})
 }
 func (s *Server) routes() {
-	s.mux.HandleFunc("GET /healthz", func(w http.ResponseWriter, r *http.Request) { respond(w, 200, map[string]any{"status": "ok"}) })
+	s.mux.HandleFunc("GET /healthz", func(w http.ResponseWriter, r *http.Request) {
+		respond(w, 200, map[string]any{"status": "ok", "version": buildinfo.Version, "commit": buildinfo.Commit})
+	})
 	s.mux.HandleFunc("POST /api/v1/auth/login", func(w http.ResponseWriter, r *http.Request) {
 		var in struct {
 			Username string `json:"username"`

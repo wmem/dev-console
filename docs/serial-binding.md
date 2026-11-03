@@ -30,7 +30,7 @@ USB转串口适配器的序列号不等于仪器序列号。IT6722在任何重�
 
 新增 `GET /api/v1/admin/access-templates/{key}/connections`，仅管理员可用。返回候选value、label、mode、resolved_path、selectable、warning；模板connection_field说明配置字段。枚举只读取内核元数据，不打开串口或修改设备。
 
-Linux下读取sysfs及udev稳定链接，支持ttyUSB与ttyACM。系统未提供稳定链接时仍可手动填写路径；平台不会擅自创建系统规则。其他系统保留手动路径能力，本次只验收Linux/amd64。
+Linux下读取sysfs及udev稳定链接，支持ttyUSB与ttyACM。系统未提供稳定链接时仍可手动填写路径；平台不会擅自创建系统规则。当前构建与运行支持范围已收敛为Linux/amd64，不再承诺其他系统兼容。
 
 ## 验证
 

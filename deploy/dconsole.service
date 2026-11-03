@@ -1,0 +1,26 @@
+[Unit]
+Description=DConsole设备服务平台
+After=network.target
+
+[Service]
+Type=simple
+User=dconsole
+Group=dconsole
+WorkingDirectory=/opt/dconsole
+ExecStart=/opt/dconsole/dconsole serve --config /opt/dconsole/config.yaml
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/dconsole/data /opt/dconsole/logs
+StandardOutput=append:/opt/dconsole/logs/dconsole.log
+StandardError=append:/opt/dconsole/logs/dconsole.log
+# 安装时可通过--serial-group指定实际串口所属组。
+# 不启用PrivateDevices，否则会隐藏真实串口。
+
+[Install]
+WantedBy=multi-user.target

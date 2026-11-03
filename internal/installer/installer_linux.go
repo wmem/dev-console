@@ -47,7 +47,6 @@ type engine struct {
 	bootstrap              func(string, string) error
 	chown                  func(string, int, int) error
 	checkHealth            func(settings.Config, buildinfo.Info) error
-	trustRoot              bool
 	output                 io.Writer
 }
 
@@ -140,7 +139,7 @@ func Run(args []string) error {
 	if err != nil {
 		return err
 	}
-	e := &engine{root: installRoot, unitPath: "/etc/systemd/system/" + serviceName, source: source, info: buildinfo.Current(), reinstall: *reinstall, serialGroup: *group, systemctl: run, chown: os.Chown, checkHealth: health, trustRoot: true, output: os.Stdout}
+	e := &engine{root: installRoot, unitPath: "/etc/systemd/system/" + serviceName, source: source, info: buildinfo.Current(), reinstall: *reinstall, serialGroup: *group, systemctl: run, chown: os.Chown, checkHealth: health, output: os.Stdout}
 	e.portSpecified = portSpecified
 	e.choosePort = func() (int, error) { return initialPort(selectedPort, portSpecified, *stdin) }
 	e.prepare = func() error {
@@ -235,7 +234,7 @@ func (e *engine) apply() error {
 	if err := e.checkUnit(); err != nil {
 		return err
 	}
-	if err := e.checkTrusted(filepath.Dir(e.root)); err != nil {
+	if err := e.checkPath(filepath.Dir(e.root)); err != nil {
 		return err
 	}
 	st, err := os.Lstat(e.root)
@@ -265,7 +264,7 @@ func (e *engine) apply() error {
 		return errors.New("--port仅用于首次安装；已有端口保留，修改请编辑config.yaml并重启服务")
 	}
 	for _, p := range []string{e.root, e.binary(), e.config(), filepath.Join(e.root, serviceName)} {
-		if err = e.checkTrusted(p); err != nil {
+		if err = e.checkPath(p); err != nil {
 			return err
 		}
 	}
@@ -319,18 +318,13 @@ func (e *engine) apply() error {
 
 func (e *engine) binary() string { return filepath.Join(e.root, "dconsole") }
 func (e *engine) config() string { return filepath.Join(e.root, "config.yaml") }
-func (e *engine) checkTrusted(p string) error {
+func (e *engine) checkPath(p string) error {
 	s, err := os.Lstat(p)
 	if err != nil {
 		return err
 	}
 	if s.Mode()&os.ModeSymlink != 0 || (!s.IsDir() && !s.Mode().IsRegular()) {
 		return fmt.Errorf("受管理路径不能是链接或特殊文件：%s", p)
-	}
-	if e.trustRoot {
-		if s.Sys().(*syscall.Stat_t).Uid != 0 || s.Mode().Perm()&0022 != 0 {
-			return fmt.Errorf("程序、配置和安装目录须由root拥有且不可被其他用户写入：%s", p)
-		}
 	}
 	return nil
 }
@@ -473,7 +467,7 @@ func (e *engine) upgrade(cfg settings.Config, old buildinfo.Info) (err error) {
 	if err = e.checkDirectory(backups); err != nil {
 		return err
 	}
-	if err = e.checkTrusted(backups); err != nil {
+	if err = e.checkPath(backups); err != nil {
 		return err
 	}
 	// 首装服务登记失败后，--reinstall可在保留数据库的情况下补齐链接。

@@ -24,6 +24,35 @@ import (
 	"devconsole/internal/storage"
 )
 
+func TestWritableInstallationPathsAccepted(t *testing.T) {
+	dir := t.TempDir()
+	if err := os.Chmod(dir, 0777); err != nil {
+		t.Fatal(err)
+	}
+	file := filepath.Join(dir, "config.yaml")
+	if err := os.WriteFile(file, []byte("已有配置"), 0666); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.Chmod(file, 0666); err != nil {
+		t.Fatal(err)
+	}
+	eng := &engine{}
+	for _, p := range []string{dir, file} {
+		if err := eng.checkPath(p); err != nil {
+			t.Fatal("不应根据属主或可写权限拒绝已有路径", p, err)
+		}
+	}
+	for _, p := range []string{dir, file} {
+		s, err := os.Stat(p)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if s.Mode().Perm()&0022 == 0 {
+			t.Fatal("检查改动了已有路径权限", p)
+		}
+	}
+}
+
 func TestInstallationLockAndUnsafeFiles(t *testing.T) {
 	dir := t.TempDir()
 	lock := filepath.Join(dir, "lock")
@@ -71,6 +100,10 @@ func TestInstallLifecycle(t *testing.T) {
 		t.Skip("由npm run test:install构建三个独立版本后执行")
 	}
 	base := t.TempDir()
+	// 模拟/opt属于部署用户且可被组和其他用户写入，验证实际首装不受此限制。
+	if err := os.Chmod(base, 0777); err != nil {
+		t.Fatal(err)
+	}
 	root := filepath.Join(base, "dconsole")
 	unitPath := filepath.Join(base, serviceName)
 	listener, e := net.Listen("tcp", "127.0.0.1:0")
@@ -318,6 +351,16 @@ func TestInstallLifecycle(t *testing.T) {
 		}
 	})
 	t.Run("upgrade_preserves_state", func(t *testing.T) {
+		for _, p := range []string{root, filepath.Join(root, "dconsole")} {
+			if err := os.Chmod(p, 0777); err != nil {
+				t.Fatal(err)
+			}
+		}
+		for _, p := range []string{filepath.Join(root, "config.yaml"), filepath.Join(root, serviceName)} {
+			if err := os.Chmod(p, 0666); err != nil {
+				t.Fatal(err)
+			}
+		}
 		if e = makeEngine(newBinary).apply(); e != nil {
 			t.Fatal(e)
 		}
@@ -326,6 +369,12 @@ func TestInstallLifecycle(t *testing.T) {
 		unit, _ := os.ReadFile(filepath.Join(root, serviceName))
 		if !bytes.Equal(cfg, configBefore) || !bytes.Equal(unit, unitBefore) {
 			t.Fatal("升级覆盖了配置或服务定义")
+		}
+		for _, p := range []string{root, filepath.Join(root, "config.yaml"), filepath.Join(root, serviceName)} {
+			s, err := os.Stat(p)
+			if err != nil || s.Mode().Perm()&0022 == 0 {
+				t.Fatal("升级改动了已有目录、配置或服务定义的权限", p, err)
+			}
 		}
 		if bootstraps != 1 {
 			t.Fatal("升级重新创建管理员")

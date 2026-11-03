@@ -16,8 +16,8 @@ npm run package
 
 ```sh
 # 在不安装的情况下查看包内版本，或解压到一个不存在的目录
-bash dist/dconsole-0.1.0-install.run --version
-bash dist/dconsole-0.1.0-install.run --extract ./unpacked
+bash dist/dconsole-0.1.1-install.run --version
+bash dist/dconsole-0.1.1-install.run --extract ./unpacked
 ./unpacked/dconsole version
 ```
 
@@ -48,14 +48,14 @@ bash dist/dconsole-0.1.0-install.run --extract ./unpacked
 把run文件复制到目标机器后：
 
 ```sh
-sudo bash dconsole-0.1.0-install.run
+sudo bash dconsole-0.1.1-install.run
 
 # 首次安装也可以显式指定端口，跳过端口提问，仍需设置管理员密码
-sudo bash dconsole-0.1.0-install.run --port 9000
+sudo bash dconsole-0.1.1-install.run --port 9000
 
 # 串口需要补充组权限时，先查看实际节点所属组，再明确传入，例如：
 ls -l /dev/ttyUSB0
-sudo bash dconsole-0.1.0-install.run --serial-group dialout
+sudo bash dconsole-0.1.1-install.run --serial-group dialout
 ```
 
 `dialout`仅为示例，安装器不会猜测或修改设备节点权限。指定组必须已存在。模板不隐藏/dev，因此ttyUSB、ttyACM、by-id和by-path均可按原有规则使用；不会创建udev规则。
@@ -81,7 +81,7 @@ sudo bash dconsole-0.1.0-install.run --serial-group dialout
 
 systemd登记链接为 `/etc/systemd/system/dconsole.service → /opt/dconsole/dconsole.service`，开机启动链接和账号记录由操作系统管理。安装并发锁位于系统运行目录 `/run/lock/dconsole-install.lock`，进程结束即释放；它不是应用配置。应用程序、配置、数据库、日志及备份均放在/opt/dconsole。
 
-父目录、程序、配置及服务定义须由root拥有且不可被其他用户写入，不接管符号链接安装目录或冲突的同名系统服务。服务只可写data和logs，不能自行替换程序或配置。
+安装器不检查已有父目录、安装目录、程序、配置、服务定义或备份的属主和权限模式，不因/opt属于普通用户或可被组/其他用户写入而拒绝，也不会修改/opt的权限。新创建文件和数据目录仍设置上述默认权限以保证服务可运行；升级保留已有目录、配置和服务定义的权限。目录类型、符号链接及同名系统服务冲突仍按原流程检查，服务的systemd运行方式保持不变。
 
 ```sh
 sudo systemctl status dconsole
@@ -99,10 +99,10 @@ sudo tail -n 100 /opt/dconsole/logs/dconsole.log
 执行较新版本的同类安装包即可：
 
 ```sh
-sudo bash dconsole-0.1.1-install.run
+sudo bash dconsole-0.1.2-install.run
 
 # 同版本重复执行默认无操作；显式修复程序/服务登记：
-sudo bash dconsole-0.1.0-install.run --reinstall
+sudo bash dconsole-0.1.1-install.run --reinstall
 ```
 
 升级在停止服务之前检查版本、配置、固定数据目录与数据库格式。默认拒绝降级；配置的data_dir须解析到/opt/dconsole/data，不能通过安装器把数据放到目录外。升级流程为：正常停止服务 → 备份旧程序、配置、服务定义及整个数据目录 → 同文件系统原子替换二进制 → 启动 → 核对版本/提交与健康状态 → 确认运行并启用开机启动。

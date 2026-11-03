@@ -32,8 +32,8 @@ npm run build
 
 ```sh
 npm run package
-# 将生成的dist/dconsole-0.1.0-install.run复制到目标Linux/amd64机器
-sudo bash dconsole-0.1.0-install.run
+# 将生成的dist/dconsole-0.1.1-install.run复制到目标Linux/amd64机器
+sudo bash dconsole-0.1.1-install.run
 ```
 
 安装到 `/opt/dconsole`，首次交互设置监听端口（默认8080）和管理员密码，再部署systemd服务；也可用 `--port 9000`明确指定首次端口，升级保留原值。配置、数据库、日志和升级备份均保留在该目录。应用版本来自 [VERSION](VERSION)，查看版本使用 `./dist/platform-linux-amd64 version`。首次安装、串口组参数、升级、修复与正式发布见 [发布与安装](docs/installation.md)。

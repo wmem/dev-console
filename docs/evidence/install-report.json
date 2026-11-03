@@ -1,10 +1,10 @@
 {
-  "finished_at": "2026-11-03T03:45:16.948Z",
+  "finished_at": "2026-11-03T07:23:14.431Z",
   "passed": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "build": {
-    "version": "0.1.0",
-    "commit": "edd5292b96f444577c7e81b7fe3e8d766eaf201e",
+    "version": "0.1.1",
+    "commit": "0b75649ab959520da6cc96bc2d285c95fd12519f",
     "dirty": true,
     "target": "linux/amd64",
     "database_min": 1,
@@ -17,6 +17,7 @@
     "损坏包和已有解压目录拒绝",
     "安装帮助无需root、非root安装拒绝",
     "拒绝非Linux/amd64构建目标",
+    "TestWritableInstallationPathsAccepted",
     "TestInstallationLockAndUnsafeFiles",
     "TestInstallLifecycle/occupied_port_rejected_before_preparation",
     "TestInstallLifecycle/bootstrap_failure_leaves_no_installation",

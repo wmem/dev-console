@@ -1,5 +1,7 @@
 # 实现边界与交接说明
 
+产品边界见[产品约定](requirements.md)，HTTP路由与错误见[API说明](api.md)，首批设备的报文依据见[龙威协议](protocols/longwei-lw3010e.md)和[IT6722协议](protocols/itech-it6722.md)。本文说明当前实现机制及代价。
+
 ## 调用链
 
 `cmd/platform` 组装核心、认证、HTTP、SQLite和内置接入模块。`internal/core` 只依赖 `contracts`、`storage` 和平台认证主体，不引用串口或具体驱动；具体协议位于 `internal/access/power`。

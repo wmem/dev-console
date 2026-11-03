@@ -9,7 +9,7 @@
 实际验证环境：Linux/amd64，Go **1.26.3**、Node.js **24.15.0**、npm **11.12.1**。构建需要现有 Go、Node、npm 及依赖源网络访问；脚本不会安装全局工具。依赖版本已锁定。
 
 ```sh
-# 在本仓库code目录执行；自动npm ci、类型检查、前端构建、Go依赖下载和CGO_ENABLED=0编译
+# 在仓库根目录执行；自动npm ci、类型检查、前端构建、Go依赖下载和CGO_ENABLED=0编译
 npm run build -- --target linux/amd64
 
 # 首次初始化，交互输入密码；至少10个字符、不超过72字节
@@ -138,4 +138,6 @@ npm run test:hardware-cancel -- longwei-lw3010e
 
 调用记录当前不自动清理，需留意数据目录增长。停机备份会暂时中断服务，第一版不提供在线备份和滚动升级。
 
-模块依赖、存储代价及执行边界见 [架构说明](docs/architecture.md)。具体通过项目、证据与未验证边界见 [验收报告](docs/verification.md)。原始需求和协议资料保留在仓库外的 `../solution/`。
+## 文档
+
+完整入口见 [文档索引](docs/README.md)。产品范围和需保持的行为见 [产品约定](docs/requirements.md)，模块依赖与实现代价见 [架构说明](docs/architecture.md)，接口与错误见 [HTTP API](docs/api.md)，设备报文见 [龙威协议](docs/protocols/longwei-lw3010e.md)及 [IT6722协议](docs/protocols/itech-it6722.md)。实际通过项目、证据及未验证边界见 [验收报告](docs/verification.md)。

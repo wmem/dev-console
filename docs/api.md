@@ -1,0 +1,93 @@
+# HTTP API说明
+
+所有下表路径相对于 `/api/v1`；存活检查单独为 `GET /healthz`，设备离线不使其失败。具体路由和请求解码见[HTTP实现](../internal/httpapi/http.go)，实体字段见[核心模型](../internal/core/core.go)、[通用契约](../internal/contracts/contracts.go)及[认证模型](../internal/auth/auth.go)。
+
+## 鉴权与请求
+
+Web登录返回用户与 `csrf`，设置 `dc_session` Cookie；`GET /auth/me`可重新读取CSRF值。Cookie写请求携带 `X-CSRF-Token`。管理员接口仅接受admin的Web身份，项目Token不能用于管理。
+
+Agent使用 `Authorization: Bearer <ACCESS_TOKEN>`，只访问该Token所属项目及获授scope。明确提供无效Bearer时不会退回Cookie。Token不通过URL参数传递，不能枚举项目或读取调用历史。
+
+JSON请求使用 `Content-Type: application/json`，大小不超过1MiB，只允许一个JSON对象，拒绝未知字段。调用的 `parameters`必须是对象，读取也发送 `{"parameters":{}}`。配置修改带当前revision，冲突后读取最新配置再由调用方处理，不盲目重试。PATCH接口按对应实体字段解码并保存，编辑时应提交当前完整可编辑配置，不假定任意缺省字段会自动保留。
+
+## 登录与管理接口
+
+| 方法和路径 | 用途 |
+|---|---|
+| `POST /auth/login` | `username`、`password`登录，无需已有身份 |
+| `GET /auth/me` | 当前Web用户、CSRF和公开访问地址 |
+| `POST /auth/logout` | 注销当前Web Session |
+| `PUT /auth/password` | 以 `old_password`、`password`修改本人密码 |
+| `GET, POST /admin/users` | 列表或以 `username`、`password`、`role`创建用户 |
+| `PATCH /admin/users/{id}` | 修改 `role`和 `enabled` |
+| `POST /admin/users/{id}/reset-password` | 以 `password`重置并撤销原Session |
+| `GET /admin/access-templates` | 接入模板、配置Schema及connection_field |
+| `GET /admin/access-templates/{key}/connections` | 只读枚举连接候选，不打开串口 |
+| `GET, POST /admin/devices` | 设备列表或创建设备 |
+| `GET, PATCH, DELETE /admin/devices/{id}` | 详情、修改配置或删除 |
+| `POST /admin/devices/{id}/connection-test` | 有界只读连接测试 |
+| `GET /admin/devices/{id}/services` | 已注册设备服务 |
+| `POST /admin/devices/{id}/services/{key}/invoke` | 管理员人工调试已注册服务 |
+| `GET, POST /admin/projects` | 项目列表或创建 |
+| `PATCH, DELETE /admin/projects/{id}` | 编辑、启停或删除项目 |
+| `GET, PUT /admin/projects/{id}/members` | 读取或以 `member_ids`、`revision`设置成员 |
+| `GET, POST /admin/projects/{id}/services` | 服务列表或创建 |
+| `PATCH, DELETE /admin/projects/{id}/services/{serviceId}` | 编辑、启停、改绑或删除服务 |
+| `GET, POST /admin/projects/{id}/tokens` | Token元数据列表或创建 |
+| `DELETE /admin/projects/{id}/tokens/{tokenId}` | 撤销Token |
+| `GET /admin/invocations` | 跨项目调用记录，可按project_id筛选 |
+
+设备创建请求为 `template_key`、`display_name`和 `connection_config`；更新为 `display_name`、`connection_config`及revision。连接配置字段以模板Schema为准。配置合法但暂时离线时仍保存设备并保留ID；参数非法、重复地址或总线冲突会拒绝。候选和原设备重选见[串口绑定说明](serial-binding.md)。
+
+项目可编辑字段为key、display_name、purpose、usage_instructions、notes、enabled，更新需revision且key不可改。项目服务字段为key、display_name、description、usage_instructions、device_id、device_service_key、default_parameters、parameter_constraints和enabled；更新需revision，key不可改。契约快照由绑定生成，客户端不能自定契约绕过校验。
+
+创建Token使用 `name`、`scopes`及可选RFC3339 `expires_at`，scope省略或为空时使用三项默认scope。创建响应含 `token`元数据和一次性 `secret`；列表不返回secret。重新生成通过撤销旧Token后创建实现。
+
+## 项目接口
+
+| 方法和路径 | 用途及身份 |
+|---|---|
+| `GET /projects` | Web用户获授权项目，Token禁止枚举 |
+| `GET /projects/{key}` | 项目元数据，已授权Web身份或该项目Token |
+| `GET /projects/{key}/services` | 启用服务及契约，Web身份或services:read |
+| `POST /projects/{key}/services/{serviceKey}/invoke` | 调用，Web身份或services:invoke |
+| `GET /projects/{key}/docs` | 项目Markdown，Web身份或docs:read；`?download=1`下载 |
+| `GET /projects/{key}/openapi.json` | 项目OpenAPI3.1，Web身份或docs:read |
+| `GET /projects/{key}/invocations` | 该项目调用记录，仅已授权Web身份 |
+
+调用者先读取项目生成的文档，获得当前服务key、参数、单位、范围、默认值和输出；不要直接把设备服务key当作项目服务key。
+
+```sh
+curl 'http://<服务器IP>:8080/api/v1/projects/board-test-a/docs' \
+  -H 'Authorization: Bearer <ACCESS_TOKEN>'
+
+curl -X POST 'http://<服务器IP>:8080/api/v1/projects/board-test-a/services/board_power/invoke' \
+  -H 'Authorization: Bearer <ACCESS_TOKEN>' \
+  -H 'Content-Type: application/json' \
+  --data '{"parameters":{"enabled":true}}'
+```
+
+成功调用返回调用记录，含request_id、status、project、service、service_revision、绑定和主体快照、parameters、result、confirmation、source、observed_at及起止时间/duration_ms。具体result由服务Schema定义；设置成功的confirmation为verified，读取为read。设置确认只表示对应设定值或开关状态回读匹配。
+
+记录查询参数为page、page_size、service、subject、status、device_id、error_code；管理员还可指定project_id。分页响应为items、page、page_size、total。Token没有调用记录查询权限。
+
+## 错误与重试边界
+
+失败响应至少包含request_id、status和error；已进入审计执行的失败同时返回调用记录及绑定快照。error含code、message和outcome。outcome说明not_started、unknown或partially_completed等实际阶段，不可仅据HTTP状态判断物理动作是否发生。
+
+| HTTP | code | 含义 |
+|---|---|---|
+| 400 | `INVALID_ARGUMENT` | 字段、类型、范围、精度或请求格式错误 |
+| 401 | `UNAUTHENTICATED` | 凭据无效、撤销或过期 |
+| 403 | `FORBIDDEN`、`PROJECT_DISABLED`、`SERVICE_DISABLED` | 权限不足或项目/服务禁用 |
+| 404 | `PROJECT_NOT_FOUND`、`SERVICE_NOT_FOUND`、`DEVICE_NOT_FOUND`、`USER_NOT_FOUND`、`NOT_FOUND` | 对象、路径或方法不存在 |
+| 409 | `RESOURCE_BUSY` | 通信正在进行，本次未开始 |
+| 409 | `SERVICE_UNBOUND`、`BINDING_INVALID` | 未绑定或绑定不兼容 |
+| 409 | `RESOURCE_REFERENCED`、`CONFIG_CONFLICT` | 删除存在引用、revision或连接配置冲突 |
+| 429 | `RATE_LIMITED` | 登录限频 |
+| 503 | `DEVICE_OFFLINE` | 连接或执行路由不可用 |
+| 504 | `TIMEOUT`、`OUTCOME_UNKNOWN` | 超时，按outcome判断是否可能已执行 |
+| 502 | `DEVICE_ERROR`、`PROTOCOL_ERROR`、`VERIFICATION_FAILED` | 设备错误、回复非法或回读不一致 |
+| 500 | `INTERNAL_ERROR` | 内部或审计持久化失败，不泄漏堆栈与秘密 |
+
+平台不排队、不自动重试。收到busy后由调用者决定后续操作；设置超时可能已改变设备，不能自动再次发送或反向回滚。取消清理和回复隔离结束前不释放通信资源，恢复连接也不重放失败业务动作。完整行为约定见[产品约定](requirements.md)，机制见[架构说明](architecture.md)。

@@ -1,0 +1,15 @@
+{
+  "name": "dev-console",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "go test ./...",
+    "test:race": "go test -race ./...",
+    "test:browser": "node scripts/browser-test.mjs",
+    "test:runtime": "node scripts/runtime-check.mjs",
+    "test:hardware-cancel": "node scripts/hardware-cancel-check.mjs"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

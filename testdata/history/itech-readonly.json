@@ -1,0 +1,65 @@
+{
+  "port": "COM32",
+  "baudrate": 9600,
+  "parity": "N",
+  "read_only": true,
+  "idn": "ITECH Ltd., IT6722, 802260084777170024,  1.17-1.04",
+  "state": {
+    "set_voltage_V": 12.98,
+    "set_current_A": 9.01,
+    "output": 0,
+    "measured_voltage_V": 0.0,
+    "measured_current_A": 0.0001
+  },
+  "transactions": [
+    {
+      "time": "2026-11-02T20:27:10.985142+08:00",
+      "command": "*IDN?",
+      "tx_hex": "2A 49 44 4E 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "49 54 45 43 48 20 4C 74 64 2E 2C 20 49 54 36 37 32 32 2C 20 38 30 32 32 36 30 30 38 34 37 37 37 31 37 30 30 32 34 2C 20 20 31 2E 31 37 2D 31 2E 30 34 0A",
+      "response": "ITECH Ltd., IT6722, 802260084777170024,  1.17-1.04"
+    },
+    {
+      "time": "2026-11-02T20:27:11.148278+08:00",
+      "command": "VOLT?",
+      "tx_hex": "56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 32 2E 39 38 0A",
+      "response": "12.98"
+    },
+    {
+      "time": "2026-11-02T20:27:11.304697+08:00",
+      "command": "CURR?",
+      "tx_hex": "43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "39 2E 30 31 0A",
+      "response": "9.01"
+    },
+    {
+      "time": "2026-11-02T20:27:11.460876+08:00",
+      "command": "OUTP?",
+      "tx_hex": "4F 55 54 50 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:27:11.614021+08:00",
+      "command": "MEAS:VOLT?",
+      "tx_hex": "4D 45 41 53 3A 56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:27:11.769038+08:00",
+      "command": "MEAS:CURR?",
+      "tx_hex": "4D 45 41 53 3A 43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 65 2D 30 34 0A",
+      "response": "1e-04"
+    }
+  ],
+  "port_closed": true
+}

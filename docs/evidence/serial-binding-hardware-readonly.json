@@ -1,0 +1,135 @@
+{
+  "address": 1,
+  "device": "LW-3010E",
+  "finished_at": "2026-11-03T01:53:37.137272214Z",
+  "passed": true,
+  "port": "/dev/serial/by-path/pci-0000:80:14.0-usb-0:6:1.0-port0",
+  "read_only": true,
+  "records": [
+    {
+      "request_id": "9aad63a18aba5403b25d04bd",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "settings.read",
+      "service_revision": 1,
+      "device_id": "6d25a58414f2bdc92a6f2f33",
+      "device_service_key": "settings.read",
+      "parameters": {},
+      "status": "succeeded",
+      "result": {
+        "current_limit": 5,
+        "voltage": 12
+      },
+      "confirmation": "read",
+      "source": "live",
+      "observed_at": "2026-11-03T01:53:37.051519721Z",
+      "started_at": "2026-11-03T01:53:37.005117681Z",
+      "finished_at": "2026-11-03T01:53:37.053953275Z",
+      "duration_ms": 48
+    },
+    {
+      "request_id": "2b3912b96e0a8472d5b5d5f1",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "output.read",
+      "service_revision": 1,
+      "device_id": "6d25a58414f2bdc92a6f2f33",
+      "device_service_key": "output.read",
+      "parameters": {},
+      "status": "succeeded",
+      "result": {
+        "enabled": true,
+        "mode": "CV"
+      },
+      "confirmation": "read",
+      "source": "live",
+      "observed_at": "2026-11-03T01:53:37.093155505Z",
+      "started_at": "2026-11-03T01:53:37.055766712Z",
+      "finished_at": "2026-11-03T01:53:37.093448727Z",
+      "duration_ms": 37
+    },
+    {
+      "request_id": "181d5c334985250171dee7f5",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "measurement.read",
+      "service_revision": 1,
+      "device_id": "6d25a58414f2bdc92a6f2f33",
+      "device_service_key": "measurement.read",
+      "parameters": {},
+      "status": "succeeded",
+      "result": {
+        "current": 0,
+        "voltage": 11.99
+      },
+      "confirmation": "read",
+      "source": "live",
+      "observed_at": "2026-11-03T01:53:37.134796264Z",
+      "started_at": "2026-11-03T01:53:37.096309963Z",
+      "finished_at": "2026-11-03T01:53:37.135190181Z",
+      "duration_ms": 38
+    }
+  ],
+  "recovery": {
+    "attempted": false,
+    "confirmed": false
+  },
+  "scope": "只读查询设定值、输出状态与实测值，不修改设备",
+  "template_key": "longwei-lw3010e",
+  "wire_events": [
+    {
+      "at": "2026-11-03T01:53:37.008121308Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:53:37.051506032Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:53:37.051515884Z",
+      "direction": "rx",
+      "hex": "04b001f404af0000000100019d85",
+      "text": "\u0004\ufffd\u0001\ufffd\u0004\ufffd\u0000\u0000\u0000\u0001\u0000\u0001\ufffd\ufffd"
+    },
+    {
+      "at": "2026-11-03T01:53:37.057374054Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:53:37.093141769Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:53:37.093151107Z",
+      "direction": "rx",
+      "hex": "04b001f404af0000000100019d85",
+      "text": "\u0004\ufffd\u0001\ufffd\u0004\ufffd\u0000\u0000\u0000\u0001\u0000\u0001\ufffd\ufffd"
+    },
+    {
+      "at": "2026-11-03T01:53:37.098875086Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:53:37.13478577Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:53:37.13479286Z",
+      "direction": "rx",
+      "hex": "04b001f404af0000000100019d85",
+      "text": "\u0004\ufffd\u0001\ufffd\u0004\ufffd\u0000\u0000\u0000\u0001\u0000\u0001\ufffd\ufffd"
+    }
+  ]
+}

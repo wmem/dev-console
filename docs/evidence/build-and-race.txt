@@ -1,0 +1,139 @@
+
+> build
+> node scripts/build.mjs --target linux/amd64
+
+go version go1.26.3 linux/amd64
+
+added 50 packages in 376ms
+
+> dev-console-web@0.1.0 build
+> vue-tsc --noEmit && vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 28 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.44 kB │ gzip:  0.33 kB
+dist/assets/index-DlQqovwH.css   15.54 kB │ gzip:  4.34 kB
+dist/assets/index-0sxFpHhk.js   117.20 kB │ gzip: 41.38 kB
+
+✓ built in 104ms
+已生成 dist/platform-linux-amd64
+?   	devconsole/cmd/simulator	[no test files]
+=== RUN   TestLANConfigAndPublicURL
+--- PASS: TestLANConfigAndPublicURL (0.00s)
+PASS
+ok  	devconsole/cmd/platform	(cached)
+=== RUN   TestHistoricalFrames
+--- PASS: TestHistoricalFrames (0.00s)
+=== RUN   TestProtocolFragmentation
+=== RUN   TestProtocolFragmentation/scpi/settings.read
+--- PASS: TestProtocolFragmentation/scpi/settings.read (0.00s)
+=== RUN   TestProtocolFragmentation/scpi/measurement.read
+--- PASS: TestProtocolFragmentation/scpi/measurement.read (0.00s)
+=== RUN   TestProtocolFragmentation/scpi/output.read
+--- PASS: TestProtocolFragmentation/scpi/output.read (0.00s)
+=== RUN   TestProtocolFragmentation/scpi/voltage.set
+--- PASS: TestProtocolFragmentation/scpi/voltage.set (0.00s)
+=== RUN   TestProtocolFragmentation/scpi/current_limit.set
+--- PASS: TestProtocolFragmentation/scpi/current_limit.set (0.00s)
+=== RUN   TestProtocolFragmentation/scpi/output.set
+--- PASS: TestProtocolFragmentation/scpi/output.set (0.00s)
+=== RUN   TestProtocolFragmentation/modbus/settings.read
+--- PASS: TestProtocolFragmentation/modbus/settings.read (0.00s)
+=== RUN   TestProtocolFragmentation/modbus/measurement.read
+--- PASS: TestProtocolFragmentation/modbus/measurement.read (0.00s)
+=== RUN   TestProtocolFragmentation/modbus/output.read
+--- PASS: TestProtocolFragmentation/modbus/output.read (0.00s)
+=== RUN   TestProtocolFragmentation/modbus/voltage.set
+--- PASS: TestProtocolFragmentation/modbus/voltage.set (0.00s)
+=== RUN   TestProtocolFragmentation/modbus/current_limit.set
+--- PASS: TestProtocolFragmentation/modbus/current_limit.set (0.00s)
+=== RUN   TestProtocolFragmentation/modbus/output.set
+--- PASS: TestProtocolFragmentation/modbus/output.set (0.00s)
+--- PASS: TestProtocolFragmentation (0.00s)
+=== RUN   TestSCPIInvalidReplies
+=== RUN   TestSCPIInvalidReplies/*IDN?UNKNO
+--- PASS: TestSCPIInvalidReplies/*IDN?UNKNO (0.00s)
+=== RUN   TestSCPIInvalidReplies/VOLT?NaN
+--- PASS: TestSCPIInvalidReplies/VOLT?NaN (0.00s)
+=== RUN   TestSCPIInvalidReplies/VOLT?_
+--- PASS: TestSCPIInvalidReplies/VOLT?_ (0.00s)
+=== RUN   TestSCPIInvalidReplies/VOLT?_#01
+--- PASS: TestSCPIInvalidReplies/VOLT?_#01 (0.00s)
+=== RUN   TestSCPIInvalidReplies/VOLT?�
+--- PASS: TestSCPIInvalidReplies/VOLT?� (0.00s)
+=== RUN   TestSCPIInvalidReplies/VOLT?11111
+--- PASS: TestSCPIInvalidReplies/VOLT?11111 (0.00s)
+=== RUN   TestSCPIInvalidReplies/SYST:ERR?-100,
+--- PASS: TestSCPIInvalidReplies/SYST:ERR?-100, (0.00s)
+--- PASS: TestSCPIInvalidReplies (0.01s)
+=== RUN   TestTimeoutAndControlUnknown
+--- PASS: TestTimeoutAndControlUnknown (0.40s)
+=== RUN   TestModbusBadCRC
+--- PASS: TestModbusBadCRC (0.00s)
+=== RUN   TestHistoricalReadOnlyDecoding
+=== RUN   TestHistoricalReadOnlyDecoding/settings.read
+--- PASS: TestHistoricalReadOnlyDecoding/settings.read (0.00s)
+=== RUN   TestHistoricalReadOnlyDecoding/measurement.read
+--- PASS: TestHistoricalReadOnlyDecoding/measurement.read (0.00s)
+=== RUN   TestHistoricalReadOnlyDecoding/output.read
+--- PASS: TestHistoricalReadOnlyDecoding/output.read (0.00s)
+--- PASS: TestHistoricalReadOnlyDecoding (0.00s)
+=== RUN   TestModbusExceptionAddressFunctionAndLength
+=== RUN   TestModbusExceptionAddressFunctionAndLength/018302
+--- PASS: TestModbusExceptionAddressFunctionAndLength/018302 (0.00s)
+=== RUN   TestModbusExceptionAddressFunctionAndLength/0203020001
+=== RUN   TestBusyHeldUntilCancellationCleanup
+--- PASS: TestBusyHeldUntilCancellationCleanup (0.10s)
+PASS
+--- PASS: TestModbusExceptionAddressFunctionAndLength/0203020001 (0.00s)
+=== RUN   TestModbusExceptionAddressFunctionAndLength/0104020001
+--- PASS: TestModbusExceptionAddressFunctionAndLength/0104020001 (0.00s)
+=== RUN   TestModbusExceptionAddressFunctionAndLength/0103020001
+--- PASS: TestModbusExceptionAddressFunctionAndLength/0103020001 (0.00s)
+--- PASS: TestModbusExceptionAddressFunctionAndLength (0.00s)
+PASS
+ok  	devconsole/internal/access/power	(cached)
+?   	devconsole/internal/auth	[no test files]
+ok  	devconsole/internal/access/transport	(cached)
+=== RUN   TestDecimalAndBounds
+--- PASS: TestDecimalAndBounds (0.00s)
+PASS
+ok  	devconsole/internal/contracts	(cached)
+?   	devconsole/internal/core	[no test files]
+=== RUN   TestSharedBusAndConfigurationLifecycle
+=== RUN   TestRefuseNewerDatabase
+--- PASS: TestRefuseNewerDatabase (0.04s)
+PASS
+ok  	devconsole/internal/storage	(cached)
+?   	devconsole/internal/testdevice	[no test files]
+?   	devconsole/web	[no test files]
+=== RUN   TestProjectFlowAndAuthorization
+--- PASS: TestSharedBusAndConfigurationLifecycle (0.06s)
+=== RUN   TestCanonicalAliasDuplicate
+--- PASS: TestCanonicalAliasDuplicate (0.00s)
+=== RUN   TestItechIdentitySurvivesRestartAndRejectsReplacement
+--- PASS: TestItechIdentitySurvivesRestartAndRejectsReplacement (0.04s)
+=== RUN   TestConfigurationCannotOvertakeAvailabilityReport
+--- PASS: TestConfigurationCannotOvertakeAvailabilityReport (0.03s)
+PASS
+ok  	devconsole/internal/access/manager	1.139s
+--- PASS: TestProjectFlowAndAuthorization (2.96s)
+=== RUN   TestBusyAcrossServicesAndIndependentPorts
+--- PASS: TestBusyAcrossServicesAndIndependentPorts (1.51s)
+=== RUN   TestRestartAndDeletion
+--- PASS: TestRestartAndDeletion (2.87s)
+=== RUN   TestBindingDefaultsRevisionsAndOffline
+--- PASS: TestBindingDefaultsRevisionsAndOffline (1.50s)
+=== RUN   TestHTTPStaticAndErrorBoundaries
+--- PASS: TestHTTPStaticAndErrorBoundaries (0.95s)
+=== RUN   TestAuditFailurePreventsPhysicalWrite
+--- PASS: TestAuditFailurePreventsPhysicalWrite (1.48s)
+=== RUN   TestDocsDefaultsMatchRuntimeAndDeviceRangeRevision
+--- PASS: TestDocsDefaultsMatchRuntimeAndDeviceRangeRevision (1.46s)
+PASS
+ok  	devconsole/internal/httpapi	13.748s
+
+go vet ./...：通过

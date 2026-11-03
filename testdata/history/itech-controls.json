@@ -1,0 +1,1008 @@
+{
+  "port": "COM32",
+  "settings": "9600,N,8,1",
+  "stages": [
+    {
+      "stage": "initial_state",
+      "state": {
+        "set_voltage_V": 12.98,
+        "set_current_A": 9.01,
+        "output": 0,
+        "measured_voltage_V": 0.0,
+        "measured_current_A": 0.0001
+      },
+      "hold_seconds": 0
+    },
+    {
+      "stage": "output_off",
+      "state": {
+        "set_voltage_V": 12.98,
+        "set_current_A": 9.01,
+        "output": 0,
+        "measured_voltage_V": 0.0,
+        "measured_current_A": 0.0
+      },
+      "hold_seconds": 0
+    },
+    {
+      "stage": "set_5V_0.5A_while_off",
+      "state": {
+        "set_voltage_V": 5.0,
+        "set_current_A": 0.5,
+        "output": 0,
+        "measured_voltage_V": 0.0,
+        "measured_current_A": 0.0
+      },
+      "hold_seconds": 8,
+      "settled_state": {
+        "set_voltage_V": 5.0,
+        "set_current_A": 0.5,
+        "output": 0,
+        "measured_voltage_V": 0.0,
+        "measured_current_A": 0.0
+      }
+    },
+    {
+      "stage": "output_on_5V_0.5A",
+      "state": {
+        "set_voltage_V": 5.0,
+        "set_current_A": 0.5,
+        "output": 1,
+        "measured_voltage_V": 4.994,
+        "measured_current_A": 0.0
+      },
+      "hold_seconds": 8,
+      "settled_state": {
+        "set_voltage_V": 5.0,
+        "set_current_A": 0.5,
+        "output": 1,
+        "measured_voltage_V": 4.999,
+        "measured_current_A": 0.0
+      }
+    },
+    {
+      "stage": "voltage_changed_to_9V",
+      "state": {
+        "set_voltage_V": 9.0,
+        "set_current_A": 0.5,
+        "output": 1,
+        "measured_voltage_V": 8.993,
+        "measured_current_A": 0.0
+      },
+      "hold_seconds": 8,
+      "settled_state": {
+        "set_voltage_V": 9.0,
+        "set_current_A": 0.5,
+        "output": 1,
+        "measured_voltage_V": 9.0,
+        "measured_current_A": 0.0
+      }
+    },
+    {
+      "stage": "current_limit_changed_to_1A",
+      "state": {
+        "set_voltage_V": 9.0,
+        "set_current_A": 1.0,
+        "output": 1,
+        "measured_voltage_V": 8.999,
+        "measured_current_A": 0.0
+      },
+      "hold_seconds": 8,
+      "settled_state": {
+        "set_voltage_V": 9.0,
+        "set_current_A": 1.0,
+        "output": 1,
+        "measured_voltage_V": 9.0,
+        "measured_current_A": 0.0
+      }
+    },
+    {
+      "stage": "output_off_after_test",
+      "state": {
+        "set_voltage_V": 9.0,
+        "set_current_A": 1.0,
+        "output": 0,
+        "measured_voltage_V": 0.0,
+        "measured_current_A": 0.0
+      },
+      "hold_seconds": 8,
+      "settled_state": {
+        "set_voltage_V": 9.0,
+        "set_current_A": 1.0,
+        "output": 0,
+        "measured_voltage_V": 0.0,
+        "measured_current_A": 0.0
+      }
+    },
+    {
+      "stage": "original_settings_restored",
+      "state": {
+        "set_voltage_V": 12.98,
+        "set_current_A": 9.01,
+        "output": 0,
+        "measured_voltage_V": 0.0,
+        "measured_current_A": 0.0
+      },
+      "hold_seconds": 0
+    }
+  ],
+  "restored": true,
+  "idn": "ITECH Ltd., IT6722, 802260084777170024,  1.17-1.04",
+  "initial_state": {
+    "set_voltage_V": 12.98,
+    "set_current_A": 9.01,
+    "output": 0,
+    "measured_voltage_V": 0.0,
+    "measured_current_A": 0.0001
+  },
+  "transactions": [
+    {
+      "time": "2026-11-02T20:28:01.336211+08:00",
+      "command": "*IDN?",
+      "tx_hex": "2A 49 44 4E 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "49 54 45 43 48 20 4C 74 64 2E 2C 20 49 54 36 37 32 32 2C 20 38 30 32 32 36 30 30 38 34 37 37 37 31 37 30 30 32 34 2C 20 20 31 2E 31 37 2D 31 2E 30 34 0A",
+      "response": "ITECH Ltd., IT6722, 802260084777170024,  1.17-1.04"
+    },
+    {
+      "time": "2026-11-02T20:28:01.488871+08:00",
+      "command": "VOLT?",
+      "tx_hex": "56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 32 2E 39 38 0A",
+      "response": "12.98"
+    },
+    {
+      "time": "2026-11-02T20:28:01.646366+08:00",
+      "command": "CURR?",
+      "tx_hex": "43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "39 2E 30 31 0A",
+      "response": "9.01"
+    },
+    {
+      "time": "2026-11-02T20:28:01.801482+08:00",
+      "command": "OUTP?",
+      "tx_hex": "4F 55 54 50 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:01.956655+08:00",
+      "command": "MEAS:VOLT?",
+      "tx_hex": "4D 45 41 53 3A 56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:02.111176+08:00",
+      "command": "MEAS:CURR?",
+      "tx_hex": "4D 45 41 53 3A 43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 65 2D 30 34 0A",
+      "response": "1e-04"
+    },
+    {
+      "time": "2026-11-02T20:28:02.269124+08:00",
+      "command": "SYST:ERR?",
+      "tx_hex": "53 59 53 54 3A 45 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2C 20 22 4E 6F 20 65 72 72 6F 72 22 0A",
+      "response": "0, \"No error\""
+    },
+    {
+      "time": "2026-11-02T20:28:02.420761+08:00",
+      "command": "SYST:REM",
+      "tx_hex": "53 59 53 54 3A 52 45 4D 0A"
+    },
+    {
+      "time": "2026-11-02T20:28:02.521777+08:00",
+      "command": "SYST:ERR?",
+      "tx_hex": "53 59 53 54 3A 45 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2C 20 22 4E 6F 20 65 72 72 6F 72 22 0A",
+      "response": "0, \"No error\""
+    },
+    {
+      "time": "2026-11-02T20:28:02.684626+08:00",
+      "command": "OUTP 0",
+      "tx_hex": "4F 55 54 50 20 30 0A"
+    },
+    {
+      "time": "2026-11-02T20:28:03.585704+08:00",
+      "command": "VOLT?",
+      "tx_hex": "56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 32 2E 39 38 0A",
+      "response": "12.98"
+    },
+    {
+      "time": "2026-11-02T20:28:03.742794+08:00",
+      "command": "CURR?",
+      "tx_hex": "43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "39 2E 30 31 0A",
+      "response": "9.01"
+    },
+    {
+      "time": "2026-11-02T20:28:03.899867+08:00",
+      "command": "OUTP?",
+      "tx_hex": "4F 55 54 50 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:04.054960+08:00",
+      "command": "MEAS:VOLT?",
+      "tx_hex": "4D 45 41 53 3A 56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:04.210254+08:00",
+      "command": "MEAS:CURR?",
+      "tx_hex": "4D 45 41 53 3A 43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:04.368893+08:00",
+      "command": "SYST:ERR?",
+      "tx_hex": "53 59 53 54 3A 45 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2C 20 22 4E 6F 20 65 72 72 6F 72 22 0A",
+      "response": "0, \"No error\""
+    },
+    {
+      "time": "2026-11-02T20:28:04.528465+08:00",
+      "command": "VOLT 5",
+      "tx_hex": "56 4F 4C 54 20 35 0A"
+    },
+    {
+      "time": "2026-11-02T20:28:05.429447+08:00",
+      "command": "VOLT?",
+      "tx_hex": "56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "35 0A",
+      "response": "5"
+    },
+    {
+      "time": "2026-11-02T20:28:05.584007+08:00",
+      "command": "CURR?",
+      "tx_hex": "43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "39 2E 30 31 0A",
+      "response": "9.01"
+    },
+    {
+      "time": "2026-11-02T20:28:05.743017+08:00",
+      "command": "OUTP?",
+      "tx_hex": "4F 55 54 50 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:05.902535+08:00",
+      "command": "MEAS:VOLT?",
+      "tx_hex": "4D 45 41 53 3A 56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:06.057500+08:00",
+      "command": "MEAS:CURR?",
+      "tx_hex": "4D 45 41 53 3A 43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:06.217016+08:00",
+      "command": "SYST:ERR?",
+      "tx_hex": "53 59 53 54 3A 45 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2C 20 22 4E 6F 20 65 72 72 6F 72 22 0A",
+      "response": "0, \"No error\""
+    },
+    {
+      "time": "2026-11-02T20:28:06.372526+08:00",
+      "command": "CURR 0.5",
+      "tx_hex": "43 55 52 52 20 30 2E 35 0A"
+    },
+    {
+      "time": "2026-11-02T20:28:07.274295+08:00",
+      "command": "VOLT?",
+      "tx_hex": "56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "35 0A",
+      "response": "5"
+    },
+    {
+      "time": "2026-11-02T20:28:07.438355+08:00",
+      "command": "CURR?",
+      "tx_hex": "43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2E 35 0A",
+      "response": "0.5"
+    },
+    {
+      "time": "2026-11-02T20:28:07.597893+08:00",
+      "command": "OUTP?",
+      "tx_hex": "4F 55 54 50 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:07.753419+08:00",
+      "command": "MEAS:VOLT?",
+      "tx_hex": "4D 45 41 53 3A 56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:07.908941+08:00",
+      "command": "MEAS:CURR?",
+      "tx_hex": "4D 45 41 53 3A 43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:08.064755+08:00",
+      "command": "SYST:ERR?",
+      "tx_hex": "53 59 53 54 3A 45 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2C 20 22 4E 6F 20 65 72 72 6F 72 22 0A",
+      "response": "0, \"No error\""
+    },
+    {
+      "time": "2026-11-02T20:28:16.224811+08:00",
+      "command": "VOLT?",
+      "tx_hex": "56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "35 0A",
+      "response": "5"
+    },
+    {
+      "time": "2026-11-02T20:28:16.383660+08:00",
+      "command": "CURR?",
+      "tx_hex": "43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2E 35 0A",
+      "response": "0.5"
+    },
+    {
+      "time": "2026-11-02T20:28:16.542264+08:00",
+      "command": "OUTP?",
+      "tx_hex": "4F 55 54 50 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:16.698972+08:00",
+      "command": "MEAS:VOLT?",
+      "tx_hex": "4D 45 41 53 3A 56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:16.857524+08:00",
+      "command": "MEAS:CURR?",
+      "tx_hex": "4D 45 41 53 3A 43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:17.013012+08:00",
+      "command": "OUTP 1",
+      "tx_hex": "4F 55 54 50 20 31 0A"
+    },
+    {
+      "time": "2026-11-02T20:28:17.915099+08:00",
+      "command": "VOLT?",
+      "tx_hex": "56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "35 0A",
+      "response": "5"
+    },
+    {
+      "time": "2026-11-02T20:28:18.069478+08:00",
+      "command": "CURR?",
+      "tx_hex": "43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2E 35 0A",
+      "response": "0.5"
+    },
+    {
+      "time": "2026-11-02T20:28:18.225667+08:00",
+      "command": "OUTP?",
+      "tx_hex": "4F 55 54 50 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 0A",
+      "response": "1"
+    },
+    {
+      "time": "2026-11-02T20:28:18.383161+08:00",
+      "command": "MEAS:VOLT?",
+      "tx_hex": "4D 45 41 53 3A 56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "34 2E 39 39 34 0A",
+      "response": "4.994"
+    },
+    {
+      "time": "2026-11-02T20:28:18.542715+08:00",
+      "command": "MEAS:CURR?",
+      "tx_hex": "4D 45 41 53 3A 43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:18.702224+08:00",
+      "command": "SYST:ERR?",
+      "tx_hex": "53 59 53 54 3A 45 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2C 20 22 4E 6F 20 65 72 72 6F 72 22 0A",
+      "response": "0, \"No error\""
+    },
+    {
+      "time": "2026-11-02T20:28:26.861361+08:00",
+      "command": "VOLT?",
+      "tx_hex": "56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "35 0A",
+      "response": "5"
+    },
+    {
+      "time": "2026-11-02T20:28:27.020477+08:00",
+      "command": "CURR?",
+      "tx_hex": "43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2E 35 0A",
+      "response": "0.5"
+    },
+    {
+      "time": "2026-11-02T20:28:27.174748+08:00",
+      "command": "OUTP?",
+      "tx_hex": "4F 55 54 50 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 0A",
+      "response": "1"
+    },
+    {
+      "time": "2026-11-02T20:28:27.328667+08:00",
+      "command": "MEAS:VOLT?",
+      "tx_hex": "4D 45 41 53 3A 56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "34 2E 39 39 39 0A",
+      "response": "4.999"
+    },
+    {
+      "time": "2026-11-02T20:28:27.483510+08:00",
+      "command": "MEAS:CURR?",
+      "tx_hex": "4D 45 41 53 3A 43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:27.638817+08:00",
+      "command": "VOLT 9",
+      "tx_hex": "56 4F 4C 54 20 39 0A"
+    },
+    {
+      "time": "2026-11-02T20:28:28.540554+08:00",
+      "command": "VOLT?",
+      "tx_hex": "56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "39 0A",
+      "response": "9"
+    },
+    {
+      "time": "2026-11-02T20:28:28.692765+08:00",
+      "command": "CURR?",
+      "tx_hex": "43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2E 35 0A",
+      "response": "0.5"
+    },
+    {
+      "time": "2026-11-02T20:28:28.849317+08:00",
+      "command": "OUTP?",
+      "tx_hex": "4F 55 54 50 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 0A",
+      "response": "1"
+    },
+    {
+      "time": "2026-11-02T20:28:29.007472+08:00",
+      "command": "MEAS:VOLT?",
+      "tx_hex": "4D 45 41 53 3A 56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "38 2E 39 39 33 0A",
+      "response": "8.993"
+    },
+    {
+      "time": "2026-11-02T20:28:29.163471+08:00",
+      "command": "MEAS:CURR?",
+      "tx_hex": "4D 45 41 53 3A 43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:29.317291+08:00",
+      "command": "SYST:ERR?",
+      "tx_hex": "53 59 53 54 3A 45 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2C 20 22 4E 6F 20 65 72 72 6F 72 22 0A",
+      "response": "0, \"No error\""
+    },
+    {
+      "time": "2026-11-02T20:28:37.479389+08:00",
+      "command": "VOLT?",
+      "tx_hex": "56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "39 0A",
+      "response": "9"
+    },
+    {
+      "time": "2026-11-02T20:28:37.645400+08:00",
+      "command": "CURR?",
+      "tx_hex": "43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2E 35 0A",
+      "response": "0.5"
+    },
+    {
+      "time": "2026-11-02T20:28:37.801302+08:00",
+      "command": "OUTP?",
+      "tx_hex": "4F 55 54 50 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 0A",
+      "response": "1"
+    },
+    {
+      "time": "2026-11-02T20:28:37.957245+08:00",
+      "command": "MEAS:VOLT?",
+      "tx_hex": "4D 45 41 53 3A 56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "39 0A",
+      "response": "9"
+    },
+    {
+      "time": "2026-11-02T20:28:38.113064+08:00",
+      "command": "MEAS:CURR?",
+      "tx_hex": "4D 45 41 53 3A 43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:38.273922+08:00",
+      "command": "CURR 1",
+      "tx_hex": "43 55 52 52 20 31 0A"
+    },
+    {
+      "time": "2026-11-02T20:28:39.175322+08:00",
+      "command": "VOLT?",
+      "tx_hex": "56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "39 0A",
+      "response": "9"
+    },
+    {
+      "time": "2026-11-02T20:28:39.328784+08:00",
+      "command": "CURR?",
+      "tx_hex": "43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 0A",
+      "response": "1"
+    },
+    {
+      "time": "2026-11-02T20:28:39.484894+08:00",
+      "command": "OUTP?",
+      "tx_hex": "4F 55 54 50 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 0A",
+      "response": "1"
+    },
+    {
+      "time": "2026-11-02T20:28:39.639166+08:00",
+      "command": "MEAS:VOLT?",
+      "tx_hex": "4D 45 41 53 3A 56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "38 2E 39 39 39 0A",
+      "response": "8.999"
+    },
+    {
+      "time": "2026-11-02T20:28:39.794488+08:00",
+      "command": "MEAS:CURR?",
+      "tx_hex": "4D 45 41 53 3A 43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:39.950889+08:00",
+      "command": "SYST:ERR?",
+      "tx_hex": "53 59 53 54 3A 45 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2C 20 22 4E 6F 20 65 72 72 6F 72 22 0A",
+      "response": "0, \"No error\""
+    },
+    {
+      "time": "2026-11-02T20:28:48.112171+08:00",
+      "command": "VOLT?",
+      "tx_hex": "56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "39 0A",
+      "response": "9"
+    },
+    {
+      "time": "2026-11-02T20:28:48.268234+08:00",
+      "command": "CURR?",
+      "tx_hex": "43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 0A",
+      "response": "1"
+    },
+    {
+      "time": "2026-11-02T20:28:48.423116+08:00",
+      "command": "OUTP?",
+      "tx_hex": "4F 55 54 50 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 0A",
+      "response": "1"
+    },
+    {
+      "time": "2026-11-02T20:28:48.579177+08:00",
+      "command": "MEAS:VOLT?",
+      "tx_hex": "4D 45 41 53 3A 56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "39 0A",
+      "response": "9"
+    },
+    {
+      "time": "2026-11-02T20:28:48.735893+08:00",
+      "command": "MEAS:CURR?",
+      "tx_hex": "4D 45 41 53 3A 43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:48.893632+08:00",
+      "command": "OUTP 0",
+      "tx_hex": "4F 55 54 50 20 30 0A"
+    },
+    {
+      "time": "2026-11-02T20:28:49.794055+08:00",
+      "command": "VOLT?",
+      "tx_hex": "56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "39 0A",
+      "response": "9"
+    },
+    {
+      "time": "2026-11-02T20:28:49.945328+08:00",
+      "command": "CURR?",
+      "tx_hex": "43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 0A",
+      "response": "1"
+    },
+    {
+      "time": "2026-11-02T20:28:50.100995+08:00",
+      "command": "OUTP?",
+      "tx_hex": "4F 55 54 50 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:50.256370+08:00",
+      "command": "MEAS:VOLT?",
+      "tx_hex": "4D 45 41 53 3A 56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:50.410768+08:00",
+      "command": "MEAS:CURR?",
+      "tx_hex": "4D 45 41 53 3A 43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:50.568245+08:00",
+      "command": "SYST:ERR?",
+      "tx_hex": "53 59 53 54 3A 45 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2C 20 22 4E 6F 20 65 72 72 6F 72 22 0A",
+      "response": "0, \"No error\""
+    },
+    {
+      "time": "2026-11-02T20:28:58.729045+08:00",
+      "command": "VOLT?",
+      "tx_hex": "56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "39 0A",
+      "response": "9"
+    },
+    {
+      "time": "2026-11-02T20:28:58.892692+08:00",
+      "command": "CURR?",
+      "tx_hex": "43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 0A",
+      "response": "1"
+    },
+    {
+      "time": "2026-11-02T20:28:59.048751+08:00",
+      "command": "OUTP?",
+      "tx_hex": "4F 55 54 50 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:59.201358+08:00",
+      "command": "MEAS:VOLT?",
+      "tx_hex": "4D 45 41 53 3A 56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:59.356184+08:00",
+      "command": "MEAS:CURR?",
+      "tx_hex": "4D 45 41 53 3A 43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:28:59.511481+08:00",
+      "command": "OUTP 0",
+      "tx_hex": "4F 55 54 50 20 30 0A"
+    },
+    {
+      "time": "2026-11-02T20:29:00.412947+08:00",
+      "command": "VOLT?",
+      "tx_hex": "56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "39 0A",
+      "response": "9"
+    },
+    {
+      "time": "2026-11-02T20:29:00.578736+08:00",
+      "command": "CURR?",
+      "tx_hex": "43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 0A",
+      "response": "1"
+    },
+    {
+      "time": "2026-11-02T20:29:00.734395+08:00",
+      "command": "OUTP?",
+      "tx_hex": "4F 55 54 50 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:29:00.892110+08:00",
+      "command": "MEAS:VOLT?",
+      "tx_hex": "4D 45 41 53 3A 56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:29:01.050627+08:00",
+      "command": "MEAS:CURR?",
+      "tx_hex": "4D 45 41 53 3A 43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:29:01.206648+08:00",
+      "command": "SYST:ERR?",
+      "tx_hex": "53 59 53 54 3A 45 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2C 20 22 4E 6F 20 65 72 72 6F 72 22 0A",
+      "response": "0, \"No error\""
+    },
+    {
+      "time": "2026-11-02T20:29:01.364529+08:00",
+      "command": "VOLT 12.98",
+      "tx_hex": "56 4F 4C 54 20 31 32 2E 39 38 0A"
+    },
+    {
+      "time": "2026-11-02T20:29:02.266594+08:00",
+      "command": "VOLT?",
+      "tx_hex": "56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 32 2E 39 38 0A",
+      "response": "12.98"
+    },
+    {
+      "time": "2026-11-02T20:29:02.425581+08:00",
+      "command": "CURR?",
+      "tx_hex": "43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 0A",
+      "response": "1"
+    },
+    {
+      "time": "2026-11-02T20:29:02.578646+08:00",
+      "command": "OUTP?",
+      "tx_hex": "4F 55 54 50 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:29:02.735927+08:00",
+      "command": "MEAS:VOLT?",
+      "tx_hex": "4D 45 41 53 3A 56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:29:02.893018+08:00",
+      "command": "MEAS:CURR?",
+      "tx_hex": "4D 45 41 53 3A 43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:29:03.049533+08:00",
+      "command": "SYST:ERR?",
+      "tx_hex": "53 59 53 54 3A 45 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2C 20 22 4E 6F 20 65 72 72 6F 72 22 0A",
+      "response": "0, \"No error\""
+    },
+    {
+      "time": "2026-11-02T20:29:03.206483+08:00",
+      "command": "CURR 9.01",
+      "tx_hex": "43 55 52 52 20 39 2E 30 31 0A"
+    },
+    {
+      "time": "2026-11-02T20:29:04.107399+08:00",
+      "command": "VOLT?",
+      "tx_hex": "56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 32 2E 39 38 0A",
+      "response": "12.98"
+    },
+    {
+      "time": "2026-11-02T20:29:04.261769+08:00",
+      "command": "CURR?",
+      "tx_hex": "43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "39 2E 30 31 0A",
+      "response": "9.01"
+    },
+    {
+      "time": "2026-11-02T20:29:04.419457+08:00",
+      "command": "OUTP?",
+      "tx_hex": "4F 55 54 50 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:29:04.577863+08:00",
+      "command": "MEAS:VOLT?",
+      "tx_hex": "4D 45 41 53 3A 56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:29:04.733462+08:00",
+      "command": "MEAS:CURR?",
+      "tx_hex": "4D 45 41 53 3A 43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:29:04.891136+08:00",
+      "command": "SYST:ERR?",
+      "tx_hex": "53 59 53 54 3A 45 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2C 20 22 4E 6F 20 65 72 72 6F 72 22 0A",
+      "response": "0, \"No error\""
+    },
+    {
+      "time": "2026-11-02T20:29:05.049709+08:00",
+      "command": "OUTP 0",
+      "tx_hex": "4F 55 54 50 20 30 0A"
+    },
+    {
+      "time": "2026-11-02T20:29:05.950396+08:00",
+      "command": "VOLT?",
+      "tx_hex": "56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "31 32 2E 39 38 0A",
+      "response": "12.98"
+    },
+    {
+      "time": "2026-11-02T20:29:06.105651+08:00",
+      "command": "CURR?",
+      "tx_hex": "43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "39 2E 30 31 0A",
+      "response": "9.01"
+    },
+    {
+      "time": "2026-11-02T20:29:06.260397+08:00",
+      "command": "OUTP?",
+      "tx_hex": "4F 55 54 50 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:29:06.416594+08:00",
+      "command": "MEAS:VOLT?",
+      "tx_hex": "4D 45 41 53 3A 56 4F 4C 54 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:29:06.572808+08:00",
+      "command": "MEAS:CURR?",
+      "tx_hex": "4D 45 41 53 3A 43 55 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 0A",
+      "response": "0"
+    },
+    {
+      "time": "2026-11-02T20:29:06.730708+08:00",
+      "command": "SYST:ERR?",
+      "tx_hex": "53 59 53 54 3A 45 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2C 20 22 4E 6F 20 65 72 72 6F 72 22 0A",
+      "response": "0, \"No error\""
+    },
+    {
+      "time": "2026-11-02T20:29:06.890652+08:00",
+      "command": "SYST:LOC",
+      "tx_hex": "53 59 53 54 3A 4C 4F 43 0A"
+    },
+    {
+      "time": "2026-11-02T20:29:06.991597+08:00",
+      "command": "SYST:ERR?",
+      "tx_hex": "53 59 53 54 3A 45 52 52 3F 0A",
+      "preexisting_rx_hex": "",
+      "rx_hex": "30 2C 20 22 4E 6F 20 65 72 72 6F 72 22 0A",
+      "response": "0, \"No error\""
+    }
+  ],
+  "test_passed": true,
+  "returned_to_local": true,
+  "port_closed": true
+}

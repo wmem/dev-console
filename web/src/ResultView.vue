@@ -1,0 +1,6 @@
+<script setup lang="ts">
+defineProps<{record:any}>();
+const names:Record<string,string>={voltage:'电压 / V',current:'电流 / A',current_limit:'电流限值 / A',enabled:'输出开关',mode:'工作模式',requested_voltage:'请求电压 / V',observed_voltage:'回读电压 / V',requested_current_limit:'请求电流限值 / A',observed_current_limit:'回读电流限值 / A',requested_enabled:'请求输出状态',observed_enabled:'回读输出状态'};
+function value(v:any){return typeof v==='boolean'?(v?'开启':'关闭'):v}
+</script>
+<template><section v-if="record" class="result-box" aria-live="polite"><div class="row"><strong>调用结果</strong><span class="badge" :class="record.status==='succeeded'?'online':'error'">{{record.status==='succeeded'?'执行成功':'执行失败'}}</span><span v-if="record.confirmation==='verified'" class="badge online">回读已确认</span><span v-if="record.source==='live'" class="badge">实时采集</span></div><p v-if="record.error" class="error-text">{{record.error.code}}：{{record.error.message}}<br>执行结果：{{record.error.outcome}}</p><dl class="result-values"><template v-for="(v,k) in record.result||{}" :key="k"><dt>{{names[k]||k}}</dt><dd>{{value(v)}}</dd></template></dl><p class="meta">请求 ID：{{record.request_id}}<br>采集时间：{{record.observed_at?new Date(record.observed_at).toLocaleString():'—'}} · 耗时 {{record.duration_ms}} ms</p><details><summary>查看完整响应</summary><pre>{{JSON.stringify(record,null,2)}}</pre></details></section></template>

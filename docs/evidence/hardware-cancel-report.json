@@ -1,0 +1,16 @@
+{
+  "finished_at": "2026-11-03T01:53:37.794Z",
+  "passed": true,
+  "device": "itech-it6722",
+  "read_only_passed": true,
+  "scope": "伪终端模拟器上的SIGINT中断恢复；不是真实电源中断测试",
+  "process_exit_code": 1,
+  "recovery": {
+    "attempted": true,
+    "confirmed": true,
+    "local_control": "command_sent",
+    "original_current_limit": 1,
+    "original_enabled": false,
+    "original_voltage": 12
+  }
+}

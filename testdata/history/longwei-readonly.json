@@ -1,0 +1,100 @@
+{
+  "started": "2026-11-02T20:19:15.084352+08:00",
+  "port": "COM31",
+  "settings": "9600,N,8,1",
+  "read_only": true,
+  "ports": [
+    {
+      "device": "COM1",
+      "description": "通信端口 (COM1)",
+      "hwid": "ACPI\\PNP0501\\0"
+    },
+    {
+      "device": "COM31",
+      "description": "USB-SERIAL CH340 (COM31)",
+      "hwid": "USB VID:PID=1A86:7523 SER= LOCATION=1-4.3.4"
+    }
+  ],
+  "transactions": [
+    {
+      "address": 1,
+      "attempt": 1,
+      "tx": "01 03 10 00 00 06 C1 08",
+      "preexisting_rx": "",
+      "rx": "01 03 0C 04 B0 01 F4 04 B0 00 00 00 01 00 01 73 44",
+      "decoded": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 12.0,
+        "set_current_A": 5.0,
+        "measured_voltage_V": 12.0,
+        "measured_current_A": 0.0,
+        "output": "ON",
+        "mode": "CV",
+        "raw_registers": [
+          "0x04B0",
+          "0x01F4",
+          "0x04B0",
+          "0x0000",
+          "0x0001",
+          "0x0001"
+        ]
+      },
+      "address_matches": true
+    },
+    {
+      "address": 1,
+      "attempt": 2,
+      "tx": "01 03 10 00 00 06 C1 08",
+      "preexisting_rx": "",
+      "rx": "01 03 0C 04 B0 01 F4 04 B0 00 00 00 01 00 01 73 44",
+      "decoded": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 12.0,
+        "set_current_A": 5.0,
+        "measured_voltage_V": 12.0,
+        "measured_current_A": 0.0,
+        "output": "ON",
+        "mode": "CV",
+        "raw_registers": [
+          "0x04B0",
+          "0x01F4",
+          "0x04B0",
+          "0x0000",
+          "0x0001",
+          "0x0001"
+        ]
+      },
+      "address_matches": true
+    },
+    {
+      "address": 1,
+      "attempt": 3,
+      "tx": "01 03 10 00 00 06 C1 08",
+      "preexisting_rx": "",
+      "rx": "01 03 0C 04 B0 01 F4 04 B0 00 00 00 01 00 01 73 44",
+      "decoded": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 12.0,
+        "set_current_A": 5.0,
+        "measured_voltage_V": 12.0,
+        "measured_current_A": 0.0,
+        "output": "ON",
+        "mode": "CV",
+        "raw_registers": [
+          "0x04B0",
+          "0x01F4",
+          "0x04B0",
+          "0x0000",
+          "0x0001",
+          "0x0001"
+        ]
+      },
+      "address_matches": true
+    }
+  ],
+  "opened": true,
+  "port_closed": true
+}

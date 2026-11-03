@@ -1,0 +1,135 @@
+{
+  "address": 1,
+  "device": "LW-3010E",
+  "finished_at": "2026-11-03T01:33:10.744931268Z",
+  "passed": true,
+  "port": "/dev/ttyUSB0",
+  "read_only": true,
+  "records": [
+    {
+      "request_id": "fcbb45915379b8033a0cdfbf",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "settings.read",
+      "service_revision": 1,
+      "device_id": "5ea27d74976ef55da2f9d0f2",
+      "device_service_key": "settings.read",
+      "parameters": {},
+      "status": "succeeded",
+      "result": {
+        "current_limit": 5,
+        "voltage": 12
+      },
+      "confirmation": "read",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:10.659206339Z",
+      "started_at": "2026-11-03T01:33:10.613989636Z",
+      "finished_at": "2026-11-03T01:33:10.661025201Z",
+      "duration_ms": 47
+    },
+    {
+      "request_id": "591600c6f5a77860dfacf540",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "output.read",
+      "service_revision": 1,
+      "device_id": "5ea27d74976ef55da2f9d0f2",
+      "device_service_key": "output.read",
+      "parameters": {},
+      "status": "succeeded",
+      "result": {
+        "enabled": true,
+        "mode": "CV"
+      },
+      "confirmation": "read",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:10.700838754Z",
+      "started_at": "2026-11-03T01:33:10.662892185Z",
+      "finished_at": "2026-11-03T01:33:10.701244248Z",
+      "duration_ms": 38
+    },
+    {
+      "request_id": "6b5b36de13c750ee8cfd59ff",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "measurement.read",
+      "service_revision": 1,
+      "device_id": "5ea27d74976ef55da2f9d0f2",
+      "device_service_key": "measurement.read",
+      "parameters": {},
+      "status": "succeeded",
+      "result": {
+        "current": 0,
+        "voltage": 12.01
+      },
+      "confirmation": "read",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:10.742307323Z",
+      "started_at": "2026-11-03T01:33:10.703773796Z",
+      "finished_at": "2026-11-03T01:33:10.742705321Z",
+      "duration_ms": 38
+    }
+  ],
+  "recovery": {
+    "attempted": false,
+    "confirmed": false
+  },
+  "scope": "只读查询设定值、输出状态与实测值，不修改设备",
+  "template_key": "longwei-lw3010e",
+  "wire_events": [
+    {
+      "at": "2026-11-03T01:33:10.615799675Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:10.659200773Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:10.659204511Z",
+      "direction": "rx",
+      "hex": "04b001f404b10000000100016384",
+      "text": "\u0004\ufffd\u0001\ufffd\u0004\ufffd\u0000\u0000\u0000\u0001\u0000\u0001c\ufffd"
+    },
+    {
+      "at": "2026-11-03T01:33:10.664448022Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:10.70082849Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:10.700834492Z",
+      "direction": "rx",
+      "hex": "04b001f404b10000000100016384",
+      "text": "\u0004\ufffd\u0001\ufffd\u0004\ufffd\u0000\u0000\u0000\u0001\u0000\u0001c\ufffd"
+    },
+    {
+      "at": "2026-11-03T01:33:10.705392236Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:10.742297405Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:10.742303361Z",
+      "direction": "rx",
+      "hex": "04b001f404b10000000100016384",
+      "text": "\u0004\ufffd\u0001\ufffd\u0004\ufffd\u0000\u0000\u0000\u0001\u0000\u0001c\ufffd"
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "finished_at": "2026-11-03T01:56:34.255Z",
+  "browser_executable": "/home/mem/work/software/playwright-browsers/chromium-1237/chrome-linux64/chrome",
+  "scope": "Chromium桌面与手机视口及触摸模拟；未使用实体手机或第二台终端",
+  "results": [
+    {
+      "mode": "desktop",
+      "passed": true,
+      "browser": "152.0.7977.8",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "touch": false,
+      "pageErrors": [],
+      "unexpectedConsoleErrors": [],
+      "expectedErrorResponses": [
+        {
+          "path": "/api/v1/auth/me",
+          "status": 401
+        },
+        {
+          "path": "/api/v1/projects/board-desktop/services/board_measurement/invoke",
+          "status": 409
+        },
+        {
+          "path": "/api/v1/auth/me",
+          "status": 401
+        },
+        {
+          "path": "/api/v1/auth/me",
+          "status": 401
+        },
+        {
+          "path": "/api/v1/admin/devices/009ddbc67eaf1335f5fed61a/services/measurement.read/invoke",
+          "status": 503
+        },
+        {
+          "path": "/api/v1/auth/me",
+          "status": 401
+        }
+      ],
+      "checks": [
+        "登录与退出",
+        "用户创建与密码重置及禁用",
+        "设备创建与配置及只读探测",
+        "项目与服务绑定",
+        "参数范围与回读确认",
+        "通信busy提示",
+        "实时采集与显式限频刷新",
+        "页面隐藏事件停止刷新",
+        "Markdown与OpenAPI下载及复制回退",
+        "Token一次性展示及调用与撤销",
+        "项目成员权限",
+        "调用记录及绑定快照",
+        "离线错误提示",
+        "修改本人密码及会话撤销",
+        "深链接刷新",
+        "稳定路径持久化",
+        "串口候选选择",
+        "重选串口保留设备与项目绑定及原Token",
+        "页面无横向溢出"
+      ]
+    },
+    {
+      "mode": "mobile",
+      "passed": true,
+      "browser": "152.0.7977.8",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "touch": true,
+      "pageErrors": [],
+      "unexpectedConsoleErrors": [],
+      "expectedErrorResponses": [
+        {
+          "path": "/api/v1/auth/me",
+          "status": 401
+        },
+        {
+          "path": "/api/v1/projects/board-mobile/services/board_measurement/invoke",
+          "status": 409
+        },
+        {
+          "path": "/api/v1/auth/me",
+          "status": 401
+        },
+        {
+          "path": "/api/v1/auth/me",
+          "status": 401
+        },
+        {
+          "path": "/api/v1/admin/devices/080759dbffb848540dfed4d9/services/measurement.read/invoke",
+          "status": 503
+        },
+        {
+          "path": "/api/v1/auth/me",
+          "status": 401
+        }
+      ],
+      "checks": [
+        "登录与退出",
+        "用户创建与密码重置及禁用",
+        "设备创建与配置及只读探测",
+        "项目与服务绑定",
+        "参数范围与回读确认",
+        "通信busy提示",
+        "实时采集与显式限频刷新",
+        "页面隐藏事件停止刷新",
+        "Markdown与OpenAPI下载及复制回退",
+        "Token一次性展示及调用与撤销",
+        "项目成员权限",
+        "调用记录及绑定快照",
+        "离线错误提示",
+        "修改本人密码及会话撤销",
+        "深链接刷新",
+        "稳定路径持久化",
+        "串口候选选择",
+        "重选串口保留设备与项目绑定及原Token",
+        "页面无横向溢出"
+      ]
+    },
+    {
+      "mode": "mobile-narrow",
+      "passed": true,
+      "browser": "152.0.7977.8",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "touch": true,
+      "pageErrors": [],
+      "unexpectedConsoleErrors": [],
+      "expectedErrorResponses": [
+        {
+          "path": "/api/v1/auth/me",
+          "status": 401
+        },
+        {
+          "path": "/api/v1/projects/board-mobile-narrow/services/board_measurement/invoke",
+          "status": 409
+        },
+        {
+          "path": "/api/v1/auth/me",
+          "status": 401
+        },
+        {
+          "path": "/api/v1/auth/me",
+          "status": 401
+        },
+        {
+          "path": "/api/v1/admin/devices/d7374902478deaff83d8611c/services/measurement.read/invoke",
+          "status": 503
+        },
+        {
+          "path": "/api/v1/auth/me",
+          "status": 401
+        }
+      ],
+      "checks": [
+        "登录与退出",
+        "用户创建与密码重置及禁用",
+        "设备创建与配置及只读探测",
+        "项目与服务绑定",
+        "参数范围与回读确认",
+        "通信busy提示",
+        "实时采集与显式限频刷新",
+        "页面隐藏事件停止刷新",
+        "Markdown与OpenAPI下载及复制回退",
+        "Token一次性展示及调用与撤销",
+        "项目成员权限",
+        "调用记录及绑定快照",
+        "离线错误提示",
+        "修改本人密码及会话撤销",
+        "深链接刷新",
+        "稳定路径持久化",
+        "串口候选选择",
+        "重选串口保留设备与项目绑定及原Token",
+        "页面无横向溢出"
+      ]
+    }
+  ]
+}

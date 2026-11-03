@@ -1,0 +1,16 @@
+{
+  "finished_at": "2026-11-03T01:52:46.705Z",
+  "passed": true,
+  "command": "go test -race -json ./...",
+  "test_cases": 60,
+  "packages": [
+    "devconsole/internal/contracts",
+    "devconsole/internal/access/transport",
+    "devconsole/internal/access/power",
+    "devconsole/internal/storage",
+    "devconsole/cmd/platform",
+    "devconsole/internal/access/manager",
+    "devconsole/internal/httpapi"
+  ],
+  "failures": []
+}

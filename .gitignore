@@ -1,0 +1,12 @@
+.agent/
+node_modules/
+web/dist/
+/dist/
+/data/
+/.cache/
+/.playwright-cli/
+*.db
+*.db-shm
+*.db-wal
+*.log
+*.tmp

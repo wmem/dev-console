@@ -1,0 +1,635 @@
+{
+  "port": "COM31",
+  "settings": "9600,N,8,1",
+  "transactions": [
+    {
+      "time": "2026-11-02T20:21:01.149237+08:00",
+      "tx": "01 03 10 00 00 06 C1 08",
+      "preexisting_rx": "",
+      "rx": "01 03 0C 04 B0 01 F4 04 B0 00 00 00 01 00 01 73 44",
+      "decoded": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 12.0,
+        "set_current_A": 5.0,
+        "measured_voltage_V": 12.0,
+        "measured_current_A": 0.0,
+        "output": "ON",
+        "mode": "CV",
+        "raw_registers": [
+          "0x04B0",
+          "0x01F4",
+          "0x04B0",
+          "0x0000",
+          "0x0001",
+          "0x0001"
+        ]
+      }
+    },
+    {
+      "time": "2026-11-02T20:21:01.291769+08:00",
+      "tx": "01 06 10 06 00 00 6D 0B",
+      "preexisting_rx": "",
+      "rx": "01 06 10 06 00 00 6D 0B",
+      "decoded": {
+        "address": 1,
+        "function": 6,
+        "register": "0x1006",
+        "value": 0
+      }
+    },
+    {
+      "time": "2026-11-02T20:21:02.229735+08:00",
+      "tx": "01 03 10 00 00 06 C1 08",
+      "preexisting_rx": "",
+      "rx": "01 03 0C 04 B0 01 F4 00 00 00 00 00 00 00 00 53 7C",
+      "decoded": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 12.0,
+        "set_current_A": 5.0,
+        "measured_voltage_V": 0.0,
+        "measured_current_A": 0.0,
+        "output": "OFF",
+        "mode": "CC",
+        "raw_registers": [
+          "0x04B0",
+          "0x01F4",
+          "0x0000",
+          "0x0000",
+          "0x0000",
+          "0x0000"
+        ]
+      }
+    },
+    {
+      "time": "2026-11-02T20:21:10.377800+08:00",
+      "tx": "01 06 10 00 01 F4 8D 1D",
+      "preexisting_rx": "",
+      "rx": "01 06 10 00 01 F4 8D 1D",
+      "decoded": {
+        "address": 1,
+        "function": 6,
+        "register": "0x1000",
+        "value": 500
+      }
+    },
+    {
+      "time": "2026-11-02T20:21:11.315288+08:00",
+      "tx": "01 03 10 00 00 06 C1 08",
+      "preexisting_rx": "",
+      "rx": "01 03 0C 01 F4 01 F4 00 00 00 00 00 00 00 00 1F 81",
+      "decoded": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 5.0,
+        "set_current_A": 5.0,
+        "measured_voltage_V": 0.0,
+        "measured_current_A": 0.0,
+        "output": "OFF",
+        "mode": "CC",
+        "raw_registers": [
+          "0x01F4",
+          "0x01F4",
+          "0x0000",
+          "0x0000",
+          "0x0000",
+          "0x0000"
+        ]
+      }
+    },
+    {
+      "time": "2026-11-02T20:21:11.463764+08:00",
+      "tx": "01 06 10 01 00 32 5D 1F",
+      "preexisting_rx": "",
+      "rx": "01 06 10 01 00 32 5D 1F",
+      "decoded": {
+        "address": 1,
+        "function": 6,
+        "register": "0x1001",
+        "value": 50
+      }
+    },
+    {
+      "time": "2026-11-02T20:21:12.403062+08:00",
+      "tx": "01 03 10 00 00 06 C1 08",
+      "preexisting_rx": "",
+      "rx": "01 03 0C 01 F4 00 32 00 00 00 00 00 00 00 00 35 E1",
+      "decoded": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 5.0,
+        "set_current_A": 0.5,
+        "measured_voltage_V": 0.0,
+        "measured_current_A": 0.0,
+        "output": "OFF",
+        "mode": "CC",
+        "raw_registers": [
+          "0x01F4",
+          "0x0032",
+          "0x0000",
+          "0x0000",
+          "0x0000",
+          "0x0000"
+        ]
+      }
+    },
+    {
+      "time": "2026-11-02T20:21:20.553183+08:00",
+      "tx": "01 06 10 06 00 01 AC CB",
+      "preexisting_rx": "",
+      "rx": "01 06 10 06 00 01 AC CB",
+      "decoded": {
+        "address": 1,
+        "function": 6,
+        "register": "0x1006",
+        "value": 1
+      }
+    },
+    {
+      "time": "2026-11-02T20:21:21.493912+08:00",
+      "tx": "01 03 10 00 00 06 C1 08",
+      "preexisting_rx": "",
+      "rx": "01 03 0C 01 F4 00 32 01 EC 00 00 00 01 00 01 49 E3",
+      "decoded": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 5.0,
+        "set_current_A": 0.5,
+        "measured_voltage_V": 4.92,
+        "measured_current_A": 0.0,
+        "output": "ON",
+        "mode": "CV",
+        "raw_registers": [
+          "0x01F4",
+          "0x0032",
+          "0x01EC",
+          "0x0000",
+          "0x0001",
+          "0x0001"
+        ]
+      }
+    },
+    {
+      "time": "2026-11-02T20:21:29.641128+08:00",
+      "tx": "01 06 10 00 03 84 8D 99",
+      "preexisting_rx": "",
+      "rx": "01 06 10 00 03 84 8D 99",
+      "decoded": {
+        "address": 1,
+        "function": 6,
+        "register": "0x1000",
+        "value": 900
+      }
+    },
+    {
+      "time": "2026-11-02T20:21:30.599537+08:00",
+      "tx": "01 03 10 00 00 06 C1 08",
+      "preexisting_rx": "",
+      "rx": "01 03 0C 03 84 00 32 03 82 00 00 00 01 00 01 14 FA",
+      "decoded": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 9.0,
+        "set_current_A": 0.5,
+        "measured_voltage_V": 8.98,
+        "measured_current_A": 0.0,
+        "output": "ON",
+        "mode": "CV",
+        "raw_registers": [
+          "0x0384",
+          "0x0032",
+          "0x0382",
+          "0x0000",
+          "0x0001",
+          "0x0001"
+        ]
+      }
+    },
+    {
+      "time": "2026-11-02T20:21:38.749444+08:00",
+      "tx": "01 06 10 01 00 64 DD 21",
+      "preexisting_rx": "",
+      "rx": "01 06 10 01 00 64 DD 21",
+      "decoded": {
+        "address": 1,
+        "function": 6,
+        "register": "0x1001",
+        "value": 100
+      }
+    },
+    {
+      "time": "2026-11-02T20:21:39.692451+08:00",
+      "tx": "01 03 10 00 00 06 C1 08",
+      "preexisting_rx": "",
+      "rx": "01 03 0C 03 84 00 64 03 84 00 00 00 01 00 01 A5 59",
+      "decoded": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 9.0,
+        "set_current_A": 1.0,
+        "measured_voltage_V": 9.0,
+        "measured_current_A": 0.0,
+        "output": "ON",
+        "mode": "CV",
+        "raw_registers": [
+          "0x0384",
+          "0x0064",
+          "0x0384",
+          "0x0000",
+          "0x0001",
+          "0x0001"
+        ]
+      }
+    },
+    {
+      "time": "2026-11-02T20:21:47.849122+08:00",
+      "tx": "01 06 10 06 00 00 6D 0B",
+      "preexisting_rx": "",
+      "rx": "01 06 10 06 00 00 6D 0B",
+      "decoded": {
+        "address": 1,
+        "function": 6,
+        "register": "0x1006",
+        "value": 0
+      }
+    },
+    {
+      "time": "2026-11-02T20:21:48.786184+08:00",
+      "tx": "01 03 10 00 00 06 C1 08",
+      "preexisting_rx": "",
+      "rx": "01 03 0C 03 84 00 64 00 00 00 00 00 00 00 00 B1 44",
+      "decoded": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 9.0,
+        "set_current_A": 1.0,
+        "measured_voltage_V": 0.0,
+        "measured_current_A": 0.0,
+        "output": "OFF",
+        "mode": "CC",
+        "raw_registers": [
+          "0x0384",
+          "0x0064",
+          "0x0000",
+          "0x0000",
+          "0x0000",
+          "0x0000"
+        ]
+      }
+    },
+    {
+      "time": "2026-11-02T20:21:56.936028+08:00",
+      "tx": "01 06 10 06 00 00 6D 0B",
+      "preexisting_rx": "",
+      "rx": "01 06 10 06 00 00 6D 0B",
+      "decoded": {
+        "address": 1,
+        "function": 6,
+        "register": "0x1006",
+        "value": 0
+      }
+    },
+    {
+      "time": "2026-11-02T20:21:57.871232+08:00",
+      "tx": "01 03 10 00 00 06 C1 08",
+      "preexisting_rx": "",
+      "rx": "01 03 0C 03 84 00 64 00 00 00 00 00 00 00 00 B1 44",
+      "decoded": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 9.0,
+        "set_current_A": 1.0,
+        "measured_voltage_V": 0.0,
+        "measured_current_A": 0.0,
+        "output": "OFF",
+        "mode": "CC",
+        "raw_registers": [
+          "0x0384",
+          "0x0064",
+          "0x0000",
+          "0x0000",
+          "0x0000",
+          "0x0000"
+        ]
+      }
+    },
+    {
+      "time": "2026-11-02T20:21:58.020048+08:00",
+      "tx": "01 06 10 00 04 B0 8E 7E",
+      "preexisting_rx": "",
+      "rx": "01 06 10 00 04 B0 8E 7E",
+      "decoded": {
+        "address": 1,
+        "function": 6,
+        "register": "0x1000",
+        "value": 1200
+      }
+    },
+    {
+      "time": "2026-11-02T20:21:58.960029+08:00",
+      "tx": "01 03 10 00 00 06 C1 08",
+      "preexisting_rx": "",
+      "rx": "01 03 0C 04 B0 00 64 00 00 00 00 00 00 00 00 AE BF",
+      "decoded": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 12.0,
+        "set_current_A": 1.0,
+        "measured_voltage_V": 0.0,
+        "measured_current_A": 0.0,
+        "output": "OFF",
+        "mode": "CC",
+        "raw_registers": [
+          "0x04B0",
+          "0x0064",
+          "0x0000",
+          "0x0000",
+          "0x0000",
+          "0x0000"
+        ]
+      }
+    },
+    {
+      "time": "2026-11-02T20:21:59.109209+08:00",
+      "tx": "01 06 10 01 01 F4 DC DD",
+      "preexisting_rx": "",
+      "rx": "01 06 10 01 01 F4 DC DD",
+      "decoded": {
+        "address": 1,
+        "function": 6,
+        "register": "0x1001",
+        "value": 500
+      }
+    },
+    {
+      "time": "2026-11-02T20:22:00.048106+08:00",
+      "tx": "01 03 10 00 00 06 C1 08",
+      "preexisting_rx": "",
+      "rx": "01 03 0C 04 B0 01 F4 00 00 00 00 00 00 00 00 53 7C",
+      "decoded": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 12.0,
+        "set_current_A": 5.0,
+        "measured_voltage_V": 0.0,
+        "measured_current_A": 0.0,
+        "output": "OFF",
+        "mode": "CC",
+        "raw_registers": [
+          "0x04B0",
+          "0x01F4",
+          "0x0000",
+          "0x0000",
+          "0x0000",
+          "0x0000"
+        ]
+      }
+    },
+    {
+      "time": "2026-11-02T20:22:00.191158+08:00",
+      "tx": "01 06 10 06 00 01 AC CB",
+      "preexisting_rx": "",
+      "rx": "01 06 10 06 00 01 AC CB",
+      "decoded": {
+        "address": 1,
+        "function": 6,
+        "register": "0x1006",
+        "value": 1
+      }
+    },
+    {
+      "time": "2026-11-02T20:22:01.131419+08:00",
+      "tx": "01 03 10 00 00 06 C1 08",
+      "preexisting_rx": "",
+      "rx": "01 03 0C 04 B0 01 F4 04 AD 00 00 00 01 00 01 BE 45",
+      "decoded": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 12.0,
+        "set_current_A": 5.0,
+        "measured_voltage_V": 11.97,
+        "measured_current_A": 0.0,
+        "output": "ON",
+        "mode": "CV",
+        "raw_registers": [
+          "0x04B0",
+          "0x01F4",
+          "0x04AD",
+          "0x0000",
+          "0x0001",
+          "0x0001"
+        ]
+      }
+    }
+  ],
+  "stages": [
+    {
+      "time": "2026-11-02T20:21:01.240350+08:00",
+      "stage": "initial_state",
+      "state": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 12.0,
+        "set_current_A": 5.0,
+        "measured_voltage_V": 12.0,
+        "measured_current_A": 0.0,
+        "output": "ON",
+        "mode": "CV",
+        "raw_registers": [
+          "0x04B0",
+          "0x01F4",
+          "0x04B0",
+          "0x0000",
+          "0x0001",
+          "0x0001"
+        ]
+      },
+      "hold_seconds": 0
+    },
+    {
+      "time": "2026-11-02T20:21:02.324663+08:00",
+      "stage": "output_off",
+      "state": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 12.0,
+        "set_current_A": 5.0,
+        "measured_voltage_V": 0.0,
+        "measured_current_A": 0.0,
+        "output": "OFF",
+        "mode": "CC",
+        "raw_registers": [
+          "0x04B0",
+          "0x01F4",
+          "0x0000",
+          "0x0000",
+          "0x0000",
+          "0x0000"
+        ]
+      },
+      "hold_seconds": 8
+    },
+    {
+      "time": "2026-11-02T20:21:12.500965+08:00",
+      "stage": "set_5V_0.5A_while_off",
+      "state": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 5.0,
+        "set_current_A": 0.5,
+        "measured_voltage_V": 0.0,
+        "measured_current_A": 0.0,
+        "output": "OFF",
+        "mode": "CC",
+        "raw_registers": [
+          "0x01F4",
+          "0x0032",
+          "0x0000",
+          "0x0000",
+          "0x0000",
+          "0x0000"
+        ]
+      },
+      "hold_seconds": 8
+    },
+    {
+      "time": "2026-11-02T20:21:21.588551+08:00",
+      "stage": "output_on_5V_0.5A",
+      "state": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 5.0,
+        "set_current_A": 0.5,
+        "measured_voltage_V": 4.92,
+        "measured_current_A": 0.0,
+        "output": "ON",
+        "mode": "CV",
+        "raw_registers": [
+          "0x01F4",
+          "0x0032",
+          "0x01EC",
+          "0x0000",
+          "0x0001",
+          "0x0001"
+        ]
+      },
+      "hold_seconds": 8
+    },
+    {
+      "time": "2026-11-02T20:21:30.696990+08:00",
+      "stage": "voltage_changed_to_9V",
+      "state": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 9.0,
+        "set_current_A": 0.5,
+        "measured_voltage_V": 8.98,
+        "measured_current_A": 0.0,
+        "output": "ON",
+        "mode": "CV",
+        "raw_registers": [
+          "0x0384",
+          "0x0032",
+          "0x0382",
+          "0x0000",
+          "0x0001",
+          "0x0001"
+        ]
+      },
+      "hold_seconds": 8
+    },
+    {
+      "time": "2026-11-02T20:21:39.794176+08:00",
+      "stage": "current_limit_changed_to_1A",
+      "state": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 9.0,
+        "set_current_A": 1.0,
+        "measured_voltage_V": 9.0,
+        "measured_current_A": 0.0,
+        "output": "ON",
+        "mode": "CV",
+        "raw_registers": [
+          "0x0384",
+          "0x0064",
+          "0x0384",
+          "0x0000",
+          "0x0001",
+          "0x0001"
+        ]
+      },
+      "hold_seconds": 8
+    },
+    {
+      "time": "2026-11-02T20:21:48.884770+08:00",
+      "stage": "output_off_after_test",
+      "state": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 9.0,
+        "set_current_A": 1.0,
+        "measured_voltage_V": 0.0,
+        "measured_current_A": 0.0,
+        "output": "OFF",
+        "mode": "CC",
+        "raw_registers": [
+          "0x0384",
+          "0x0064",
+          "0x0000",
+          "0x0000",
+          "0x0000",
+          "0x0000"
+        ]
+      },
+      "hold_seconds": 8
+    },
+    {
+      "time": "2026-11-02T20:22:01.240382+08:00",
+      "stage": "original_settings_restored",
+      "state": {
+        "address": 1,
+        "function": 3,
+        "set_voltage_V": 12.0,
+        "set_current_A": 5.0,
+        "measured_voltage_V": 11.97,
+        "measured_current_A": 0.0,
+        "output": "ON",
+        "mode": "CV",
+        "raw_registers": [
+          "0x04B0",
+          "0x01F4",
+          "0x04AD",
+          "0x0000",
+          "0x0001",
+          "0x0001"
+        ]
+      },
+      "hold_seconds": 0
+    }
+  ],
+  "restored": true,
+  "started": "2026-11-02T20:21:01.097378+08:00",
+  "initial_state": {
+    "address": 1,
+    "function": 3,
+    "set_voltage_V": 12.0,
+    "set_current_A": 5.0,
+    "measured_voltage_V": 12.0,
+    "measured_current_A": 0.0,
+    "output": "ON",
+    "mode": "CV",
+    "raw_registers": [
+      "0x04B0",
+      "0x01F4",
+      "0x04B0",
+      "0x0000",
+      "0x0001",
+      "0x0001"
+    ]
+  },
+  "test_passed": true,
+  "port_closed": true,
+  "finished": "2026-11-02T20:22:01.241380+08:00"
+}

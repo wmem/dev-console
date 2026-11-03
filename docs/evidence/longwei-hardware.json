@@ -1,0 +1,982 @@
+{
+  "address": 1,
+  "device": "LW-3010E",
+  "finished_at": "2026-11-03T01:33:44.853369845Z",
+  "passed": true,
+  "port": "/dev/ttyUSB0",
+  "read_only": false,
+  "records": [
+    {
+      "request_id": "25d413fe36123188131d8bce",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "settings.read",
+      "service_revision": 1,
+      "device_id": "098f8b17b98d00cd3517c633",
+      "device_service_key": "settings.read",
+      "parameters": {},
+      "status": "succeeded",
+      "result": {
+        "current_limit": 5,
+        "voltage": 12
+      },
+      "confirmation": "read",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:19.573026385Z",
+      "started_at": "2026-11-03T01:33:19.531001893Z",
+      "finished_at": "2026-11-03T01:33:19.575611993Z",
+      "duration_ms": 44
+    },
+    {
+      "request_id": "d37daad1f91c72f97044d587",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "output.read",
+      "service_revision": 1,
+      "device_id": "098f8b17b98d00cd3517c633",
+      "device_service_key": "output.read",
+      "parameters": {},
+      "status": "succeeded",
+      "result": {
+        "enabled": true,
+        "mode": "CV"
+      },
+      "confirmation": "read",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:19.641736128Z",
+      "started_at": "2026-11-03T01:33:19.577592436Z",
+      "finished_at": "2026-11-03T01:33:19.642273383Z",
+      "duration_ms": 64
+    },
+    {
+      "request_id": "0c3dff45cae0a6a93add4d18",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "measurement.read",
+      "service_revision": 1,
+      "device_id": "098f8b17b98d00cd3517c633",
+      "device_service_key": "measurement.read",
+      "parameters": {},
+      "status": "succeeded",
+      "result": {
+        "current": 0,
+        "voltage": 12.01
+      },
+      "confirmation": "read",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:19.683463599Z",
+      "started_at": "2026-11-03T01:33:19.644700921Z",
+      "finished_at": "2026-11-03T01:33:19.684157432Z",
+      "duration_ms": 39
+    },
+    {
+      "request_id": "b671a73f3140c3aa33e44ba0",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "output.set",
+      "service_revision": 1,
+      "device_id": "098f8b17b98d00cd3517c633",
+      "device_service_key": "output.set",
+      "parameters": {
+        "enabled": false
+      },
+      "status": "succeeded",
+      "result": {
+        "observed_enabled": false,
+        "requested_enabled": false
+      },
+      "confirmation": "verified",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:19.756505332Z",
+      "started_at": "2026-11-03T01:33:19.687018634Z",
+      "finished_at": "2026-11-03T01:33:19.757108943Z",
+      "duration_ms": 70
+    },
+    {
+      "request_id": "3995a1f1afa804a3ba4676fb",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "voltage.set",
+      "service_revision": 1,
+      "device_id": "098f8b17b98d00cd3517c633",
+      "device_service_key": "voltage.set",
+      "parameters": {
+        "voltage": 5
+      },
+      "status": "succeeded",
+      "result": {
+        "observed_voltage": 5,
+        "requested_voltage": 5
+      },
+      "confirmation": "verified",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:19.830552076Z",
+      "started_at": "2026-11-03T01:33:19.759635636Z",
+      "finished_at": "2026-11-03T01:33:19.831140598Z",
+      "duration_ms": 71
+    },
+    {
+      "request_id": "6602e51db52af7c0cb553a2b",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "current_limit.set",
+      "service_revision": 1,
+      "device_id": "098f8b17b98d00cd3517c633",
+      "device_service_key": "current_limit.set",
+      "parameters": {
+        "current_limit": 0.5
+      },
+      "status": "succeeded",
+      "result": {
+        "observed_current_limit": 0.5,
+        "requested_current_limit": 0.5
+      },
+      "confirmation": "verified",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:19.903544404Z",
+      "started_at": "2026-11-03T01:33:19.83387332Z",
+      "finished_at": "2026-11-03T01:33:19.904075185Z",
+      "duration_ms": 70
+    },
+    {
+      "request_id": "45099b4ae613bfd32a1fcd89",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "output.set",
+      "service_revision": 1,
+      "device_id": "098f8b17b98d00cd3517c633",
+      "device_service_key": "output.set",
+      "parameters": {
+        "enabled": true
+      },
+      "status": "succeeded",
+      "result": {
+        "observed_enabled": true,
+        "requested_enabled": true
+      },
+      "confirmation": "verified",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:20.004365464Z",
+      "started_at": "2026-11-03T01:33:19.90660343Z",
+      "finished_at": "2026-11-03T01:33:20.00499245Z",
+      "duration_ms": 98
+    },
+    {
+      "request_id": "5f15dba399ea2b61f6698fed",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "measurement.read",
+      "service_revision": 1,
+      "device_id": "098f8b17b98d00cd3517c633",
+      "device_service_key": "measurement.read",
+      "parameters": {},
+      "status": "succeeded",
+      "result": {
+        "current": 0,
+        "voltage": 4.99
+      },
+      "confirmation": "read",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:28.097036924Z",
+      "started_at": "2026-11-03T01:33:28.014585975Z",
+      "finished_at": "2026-11-03T01:33:28.097748597Z",
+      "duration_ms": 83
+    },
+    {
+      "request_id": "c4509f6e474c89827fe1f60d",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "voltage.set",
+      "service_revision": 1,
+      "device_id": "098f8b17b98d00cd3517c633",
+      "device_service_key": "voltage.set",
+      "parameters": {
+        "voltage": 9
+      },
+      "status": "succeeded",
+      "result": {
+        "observed_voltage": 9,
+        "requested_voltage": 9
+      },
+      "confirmation": "verified",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:28.171555885Z",
+      "started_at": "2026-11-03T01:33:28.100234532Z",
+      "finished_at": "2026-11-03T01:33:28.172110886Z",
+      "duration_ms": 71
+    },
+    {
+      "request_id": "94b78acc3290473002324241",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "measurement.read",
+      "service_revision": 1,
+      "device_id": "098f8b17b98d00cd3517c633",
+      "device_service_key": "measurement.read",
+      "parameters": {},
+      "status": "succeeded",
+      "result": {
+        "current": 0,
+        "voltage": 8.99
+      },
+      "confirmation": "read",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:36.231585345Z",
+      "started_at": "2026-11-03T01:33:36.181145964Z",
+      "finished_at": "2026-11-03T01:33:36.232208393Z",
+      "duration_ms": 51
+    },
+    {
+      "request_id": "fa1172495268cc6ca3fb0eaf",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "current_limit.set",
+      "service_revision": 1,
+      "device_id": "098f8b17b98d00cd3517c633",
+      "device_service_key": "current_limit.set",
+      "parameters": {
+        "current_limit": 1
+      },
+      "status": "succeeded",
+      "result": {
+        "observed_current_limit": 1,
+        "requested_current_limit": 1
+      },
+      "confirmation": "verified",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:36.305930044Z",
+      "started_at": "2026-11-03T01:33:36.234848212Z",
+      "finished_at": "2026-11-03T01:33:36.306528848Z",
+      "duration_ms": 71
+    },
+    {
+      "request_id": "4048db2487c80c0af613c189",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "measurement.read",
+      "service_revision": 1,
+      "device_id": "098f8b17b98d00cd3517c633",
+      "device_service_key": "measurement.read",
+      "parameters": {},
+      "status": "succeeded",
+      "result": {
+        "current": 0,
+        "voltage": 8.99
+      },
+      "confirmation": "read",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:44.361719866Z",
+      "started_at": "2026-11-03T01:33:44.315727389Z",
+      "finished_at": "2026-11-03T01:33:44.362299655Z",
+      "duration_ms": 46
+    },
+    {
+      "request_id": "f25fd083d5eb7b942d799bfc",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "output.set",
+      "service_revision": 1,
+      "device_id": "098f8b17b98d00cd3517c633",
+      "device_service_key": "output.set",
+      "parameters": {
+        "enabled": false
+      },
+      "status": "succeeded",
+      "result": {
+        "observed_enabled": false,
+        "requested_enabled": false
+      },
+      "confirmation": "verified",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:44.435271232Z",
+      "started_at": "2026-11-03T01:33:44.365130669Z",
+      "finished_at": "2026-11-03T01:33:44.435805656Z",
+      "duration_ms": 70
+    },
+    {
+      "request_id": "3155e611594c8440a3658fa0",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "output.set",
+      "service_revision": 1,
+      "device_id": "098f8b17b98d00cd3517c633",
+      "device_service_key": "output.set",
+      "parameters": {
+        "enabled": false
+      },
+      "status": "succeeded",
+      "result": {
+        "observed_enabled": false,
+        "requested_enabled": false
+      },
+      "confirmation": "verified",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:44.508166006Z",
+      "started_at": "2026-11-03T01:33:44.438187332Z",
+      "finished_at": "2026-11-03T01:33:44.508747417Z",
+      "duration_ms": 70
+    },
+    {
+      "request_id": "8bfd32217cd22fab3e6da7d7",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "voltage.set",
+      "service_revision": 1,
+      "device_id": "098f8b17b98d00cd3517c633",
+      "device_service_key": "voltage.set",
+      "parameters": {
+        "voltage": 12
+      },
+      "status": "succeeded",
+      "result": {
+        "observed_voltage": 12,
+        "requested_voltage": 12
+      },
+      "confirmation": "verified",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:44.582059327Z",
+      "started_at": "2026-11-03T01:33:44.511399682Z",
+      "finished_at": "2026-11-03T01:33:44.582630061Z",
+      "duration_ms": 71
+    },
+    {
+      "request_id": "1eace894f0a2d7b545fa40bc",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "current_limit.set",
+      "service_revision": 1,
+      "device_id": "098f8b17b98d00cd3517c633",
+      "device_service_key": "current_limit.set",
+      "parameters": {
+        "current_limit": 5
+      },
+      "status": "succeeded",
+      "result": {
+        "observed_current_limit": 5,
+        "requested_current_limit": 5
+      },
+      "confirmation": "verified",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:44.667017538Z",
+      "started_at": "2026-11-03T01:33:44.59217149Z",
+      "finished_at": "2026-11-03T01:33:44.667619703Z",
+      "duration_ms": 75
+    },
+    {
+      "request_id": "02454cd0501f13ba2302a2ac",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "output.set",
+      "service_revision": 1,
+      "device_id": "098f8b17b98d00cd3517c633",
+      "device_service_key": "output.set",
+      "parameters": {
+        "enabled": true
+      },
+      "status": "succeeded",
+      "result": {
+        "observed_enabled": true,
+        "requested_enabled": true
+      },
+      "confirmation": "verified",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:44.767150529Z",
+      "started_at": "2026-11-03T01:33:44.669997086Z",
+      "finished_at": "2026-11-03T01:33:44.767571739Z",
+      "duration_ms": 97
+    },
+    {
+      "request_id": "ce78d206ff54e23a8a2393cc",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "settings.read",
+      "service_revision": 1,
+      "device_id": "098f8b17b98d00cd3517c633",
+      "device_service_key": "settings.read",
+      "parameters": {},
+      "status": "succeeded",
+      "result": {
+        "current_limit": 5,
+        "voltage": 12
+      },
+      "confirmation": "read",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:44.808993553Z",
+      "started_at": "2026-11-03T01:33:44.770019404Z",
+      "finished_at": "2026-11-03T01:33:44.809448083Z",
+      "duration_ms": 39
+    },
+    {
+      "request_id": "202c46cd89b23ca5a20ff91a",
+      "subject_id": "hardware-test",
+      "subject_kind": "user",
+      "service": "output.read",
+      "service_revision": 1,
+      "device_id": "098f8b17b98d00cd3517c633",
+      "device_service_key": "output.read",
+      "parameters": {},
+      "status": "succeeded",
+      "result": {
+        "enabled": true,
+        "mode": "CV"
+      },
+      "confirmation": "read",
+      "source": "live",
+      "observed_at": "2026-11-03T01:33:44.850743909Z",
+      "started_at": "2026-11-03T01:33:44.812131893Z",
+      "finished_at": "2026-11-03T01:33:44.851154953Z",
+      "duration_ms": 39
+    }
+  ],
+  "recovery": {
+    "attempted": true,
+    "confirmed": true,
+    "original_current_limit": 5,
+    "original_enabled": true,
+    "original_voltage": 12
+  },
+  "scope": "空载设置与回读，不含带载限流或外部仪表精度验证",
+  "template_key": "longwei-lw3010e",
+  "wire_events": [
+    {
+      "at": "2026-11-03T01:33:19.53306273Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:19.573014036Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:19.573022274Z",
+      "direction": "rx",
+      "hex": "04b001f404b10000000100016384",
+      "text": "\u0004\ufffd\u0001\ufffd\u0004\ufffd\u0000\u0000\u0000\u0001\u0000\u0001c\ufffd"
+    },
+    {
+      "at": "2026-11-03T01:33:19.579214743Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:19.641719045Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:19.641731006Z",
+      "direction": "rx",
+      "hex": "04b001f404b10000000100016384",
+      "text": "\u0004\ufffd\u0001\ufffd\u0004\ufffd\u0000\u0000\u0000\u0001\u0000\u0001c\ufffd"
+    },
+    {
+      "at": "2026-11-03T01:33:19.646638341Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:19.683445954Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:19.683458946Z",
+      "direction": "rx",
+      "hex": "04b001f404b10000000100016384",
+      "text": "\u0004\ufffd\u0001\ufffd\u0004\ufffd\u0000\u0000\u0000\u0001\u0000\u0001c\ufffd"
+    },
+    {
+      "at": "2026-11-03T01:33:19.688942346Z",
+      "direction": "tx",
+      "hex": "0106100600006d0b",
+      "text": "\u0001\u0006\u0010\u0006\u0000\u0000m\u000b"
+    },
+    {
+      "at": "2026-11-03T01:33:19.71526032Z",
+      "direction": "rx",
+      "hex": "010610",
+      "text": "\u0001\u0006\u0010"
+    },
+    {
+      "at": "2026-11-03T01:33:19.715271817Z",
+      "direction": "rx",
+      "hex": "0600006d0b",
+      "text": "\u0006\u0000\u0000m\u000b"
+    },
+    {
+      "at": "2026-11-03T01:33:19.715292861Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:19.756488426Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:19.756500575Z",
+      "direction": "rx",
+      "hex": "04b001f4000000000000000192bc",
+      "text": "\u0004\ufffd\u0001\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\ufffd\ufffd"
+    },
+    {
+      "at": "2026-11-03T01:33:19.761696265Z",
+      "direction": "tx",
+      "hex": "0106100001f48d1d",
+      "text": "\u0001\u0006\u0010\u0000\u0001\ufffd\ufffd\u001d"
+    },
+    {
+      "at": "2026-11-03T01:33:19.788519999Z",
+      "direction": "rx",
+      "hex": "010610",
+      "text": "\u0001\u0006\u0010"
+    },
+    {
+      "at": "2026-11-03T01:33:19.788529049Z",
+      "direction": "rx",
+      "hex": "0001f48d1d",
+      "text": "\u0000\u0001\ufffd\ufffd\u001d"
+    },
+    {
+      "at": "2026-11-03T01:33:19.788544241Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:19.830534466Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:19.83054725Z",
+      "direction": "rx",
+      "hex": "01f401f40000000000000001de41",
+      "text": "\u0001\ufffd\u0001\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\ufffdA"
+    },
+    {
+      "at": "2026-11-03T01:33:19.8358572Z",
+      "direction": "tx",
+      "hex": "0106100100325d1f",
+      "text": "\u0001\u0006\u0010\u0001\u00002]\u001f"
+    },
+    {
+      "at": "2026-11-03T01:33:19.862071205Z",
+      "direction": "rx",
+      "hex": "010610",
+      "text": "\u0001\u0006\u0010"
+    },
+    {
+      "at": "2026-11-03T01:33:19.862149207Z",
+      "direction": "rx",
+      "hex": "0100325d1f",
+      "text": "\u0001\u00002]\u001f"
+    },
+    {
+      "at": "2026-11-03T01:33:19.862168792Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:19.903528635Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:19.903539969Z",
+      "direction": "rx",
+      "hex": "01f400320000000000000001f421",
+      "text": "\u0001\ufffd\u00002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\ufffd!"
+    },
+    {
+      "at": "2026-11-03T01:33:19.908563508Z",
+      "direction": "tx",
+      "hex": "010610060001accb",
+      "text": "\u0001\u0006\u0010\u0006\u0000\u0001\ufffd\ufffd"
+    },
+    {
+      "at": "2026-11-03T01:33:19.935582617Z",
+      "direction": "rx",
+      "hex": "010610",
+      "text": "\u0001\u0006\u0010"
+    },
+    {
+      "at": "2026-11-03T01:33:19.935594849Z",
+      "direction": "rx",
+      "hex": "060001accb",
+      "text": "\u0006\u0000\u0001\ufffd\ufffd"
+    },
+    {
+      "at": "2026-11-03T01:33:19.935615331Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:20.004306689Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:20.004319604Z",
+      "direction": "rx",
+      "hex": "01f4003202aa0000000100012e32",
+      "text": "\u0001\ufffd\u00002\u0002\ufffd\u0000\u0000\u0000\u0001\u0000\u0001.2"
+    },
+    {
+      "at": "2026-11-03T01:33:28.025120205Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:28.097021398Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:28.097033165Z",
+      "direction": "rx",
+      "hex": "01f4003201f3000000010001a722",
+      "text": "\u0001\ufffd\u00002\u0001\ufffd\u0000\u0000\u0000\u0001\u0000\u0001\ufffd\""
+    },
+    {
+      "at": "2026-11-03T01:33:28.102095685Z",
+      "direction": "tx",
+      "hex": "0106100003848d99",
+      "text": "\u0001\u0006\u0010\u0000\u0003\ufffd\ufffd\ufffd"
+    },
+    {
+      "at": "2026-11-03T01:33:28.129733193Z",
+      "direction": "rx",
+      "hex": "010610",
+      "text": "\u0001\u0006\u0010"
+    },
+    {
+      "at": "2026-11-03T01:33:28.129744032Z",
+      "direction": "rx",
+      "hex": "0003848d99",
+      "text": "\u0000\u0003\ufffd\ufffd\ufffd"
+    },
+    {
+      "at": "2026-11-03T01:33:28.129762848Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:28.171538963Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:28.171551396Z",
+      "direction": "rx",
+      "hex": "0384003201f3000000010001f424",
+      "text": "\u0003\ufffd\u00002\u0001\ufffd\u0000\u0000\u0000\u0001\u0000\u0001\ufffd$"
+    },
+    {
+      "at": "2026-11-03T01:33:36.192680944Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:36.231567774Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:36.231580773Z",
+      "direction": "rx",
+      "hex": "038400320383000000010001043a",
+      "text": "\u0003\ufffd\u00002\u0003\ufffd\u0000\u0000\u0000\u0001\u0000\u0001\u0004:"
+    },
+    {
+      "at": "2026-11-03T01:33:36.236928713Z",
+      "direction": "tx",
+      "hex": "010610010064dd21",
+      "text": "\u0001\u0006\u0010\u0001\u0000d\ufffd!"
+    },
+    {
+      "at": "2026-11-03T01:33:36.263828263Z",
+      "direction": "rx",
+      "hex": "010610",
+      "text": "\u0001\u0006\u0010"
+    },
+    {
+      "at": "2026-11-03T01:33:36.263841225Z",
+      "direction": "rx",
+      "hex": "010064dd21",
+      "text": "\u0001\u0000d\ufffd!"
+    },
+    {
+      "at": "2026-11-03T01:33:36.263861811Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:36.305914255Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:36.305925793Z",
+      "direction": "rx",
+      "hex": "038400640383000000010001d399",
+      "text": "\u0003\ufffd\u0000d\u0003\ufffd\u0000\u0000\u0000\u0001\u0000\u0001ә"
+    },
+    {
+      "at": "2026-11-03T01:33:44.326364854Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:44.361703797Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:44.361716078Z",
+      "direction": "rx",
+      "hex": "038400640383000000010001d399",
+      "text": "\u0003\ufffd\u0000d\u0003\ufffd\u0000\u0000\u0000\u0001\u0000\u0001ә"
+    },
+    {
+      "at": "2026-11-03T01:33:44.366932025Z",
+      "direction": "tx",
+      "hex": "0106100600006d0b",
+      "text": "\u0001\u0006\u0010\u0006\u0000\u0000m\u000b"
+    },
+    {
+      "at": "2026-11-03T01:33:44.393836429Z",
+      "direction": "rx",
+      "hex": "010610",
+      "text": "\u0001\u0006\u0010"
+    },
+    {
+      "at": "2026-11-03T01:33:44.393848725Z",
+      "direction": "rx",
+      "hex": "0600006d0b",
+      "text": "\u0006\u0000\u0000m\u000b"
+    },
+    {
+      "at": "2026-11-03T01:33:44.393867543Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:44.435254479Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:44.43526667Z",
+      "direction": "rx",
+      "hex": "0384006400000000000000017084",
+      "text": "\u0003\ufffd\u0000d\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001p\ufffd"
+    },
+    {
+      "at": "2026-11-03T01:33:44.440135194Z",
+      "direction": "tx",
+      "hex": "0106100600006d0b",
+      "text": "\u0001\u0006\u0010\u0006\u0000\u0000m\u000b"
+    },
+    {
+      "at": "2026-11-03T01:33:44.466735104Z",
+      "direction": "rx",
+      "hex": "010610",
+      "text": "\u0001\u0006\u0010"
+    },
+    {
+      "at": "2026-11-03T01:33:44.466746494Z",
+      "direction": "rx",
+      "hex": "0600006d0b",
+      "text": "\u0006\u0000\u0000m\u000b"
+    },
+    {
+      "at": "2026-11-03T01:33:44.466764435Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:44.508147976Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:44.508161476Z",
+      "direction": "rx",
+      "hex": "0384006400000000000000017084",
+      "text": "\u0003\ufffd\u0000d\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001p\ufffd"
+    },
+    {
+      "at": "2026-11-03T01:33:44.513370792Z",
+      "direction": "tx",
+      "hex": "0106100004b08e7e",
+      "text": "\u0001\u0006\u0010\u0000\u0004\ufffd\ufffd~"
+    },
+    {
+      "at": "2026-11-03T01:33:44.540195543Z",
+      "direction": "rx",
+      "hex": "010610",
+      "text": "\u0001\u0006\u0010"
+    },
+    {
+      "at": "2026-11-03T01:33:44.54020721Z",
+      "direction": "rx",
+      "hex": "0004b08e7e",
+      "text": "\u0000\u0004\ufffd\ufffd~"
+    },
+    {
+      "at": "2026-11-03T01:33:44.540225529Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:44.582041237Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:44.582054484Z",
+      "direction": "rx",
+      "hex": "04b0006400000000000000016f7f",
+      "text": "\u0004\ufffd\u0000d\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001o"
+    },
+    {
+      "at": "2026-11-03T01:33:44.594025785Z",
+      "direction": "tx",
+      "hex": "0106100101f4dcdd",
+      "text": "\u0001\u0006\u0010\u0001\u0001\ufffd\ufffd\ufffd"
+    },
+    {
+      "at": "2026-11-03T01:33:44.625205932Z",
+      "direction": "rx",
+      "hex": "010610",
+      "text": "\u0001\u0006\u0010"
+    },
+    {
+      "at": "2026-11-03T01:33:44.625218296Z",
+      "direction": "rx",
+      "hex": "0101f4dcdd",
+      "text": "\u0001\u0001\ufffd\ufffd\ufffd"
+    },
+    {
+      "at": "2026-11-03T01:33:44.625239326Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:44.66700145Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:44.667013205Z",
+      "direction": "rx",
+      "hex": "04b001f4000000000000000192bc",
+      "text": "\u0004\ufffd\u0001\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\ufffd\ufffd"
+    },
+    {
+      "at": "2026-11-03T01:33:44.671821082Z",
+      "direction": "tx",
+      "hex": "010610060001accb",
+      "text": "\u0001\u0006\u0010\u0006\u0000\u0001\ufffd\ufffd"
+    },
+    {
+      "at": "2026-11-03T01:33:44.698594338Z",
+      "direction": "rx",
+      "hex": "010610",
+      "text": "\u0001\u0006\u0010"
+    },
+    {
+      "at": "2026-11-03T01:33:44.698602704Z",
+      "direction": "rx",
+      "hex": "060001accb",
+      "text": "\u0006\u0000\u0001\ufffd\ufffd"
+    },
+    {
+      "at": "2026-11-03T01:33:44.698618741Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:44.767139085Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:44.76714715Z",
+      "direction": "rx",
+      "hex": "04b001f4019e0000000100017d79",
+      "text": "\u0004\ufffd\u0001\ufffd\u0001\ufffd\u0000\u0000\u0000\u0001\u0000\u0001}y"
+    },
+    {
+      "at": "2026-11-03T01:33:44.771812311Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:44.808967548Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:44.808975795Z",
+      "direction": "rx",
+      "hex": "04b001f4019e0000000100017d79",
+      "text": "\u0004\ufffd\u0001\ufffd\u0001\ufffd\u0000\u0000\u0000\u0001\u0000\u0001}y"
+    },
+    {
+      "at": "2026-11-03T01:33:44.814046606Z",
+      "direction": "tx",
+      "hex": "010310000006c108",
+      "text": "\u0001\u0003\u0010\u0000\u0000\u0006\ufffd\b"
+    },
+    {
+      "at": "2026-11-03T01:33:44.85073214Z",
+      "direction": "rx",
+      "hex": "01030c",
+      "text": "\u0001\u0003\f"
+    },
+    {
+      "at": "2026-11-03T01:33:44.850740072Z",
+      "direction": "rx",
+      "hex": "04b001f4019e0000000100017d79",
+      "text": "\u0004\ufffd\u0001\ufffd\u0001\ufffd\u0000\u0000\u0000\u0001\u0000\u0001}y"
+    }
+  ]
+}

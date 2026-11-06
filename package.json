@@ -11,7 +11,9 @@
     "test:browser": "node scripts/browser-test.mjs",
     "test:browser-port": "node scripts/port-browser-check.mjs",
     "test:runtime": "node scripts/runtime-check.mjs",
-    "test:hardware-cancel": "node scripts/hardware-cancel-check.mjs"
+    "test:hardware-cancel": "node scripts/hardware-cancel-check.mjs",
+    "docs:build": "edoc",
+    "docs:check": "edoc validate"
   },
   "engines": {
     "node": ">=24"

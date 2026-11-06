@@ -1,0 +1,23 @@
+{% section id="device:development:acceptance:installation" title="安装与升级验证范围" %}
+
+本页保留记录所述阶段、版本及环境的事实；现行操作从[使用文档](../../usage/index.mdoc)进入，当前维护方法见[开发文档](../index.mdoc)。
+
+```sh
+npm run package
+npm run test:install
+npm run test:token-upgrade -- --legacy-package ./dist/dconsole-0.1.2-install.run
+npm run test:race
+go vet ./...
+npm run test:runtime
+npm run test:browser-port
+```
+
+安装验证使用真实run解压、三个不同版本标记的真实程序、HTTP与SQLite，在临时目录执行同一安装事务，验证首次端口输入/范围/占用与配置保存、输入不预取密码、升级端口保留、首次失败/修复、重装、降级拒绝、备份失败、健康失败及格式变化恢复；不操作真实设备。特权账号、所有权及系统级systemctl使用替代实现，另通过实际用户级systemd验证启动、登录、页面与日志。后者不能替代系统级身份、权限隔离、低端口能力和开机启动验收。
+
+test:token-upgrade需要另行保留的格式1旧安装包，默认使用dist/dconsole-0.1.2-install.run，也可显式传入路径；不会从当前源码伪造旧格式实现。该检查用真实旧程序创建数据，验证迁移到格式2、失败后的二进制与完整旧数据恢复、旧Token补存、配套密钥备份恢复，以及旧程序拒绝新格式。证据见[跨格式升级验证](evidence.mdoc#device:file:docs:evidence:token-upgrade-report)。
+
+自动验证环境无免密sudo且不允许用户命名空间。用户另已在N4505完成0.1.1的root安装，并提供systemd enabled/active状态，跨终端HTTP200已独立复核；当前0.2.0的目标机root升级、重启后的自启动、低端口能力和真实串口组权限仍未实测。完整证据见[安装验证结果](evidence.mdoc#device:file:docs:evidence:install-report)和[验收报告](implementation.mdoc)。
+
+现行操作见[安装与恢复](../../usage/operations/installation.mdoc)，测试和发布入口见[开发文档](../index.mdoc)。
+
+{% /section %}

@@ -1,0 +1,16 @@
+{% section id="device:usage:operations:troubleshooting" title="浏览器端口与访问排查" %}
+
+先区分HTTP服务和浏览器限制：systemd active只说明进程运行；安装时健康检查成功也不代表浏览器允许该端口。如果curl可返回200，而浏览器提示ERR_UNSAFE_PORT，应检查实际访问端口是否在标准禁用列表中，不需要反复start服务。
+
+0.1.1及更早的安装器曾允许10080。已有实例无需删除或重装，在目标机将原监听端口改为可用端口并重启，例如：
+
+```sh
+sudo sed -i.bak '/^listen:/s/:10080/:10081/' /opt/dconsole/config.yaml
+sudo systemctl restart dconsole
+```
+
+随后访问 `http://<目标机器IP>:10081`，原配置备份在config.yaml.bak，账号和数据库保留。如果手动设置过public_base_url并包含10080，也要同步修正；留空时会自动使用新的监听端口。改端口前确认新端口可用。
+
+升级0.1.2不会擅自改写现有端口；已有禁用外部端口会在升级预检中明确报错，须先修正配置再升级，原服务不会因预检失败而被停止。若内部10080只供反向代理使用，显式设置浏览器可访问的public_base_url，例如 `https://console.example.test`，配置检查只限制外部访问端口，保留内部监听能力。
+
+{% /section %}

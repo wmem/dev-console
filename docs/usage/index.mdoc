@@ -1,0 +1,16 @@
+{% section id="device:usage:index" title="使用文档" %}
+
+{% directory-order items=["overview.mdoc","start/","operations/","integration/","reference/"] /%}
+
+先读[认识平台](overview.mdoc)和[快速开始](start/index.mdoc)，理解设备能力如何绑定到项目服务。
+
+| 当前任务 | 阅读入口 |
+| --- | --- |
+| 安装、升级、备份与网页排错 | [运行维护](operations/index.mdoc) |
+| 配置设备、重选串口并保留项目绑定 | [设备配置](operations/devices.mdoc)、[串口绑定](operations/serial-binding.mdoc) |
+| 准备 Token、交付 Agent 说明并调用项目服务 | [接入指南](integration/index.mdoc) |
+| 查 HTTP 路由、错误语义和设备报文 | [查询参考](reference/index.mdoc) |
+
+运行中的项目 Markdown 与 OpenAPI 根据服务定义生成，当前参数、默认值、范围与启用状态以该项目生成文档为准。
+
+{% /section %}

@@ -1,0 +1,15 @@
+{% section id="device:usage:overview" title="认识 Dev Console" %}
+
+用一个 Go 可执行文件提供 Vue 中文管理页面、项目服务 API、SQLite 持久化及串口设备接入。支持桌面和手机布局，默认允许局域网访问。
+
+首批设备：龙威 LW-3010E（Modbus RTU）和 ITECH IT6722（SCPI）。平台核心只认识设备及服务契约，具体协议位于 `internal/access/`；设备控制、页面调试与 Agent 调用复用同一执行链。
+
+## 从设备能力到项目服务
+
+管理员登记设备，由接入模块提供设备服务；项目服务绑定这些能力并收紧参数，调用者通过项目 URL 和 Token 使用。设备身份、串口路径和项目服务 key 各自独立。
+
+首批设备的协议能力不代表通用串口透传。执行的 busy、结果未知与无自动重试规则见[调用说明](integration/invoking.mdoc)，产品需要保持的完整行为见[设计约定](../development/design/requirements.mdoc)。
+
+按[快速开始](start/index.mdoc)完成登录和服务准备，再选择[日常操作](operations/index.mdoc)或[程序接入](integration/index.mdoc)。
+
+{% /section %}

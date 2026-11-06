@@ -1,0 +1,48 @@
+{% section id="device:development:releasing" title="版本、构建与发布" %}
+
+仅支持Linux/amd64。构建机也须为Linux/amd64，使用[开发环境](start.mdoc)列出的Go/Node工具链；安装目标不需要Go、Node、Python或联网获取依赖。目标需运行systemd 240或以上，具备Bash、gzip、tail、mktemp等基础命令及systemctl、useradd、runuser，安装使用root权限。
+
+## 编译与打包
+
+```sh
+# 仅编译，生成dist/platform-linux-amd64
+npm run build
+
+# 调用同一构建流程，再生成dist/dconsole-${version}-install.run
+npm run package
+```
+
+`build -- --target linux/amd64`保留兼容，其他目标拒绝。`package`每次重新构建，避免打包旧程序；包名版本与程序内嵌版本必须一致。包内只有gzip压缩的静态可执行程序，前端、安装器与服务模板均已嵌入。运行文件不随源码提交。
+
+```sh
+# 在不安装的情况下查看包内版本，或解压到一个不存在的目录
+bash dist/dconsole-0.2.0-install.run --version
+bash dist/dconsole-0.2.0-install.run --extract ./unpacked
+./unpacked/dconsole version
+```
+
+普通打包允许未提交修改，版本信息中dirty=true；这种产物用于开发验收，不作为可追溯的正式发布。gzip校验可以发现传输损坏，不提供发布者身份认证，应从可信发布渠道取得安装包。
+
+## 应用版本维护
+
+VERSION（`VERSION`）是应用版本唯一来源，采用不带v前缀的 `主版本.次版本.修订版本`，目前只接受三个非负整数，不接受预发布后缀。前端不单独维护应用版本。
+
+- 主版本：不兼容接口、配置或使用行为变化。
+- 次版本：兼容的新功能。
+- 修订版本：兼容的缺陷修复。
+
+版本比较按数值逐段进行，0.1.10大于0.1.9。二进制的 `version`命令输出JSON，包含version、完整Git提交、dirty、target及支持的数据库格式范围；启动日志和healthz也报告版本及提交。安装目录不另存一份可漂移的版本文件。
+
+数据库格式版本由存储实现（`internal/storage/storage.go`）维护，服务contract_version由设备服务定义（`internal/access/power/power.go`）维护，两者均不随应用版本机械递增。当前数据库格式为2，支持范围1～2，首批服务契约为1；0.2.0启动时迁移格式1，为Token增加独立密文表及配套密钥，旧摘要Token继续有效。回退0.1.x须恢复升级前的整份数据，不能只替换二进制；详见[Token保存与恢复](../usage/integration/tokens.mdoc)。后续迁移须同样明确升级顺序、数据兼容性和恢复要求，并增加对应测试。
+
+正式发布流程：
+
+1. 修改VERSION和[CHANGELOG](history/changelog.mdoc)，记录行为、配置、数据兼容性及升级要求。
+2. 执行构建、回归与安装验证，确认变化所涉及的边界；前端变化另外按README执行浏览器验收。
+3. 提交全部源码和文档，在该提交创建 `v${version}` 标签。
+4. 执行 `npm run package -- --release`。该命令要求工作区干净、对应标签指向当前提交、CHANGELOG有当前版本，构建后再次检查版本和工作区。命令本身不创建标签、不提交或推送。
+5. 将安装包与该版本说明一起交付。安装同版本默认不替换，正式版本发布后不要以相同版本号分发不同内容；修复应递增修订版本。
+
+用户安装、升级和失败恢复见[安装说明](../usage/operations/installation.mdoc)；验证方法与限制见[安装验收记录](acceptance/installation.mdoc)。
+
+{% /section %}

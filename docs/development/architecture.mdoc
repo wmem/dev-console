@@ -1,6 +1,6 @@
-# 实现边界与交接说明
+{% section id="device:development:architecture" title="实现边界与交接说明" %}
 
-产品边界见[产品约定](requirements.md)，HTTP路由与错误见[API说明](api.md)，首批设备的报文依据见[龙威协议](protocols/longwei-lw3010e.md)和[IT6722协议](protocols/itech-it6722.md)。本文说明当前实现机制及代价。
+产品边界见[产品约定](design/requirements.mdoc)，HTTP路由与错误见[API说明](../usage/reference/api.mdoc)，首批设备的报文依据见[龙威协议](../usage/reference/protocols/longwei-lw3010e.mdoc)和[IT6722协议](../usage/reference/protocols/itech-it6722.mdoc)。本文说明当前实现机制及代价。
 
 ## 调用链
 
@@ -44,7 +44,7 @@ SQLite格式版本2，支持格式1事务迁移，拒绝更高版本数据库。
 
 调用先持久化开始记录，再发送命令，结束后保存结果。如果开始记录失败，禁止执行控制；如果结果记录失败，返回请求ID和结果未知，保留开始记录。重启把未终结记录标为中断，不重放。
 
-用户密码使用bcrypt；Session只保存摘要，Token仍以摘要鉴权，并按新约定将可恢复原文独立加密保存在token_secrets表。AES-256-GCM使用随机nonce，AAD绑定项目与Token ID，密钥独立在data/token.key；数据库中没有Token明文。普通列表的TokenMetadata不包含摘要或密文，仅增加可恢复标记。管理员显式POST才取回原文，旧Token可校验后补存；完整Agent说明只在私有页面临时生成，项目文档不改变凭据占位符。密钥创建与备份边界见[Token说明](tokens.md)。
+用户密码使用bcrypt；Session只保存摘要，Token仍以摘要鉴权，并按新约定将可恢复原文独立加密保存在token_secrets表。AES-256-GCM使用随机nonce，AAD绑定项目与Token ID，密钥独立在data/token.key；数据库中没有Token明文。普通列表的TokenMetadata不包含摘要或密文，仅增加可恢复标记。管理员显式POST才取回原文，旧Token可校验后补存；完整Agent说明只在私有页面临时生成，项目文档不改变凭据占位符。密钥创建与备份边界见[Token说明](../usage/integration/tokens.mdoc)。
 
 Session Cookie启用HttpOnly与SameSite，HTTPS配置下启用Secure；Cookie写请求要求CSRF，Token取回同样要求该校验。Bearer只允许项目作用域，显式携带无效Bearer时不回退Cookie身份。日志只记录凭据取回操作的用户/项目/Token ID，不记录原文或密文。
 
@@ -58,6 +58,8 @@ Session Cookie启用HttpOnly与SameSite，HTTPS配置下启用Secure；Cookie写
 
 构建和运行仅支持Linux/amd64。构建产物静态链接，运行不需要Node、Go工具链或数据库服务器。`go test -race` 属于开发检查，需要Go竞争检测支持和相应本机编译环境；生产构建始终CGO_ENABLED=0。
 
-应用版本由VERSION在构建时注入，安装器与服务模板随二进制嵌入。安装器是显式CLI入口，不在普通服务启动时执行；固定目录/opt/dconsole，运行用户仅能写data和logs，系统服务文件通过链接登记。升级按独立数据库格式兼容范围预检，停机备份后原子替换程序，配置与服务定义保留；若失败且数据格式不兼容，同时恢复配套停机数据，不能只回退二进制。流程、权限、版本规则和环境验证边界见[发布与安装](installation.md)。
+应用版本由VERSION在构建时注入，安装器与服务模板随二进制嵌入。安装器是显式CLI入口，不在普通服务启动时执行；固定目录/opt/dconsole，运行用户仅能写data和logs，系统服务文件通过链接登记。升级按独立数据库格式兼容范围预检，停机备份后原子替换程序，配置与服务定义保留；若失败且数据格式不兼容，同时恢复配套停机数据，不能只回退二进制。流程、权限、版本规则和环境验证边界见[发布与安装](../usage/operations/installation.mdoc)。
 
 部署运行单实例。当前不提供实验级占用、跨进程通信仲裁、命令队列、自动业务重试、定时采集、MCP或Home Assistant接入。
+
+{% /section %}

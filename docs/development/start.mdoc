@@ -1,0 +1,35 @@
+{% section id="device:development:start" title="开发环境与首次启动" %}
+
+仅支持Linux/amd64构建与运行。实际验证工具链：Go **1.26.3**、Node.js **24.15.0**、npm **11.12.1**。构建需要现有 Go、Node、npm 及依赖源网络访问；脚本不会安装全局工具。依赖版本已锁定。
+
+```sh
+# 在仓库根目录执行；自动npm ci、类型检查、前端构建、Go依赖下载和CGO_ENABLED=0编译
+npm run build
+
+# 首次初始化，交互输入密码；至少10个字符、不超过72字节
+./dist/platform-linux-amd64 admin bootstrap --data-dir ./data --username admin
+
+# 使用默认配置，监听0.0.0.0:8080
+./dist/platform-linux-amd64 serve
+
+# 或显式使用配置文件
+./dist/platform-linux-amd64 serve --config ./configs/config.example.yaml
+```
+
+浏览器访问 `http://<服务器局域网IP>:8080`，使用刚初始化的账号和密码登录。没有固定默认密码，也没有远程开放注册入口。程序日志输出实际访问地址。`0.0.0.0` 是监听地址，不能作为客户端访问地址。
+
+管理员依次创建设备、创建项目、添加项目服务并绑定设备能力，再创建项目Token。复制“完整Agent接入说明”交给Agent，内容包含文档地址、真实Token、鉴权和文档读取命令。Token加密保存，管理员以后可再次复制；旧Token有原文可补存，没有原文需新建。详见[Token与Agent接入说明](../usage/integration/tokens.mdoc)。
+
+运行无需 Node/npm、Go、Python、外部数据库服务器或 CDN。数据、日志配置不嵌入可执行文件。`--password-stdin` 仅供明确指定的自动化初始化，从标准输入读取密码，不把密码放入命令行。
+
+发布到目标机器可使用自解压安装包：
+
+```sh
+npm run package
+# 将生成的dist/dconsole-0.2.0-install.run复制到目标Linux/amd64机器
+sudo bash dconsole-0.2.0-install.run
+```
+
+安装到 `/opt/dconsole`，首次交互设置监听端口（默认8080）和管理员密码，再部署systemd服务；也可用 `--port 9000`明确指定首次端口，升级保留原值。配置、数据库、日志和升级备份均保留在该目录。应用版本来自 VERSION（`VERSION`），查看版本使用 `./dist/platform-linux-amd64 version`。首次安装、串口组参数、升级、修复与正式发布见 [发布与安装](../usage/operations/installation.mdoc)。
+
+{% /section %}

@@ -1,4 +1,4 @@
-# Token保存与Agent接入说明
+{% section id="device:usage:integration:tokens" title="Token保存与Agent接入说明" %}
 
 0.2.0按已确认的新要求，将原先“仅保存摘要、原文只展示一次”改为“可恢复加密保存，管理员可以再次复制”。密码仍使用bcrypt，Session仍只保存摘要；普通项目文档继续鉴权，只包含凭据占位符。
 
@@ -40,4 +40,6 @@
 
 已有密文但token.key缺失时，启动明确失败，不悄悄生成替代密钥。文件格式损坏也报错；换成另一把合法密钥会导致解密校验失败。恢复时先停服务，再恢复与数据库配套的密钥/整份数据，并重启加载。没有配套密钥不能从密文恢复原文；原来的Token摘要同样无法反推原文。
 
-接口见[HTTP API](api.md)，安装及实际验证边界见[发布与安装](installation.md)和[验收报告](verification.md)。
+接口见[HTTP API](../reference/api.mdoc)，安装及实际验证边界见[发布与安装](../operations/installation.mdoc)和[验收报告](../../development/acceptance/implementation.mdoc)。
+
+{% /section %}

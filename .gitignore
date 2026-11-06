@@ -12,3 +12,7 @@ web/dist/
 *.tmp
 token.key
 .token-key-*
+
+# edoc generated documentation and cache
+/output/
+/.edoc-build/

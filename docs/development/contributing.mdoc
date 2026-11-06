@@ -1,0 +1,69 @@
+{% section id="device:development:contributing" title="开发与验证" %}
+
+先按[环境与首次启动](start.mdoc)准备最终程序与前端资源，修改前阅读[架构](architecture.mdoc)及[产品约定](design/requirements.mdoc)。版本、打包和正式交付见[发布流程](releasing.mdoc)。
+
+以下保留既有测试命令及其验证范围。其中实机操作记录描述当时的授权和结果，新的设备操作仍需匹配当前目标与授权。
+
+```sh
+# 首先构建前端，供Go embed与程序验收使用
+npm run build -- --target linux/amd64
+
+# 协议、Schema、真实HTTP、持久化、权限与生命周期
+npm test
+npm run test:race
+
+# 已有playwright-cli + 指定目录Chromium；不会下载浏览器
+npm run test:browser
+
+# 复现浏览器对10080的阻断，并验证可访问端口的桌面/手机登录页
+npm run test:browser-port
+
+# 最终单程序无工具链运行、停机备份恢复，以及测试工具中断恢复的模拟验证
+npm run test:runtime
+npm run test:token-upgrade -- --legacy-package ./dist/dconsole-0.1.2-install.run
+npm run test:hardware-cancel
+npm run test:hardware-cancel -- longwei-lw3010e
+```
+
+浏览器验收使用 `~/work/software/playwright-browsers/chromium-1237/chrome-linux64/chrome`，可通过 `PLAYWRIGHT_CHROMIUM_EXECUTABLE` 指向该目录内其他已有 Chromium。测试在本项目临时配置中设置 `chromiumSandbox:false` 以适配本机沙箱限制，不改变系统配置。验证最终 Go 程序嵌入的页面、真实 API 及独立伪终端模拟器；依次覆盖1440×900、390×844和360×800，手机配置开启触摸模拟。
+
+测试创建一次性管理员、数据目录、模拟串口和浏览器会话，完成后清理。使用18480端口，运行前需确认未被其他服务占用。截图与脱敏结果写入 `docs/evidence/`。手机视口与触摸模拟不等于实体手机验收；本机浏览器访问局域网地址不等于跨终端网络验证。
+
+`cmd/simulator` 和 `internal/testdevice` 是测试工具。模拟器不引用生产驱动的帧/CRC实现，历史真实帧作为外部夹具。Go测试覆盖共享总线busy、取消清理期间不释放busy、失败不重试、审计写入失败不发送控制命令、权限隔离及重启删除等行为。
+
+### 两款电源实机验收
+
+用户已分别确认两次接入的电源没有负载，并授权对应的开发验收控制测试。专门测试入口支持明确指定设备，默认仍为IT6722以兼容原命令；执行时按实际设备选择模板：
+
+```sh
+./dist/platform-linux-amd64 hardware-test --run \
+  --device itech-it6722 \
+  --port /dev/ttyUSB0 \
+  --report ./docs/evidence/itech-hardware.json
+```
+
+```sh
+# 龙威：先只读核对，再执行本次已授权的空载控制测试
+./dist/platform-linux-amd64 hardware-test --device longwei-lw3010e \
+  --read-only --port /dev/ttyUSB0 --address 1 \
+  --report ./docs/evidence/longwei-readonly.json
+./dist/platform-linux-amd64 hardware-test --device longwei-lw3010e \
+  --run --port /dev/ttyUSB0 --address 1 \
+  --report ./docs/evidence/longwei-hardware.json
+```
+
+`--read-only`只执行三个读取服务，不发送控制命令；报告默认按设备类型区分，不覆盖另一款设备证据。控制测试保存初始状态，执行5V/0.5A、开启输出、改9V、改1A、关闭输出，每个观察阶段约8秒；结束显式恢复初始设定及输出状态，IT6722另发送 `SYST:LOC`，龙威不发送SCPI命令。初始设定无法在设备边界内恢复时，在任何控制前拒绝测试。此恢复行为只存在于测试工具。默认单元测试、浏览器测试和服务启动不会运行该入口。恢复无法确认会返回非零状态并在证据中说明。
+
+两款电源的新Go实现均已完成空载实机验收。龙威2026-11-03测试后恢复12V/5A、输出开启，并用重新打开串口的只读查询复核。空载只验证电流限值设定和回读，不代表带载限流或独立仪表校准通过。
+
+## 资料维护
+
+
+
+产品约定描述需要保持的行为；架构说明描述当前实现和代价；协议说明描述接入依据及未验证项；验收报告记录具体版本的测试事实。实现与约定有差异时应明确记录差异并处理，不能通过改写验收结论或删去要求掩盖问题。
+
+修改服务定义、权限、连接生命周期或构建运行方式时，同步更新对应说明与验证结果。证据中的端口、IP、测量值和恢复状态只属于记录当时，不作为下一次运行的默认配置。
+
+历史原始JSON作为独立协议夹具保持原样。新测试结果写入验收证据目录，并在验收报告中说明环境、时间与验证边界；不得用历史记录代替当前实现的实机测试。
+
+{% /section %}

@@ -1,0 +1,26 @@
+{% section id="device:usage:integration:invoking" title="读取项目文档与调用服务" %}
+
+每个项目提供版本化 Markdown 与 OpenAPI3.1：
+
+```text
+GET  /api/v1/projects/<projectKey>/docs
+GET  /api/v1/projects/<projectKey>/openapi.json
+POST /api/v1/projects/<projectKey>/services/<serviceKey>/invoke
+```
+
+```sh
+curl -X POST 'http://<服务器IP>:8080/api/v1/projects/board-test-a/services/board_power/invoke' \
+  -H 'Authorization: Bearer <ACCESS_TOKEN>' \
+  -H 'Content-Type: application/json' \
+  --data '{"parameters":{"enabled":true}}'
+```
+
+设备服务包括 `output.set`、`voltage.set`、`current_limit.set`、`settings.read`、`measurement.read`、`output.read`。项目服务可取业务名称，不依赖底层型号。普通用户及 Token 只能调用项目服务；管理员还能在设备详情直接调试已注册服务。没有原始串口、SCPI、HEX 或 Shell 透传接口。
+
+通信资源采用非阻塞 busy：正在通信就返回409 `RESOURCE_BUSY`，不排队、不自动重试。“设置并回读”不可穿插其他请求。设置成功要求 `verified`，指设定值或输出状态回读一致，不代表外部测量精度或输出稳定时间已验收。`observed_at` 为 UTC，`source=live` 表示实时采集。
+
+超时可能返回504 `OUTCOME_UNKNOWN`：设备可能已执行，不能当成动作未发生。旧通信关闭及有界回复隔离后才能开始下一次通信；失败不触发隐式反向操作。连接、启动、重启和退出都不会自动开输出或恢复历史设定。
+
+配置修改使用 revision 防止覆盖其他编辑；服务绑定保存契约快照，兼容换设备可保持调用URL。设备范围收紧或服务失踪会使旧绑定失效，需要管理员明确处理。删除服务和项目后不复用原 key，避免旧调用方意外操作新服务。
+
+{% /section %}

@@ -1,0 +1,14 @@
+{% section id="device:usage:start:index" title="安装与第一次调用" %}
+
+目标环境为 Linux/amd64。发布安装包包含前端、Go 程序、安装器与服务模板，目标机器无需 Node、Go 或外部数据库。准备包和 systemd 环境后按[安装说明](../operations/installation.mdoc)完成安装。
+
+1. 用安装时设置的管理员账号访问目标机器的实际 IP 与端口；没有通用默认密码。
+2. 在设备管理中登记正确型号与连接路径，核对串口权限，执行只读连接测试。详见[设备配置](../operations/devices.mdoc)。
+3. 创建项目、添加项目服务并绑定设备能力，设置需要的参数边界。
+4. 创建项目 Token，按[Token 与 Agent 接入](../integration/tokens.mdoc)取得说明；先读取当前项目文档，再按[调用说明](../integration/invoking.mdoc)调用服务。
+
+设备调用可能改变物理输出，按实际设备、接线、参数和授权范围使用。超时后的结果未知、busy 与重试边界见调用说明。
+
+从源码构建的开发者先读[开发环境与首次启动](../../development/start.mdoc)。
+
+{% /section %}

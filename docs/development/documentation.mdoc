@@ -1,0 +1,24 @@
+{% section id="device:development:documentation" title="维护与生成文档" %}
+
+正式入口是 `docs/index.mdoc`。使用文档解释安装、操作和接入；开发文档解释实现、修改方法、依据与验证。文件目录决定主要归属，各层 `index.mdoc` 说明阅读路线，`directory-order` 只安排本层顺序。
+
+在仓库根使用已安装的 edoc：
+
+```sh
+edoc validate
+edoc
+edoc outline --depth 1 --format text
+edoc read --id device:usage:overview --format text
+```
+
+生成物为 `output/index.html`，可离线打开，不提交生成 HTML 和工具缓存。`npm run docs:check`、`npm run docs:build` 分别提供校验与构建入口。
+
+新增文章围绕一个完整任务编写，先说明适用条件与预期结果，再给步骤和深入链接。查询参考可以集中维护同主题条目；长期引用的文章或条目使用显式稳定 section ID，普通临时标题保留 Markdown。已有 Markdown 正文可直接参与 edoc，不为文件后缀另存一份相同内容。
+
+新增子目录时按需要写入口，不在配置中逐篇登记。理解说明链接到精确参考，生成契约、源码定义、版本文件和原始证据继续各自维护一份；修改事实应回到其权威来源。
+
+历史和验收记录写清日期、版本、环境、实际范围及现行入口。文件迁移同步更新正文链接、AGENTS.md、脚本和离线资料包；原始 JSON、截图、协议夹具与 Flash 证据不随导航整理改写。
+
+纯文档变更检查链接、命令、版本、edoc 校验和目录阅读效果。涉及打包脚本时另运行对应构建与包内容检查；文档通过不表示硬件、应用或真实云端重新验收。
+
+{% /section %}

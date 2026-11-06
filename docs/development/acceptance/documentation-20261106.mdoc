@@ -1,0 +1,16 @@
+{% section id="device:acceptance:documentation-20261106" title="edoc 文档迁移与验证（2026-11-06）" %}
+
+本记录对应 2026-11-06 的文档迁移，当前阅读从[使用文档](../../usage/index.mdoc)或[开发文档](../index.mdoc)进入。
+
+原有文档按使用任务与维护任务重新归位，正式入口改为 `docs/index.mdoc`；各层 index 提供阅读路线及 directory-order。根 README 保留产品介绍、首次行动和构建入口。长篇产品、协议与 API 参考补充稳定 section ID；原始证据通过 code 或图片引用，按需展开。
+
+## 本次验证
+
+- 在三个仓库分别执行 `npm run docs:check` 和 `npm run docs:build`，edoc 校验及自包含 HTML 生成通过。
+- `edoc outline` 核对首页、使用、开发三个顶层入口；通过 `edoc read` 按稳定 ID 定位 KY3133 二进制格式与 Dev Console 错误语义。
+- 使用已有 Chromium 和 playwright-cli 实际点击三套首页、快速开始、返回与使用入口。查看 1440×900 与 390×844 截图；六个视图未见横向页面溢出，未捕获页面脚本异常。
+- 对照 Git 原文件逐字节核对生成契约、协议与验证 JSON、截图及 PDF；原始文件内容保留。设计示例 JSON 仅移动目录。
+
+验证对象是文档和资料构建，不包含应用业务回归、真实硬件操作或真实云端部署。六个视图是桌面浏览器的视口检查，不等于实体手机验收。
+
+{% /section %}

@@ -1,6 +1,6 @@
 # 版本记录
 
-应用版本由根目录VERSION维护；数据库格式版本和设备服务契约版本独立管理。发布和升级步骤见[发布与安装](docs/installation.md)。
+应用版本由根目录VERSION维护；数据库格式版本和设备服务契约版本独立管理。发布和升级步骤见[发布与安装](docs/usage/operations/installation.mdoc)。
 
 ## 0.2.0
 

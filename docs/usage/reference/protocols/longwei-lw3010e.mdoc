@@ -1,8 +1,8 @@
-# 龙威LW-3010E接入协议
+{% section id="device:usage:reference:protocols:longwei-lw3010e" title="龙威LW-3010E接入协议" %}
 
 适用首批接入的30V/10A电源。协议依据为2026-11-02对原厂监控助手与地址生成器的静态分析，以及Windows COM31的真实收发；当前Go实现已于2026-11-03完成Linux空载实机复验。历史协议依据与当前实现验收分别保存，见文末证据。
 
-## 连接与适用范围
+{% section id="device:longwei:connection" title="连接与适用范围" %}
 
 | 项目 | 已验证设置 |
 |---|---|
@@ -13,11 +13,13 @@
 | 设定分辨率 | 0.01V / 0.01A |
 | 平台默认上限 | 30V / 10A，可进一步收紧 |
 
-串口路径来自设备配置，不写死COM31或ttyUSB0。当前CH340适配器没有唯一USB序列号，应选择固定插口by-path；ttyUSB和ttyACM编号变化、原设备重选及身份边界见[串口绑定说明](../serial-binding.md)。USB串口名称不能证明后端是RS-485、RS-232还是TTL，接线以实物端子和设备资料为准。
+串口路径来自设备配置，不写死COM31或ttyUSB0。当前CH340适配器没有唯一USB序列号，应选择固定插口by-path；ttyUSB和ttyACM编号变化、原设备重选及身份边界见[串口绑定说明](../../operations/serial-binding.mdoc)。USB串口名称不能证明后端是RS-485、RS-232还是TTL，接线以实物端子和设备资料为准。
 
 原厂软件检查的32.00V/10.50A只是软件上限，不作为额定输出或固件允许范围。空载验证不证明满功率、带载限流或外部仪表精度。龙威当前没有已验证的可靠仪器序列号查询，固定插口不能证明后端仍是同一台仪器。
 
-## 报文与CRC
+{% /section %}
+
+{% section id="device:longwei:frames" title="报文与CRC" %}
 
 本版使用功能码03读保持寄存器、06写单寄存器，请求均为8字节：
 
@@ -29,7 +31,9 @@
 
 功能码和字节序参考[Modbus应用协议规范](https://modbus.org/docs/Modbus_Application_Protocol_V1_1b3.pdf)，以下寄存器含义来自该型号软件分析及实测，不是Modbus通用寄存器定义。
 
-## 寄存器
+{% /section %}
+
+{% section id="device:longwei:registers" title="寄存器" %}
 
 | 原始地址 | 用途 | 使用方式与换算 |
 |---|---|---|
@@ -59,7 +63,9 @@ RX: 01 03 0C 04 B0 01 F4 04 B0 00 00 00 01 00 01 73 44
 
 回复依次表示设定12.00V/5.00A、实测12.00V/0.00A、输出开启、CV。正常06回复应与请求完整一致；异常回复5字节，功能码为请求码OR 0x80，异常码单独保留。不能假定一次Read返回整帧，需检查地址、功能码、字节数、CRC和06回显，并处理短读、超时、断开及部分写入。
 
-## 命令样本与服务映射
+{% /section %}
+
+{% section id="device:longwei:services" title="命令样本与服务映射" %}
 
 以下为地址1的完整报文，修改地址或数据后必须重新计算CRC。首次连接使用只读查询，写入示例用于理解协议，不在服务启动时执行。
 
@@ -73,13 +79,19 @@ RX: 01 03 0C 04 B0 01 F4 04 B0 00 00 00 01 00 01 73 44
 
 `voltage.set`、`current_limit.set`和 `output.set`先核对06回显，再在同一busy区间用03查询验证设定或开关状态，匹配才返回verified。`settings.read`、`measurement.read`和 `output.read`均从6寄存器查询提取，读取只发送03；三个服务独立调用，不把多次查询包装成同一时刻的采样。
 
-地址修改的生效时机、断电保存和重启要求未验证，因此只保留已知寄存器说明，不提供改地址功能。超时不自动重发或恢复设置；共享总线及取消清理见[架构说明](../architecture.md)。
+地址修改的生效时机、断电保存和重启要求未验证，因此只保留已知寄存器说明，不提供改地址功能。超时不自动重发或恢复设置；共享总线及取消清理见[架构说明](../../../development/architecture.mdoc)。
 
-## 证据与维护入口
+{% /section %}
 
-- 历史Windows依据：[只读记录](../../testdata/history/longwei-readonly.json)、[控制记录](../../testdata/history/longwei-controls.json)。当时COM31只是连接信息。
-- 当前Go实机：[初始只读](../evidence/longwei-readonly.json)、[完整控制与恢复](../evidence/longwei-hardware.json)、[恢复后独立只读](../evidence/longwei-post-test-readonly.json)。测试后恢复12V/5A、输出开启，属于当次记录，不能当作设备当前状态。
-- 稳定路径：[by-path只读证据](../evidence/serial-binding-hardware-readonly.json)。没有物理拔插制造重枚举，编号变化由模拟验证。
-- 实现和独立验证：[驱动](../../internal/access/power/power.go)、[协议测试](../../internal/access/power/power_test.go)、[独立模拟器](../../internal/testdevice/simulator.go)。运行命令与全部验证边界见[README](../../README.md)和[验收报告](../verification.md)。
+{% section id="device:longwei:evidence" title="证据与维护入口" %}
+
+- 历史Windows依据：[只读记录](../../../development/acceptance/evidence.mdoc#device:file:testdata:history:longwei-readonly)、[控制记录](../../../development/acceptance/evidence.mdoc#device:file:testdata:history:longwei-controls)。当时COM31只是连接信息。
+- 当前Go实机：[初始只读](../../../development/acceptance/evidence.mdoc#device:file:docs:evidence:longwei-readonly)、[完整控制与恢复](../../../development/acceptance/evidence.mdoc#device:file:docs:evidence:longwei-hardware)、[恢复后独立只读](../../../development/acceptance/evidence.mdoc#device:file:docs:evidence:longwei-post-test-readonly)。测试后恢复12V/5A、输出开启，属于当次记录，不能当作设备当前状态。
+- 稳定路径：[by-path只读证据](../../../development/acceptance/evidence.mdoc#device:file:docs:evidence:serial-binding-hardware-readonly)。没有物理拔插制造重枚举，编号变化由模拟验证。
+- 实现和独立验证：驱动（`internal/access/power/power.go`）、协议测试（`internal/access/power/power_test.go`）、独立模拟器（`internal/testdevice/simulator.go`）。运行命令与全部验证边界见[README](../../../index.mdoc)和[验收报告](../../../development/acceptance/implementation.mdoc)。
 
 厂商程序、反汇编产物及旧Python分析工具不是本仓库的构建或验证依赖；本说明保留实现和维护需要的报文规则，原始收发JSON继续作为独立回归夹具。
+
+{% /section %}
+
+{% /section %}

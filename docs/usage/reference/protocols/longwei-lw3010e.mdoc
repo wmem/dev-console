@@ -77,7 +77,9 @@ RX: 01 03 0C 04 B0 01 F4 04 B0 00 00 00 01 00 01 73 44
 | 关闭输出 | `01 06 10 06 00 00 6D 0B` |
 | 开启输出 | `01 06 10 06 00 01 AC CB` |
 
-`voltage.set`、`current_limit.set`和 `output.set`先核对06回显，再在同一busy区间用03查询验证设定或开关状态，匹配才返回verified。`settings.read`、`measurement.read`和 `output.read`均从6寄存器查询提取，读取只发送03；三个服务独立调用，不把多次查询包装成同一时刻的采样。
+`voltage.set`、`current_limit.set`和 `output.set`先核对06回显，再在同一busy区间用03查询验证设定或开关状态，匹配才返回verified。
+
+`settings.read`、`measurement.read`和 `output.read`均从6寄存器查询提取，读取只发送03；三个服务独立调用，不把多次查询包装成同一时刻的采样。
 
 地址修改的生效时机、断电保存和重启要求未验证，因此只保留已知寄存器说明，不提供改地址功能。超时不自动重发或恢复设置；共享总线及取消清理见[架构说明](../../../development/architecture.mdoc)。
 

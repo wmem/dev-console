@@ -33,7 +33,11 @@ VERSION（`VERSION`）是应用版本唯一来源，采用不带v前缀的 `主�
 
 版本比较按数值逐段进行，0.1.10大于0.1.9。二进制的 `version`命令输出JSON，包含version、完整Git提交、dirty、target及支持的数据库格式范围；启动日志和healthz也报告版本及提交。安装目录不另存一份可漂移的版本文件。
 
-数据库格式版本由存储实现（`internal/storage/storage.go`）维护，服务contract_version由设备服务定义（`internal/access/power/power.go`）维护，两者均不随应用版本机械递增。当前数据库格式为2，支持范围1～2，首批服务契约为1；0.2.0启动时迁移格式1，为Token增加独立密文表及配套密钥，旧摘要Token继续有效。回退0.1.x须恢复升级前的整份数据，不能只替换二进制；详见[Token保存与恢复](../usage/integration/tokens.mdoc)。后续迁移须同样明确升级顺序、数据兼容性和恢复要求，并增加对应测试。
+数据库格式版本由存储实现（`internal/storage/storage.go`）维护，服务contract_version由设备服务定义（`internal/access/power/power.go`）维护，两者均不随应用版本机械递增。
+
+当前数据库格式为2，支持范围1～2，首批服务契约为1；0.2.0启动时迁移格式1，为Token增加独立密文表及配套密钥，旧摘要Token继续有效。回退0.1.x须恢复升级前的整份数据，不能只替换二进制；详见[Token保存与恢复](../usage/integration/tokens.mdoc)。
+
+后续迁移须同样明确升级顺序、数据兼容性和恢复要求，并增加对应测试。
 
 正式发布流程：
 

@@ -25,7 +25,9 @@ npm run test:hardware-cancel
 npm run test:hardware-cancel -- longwei-lw3010e
 ```
 
-浏览器验收使用 `~/work/software/playwright-browsers/chromium-1237/chrome-linux64/chrome`，可通过 `PLAYWRIGHT_CHROMIUM_EXECUTABLE` 指向该目录内其他已有 Chromium。测试在本项目临时配置中设置 `chromiumSandbox:false` 以适配本机沙箱限制，不改变系统配置。验证最终 Go 程序嵌入的页面、真实 API 及独立伪终端模拟器；依次覆盖1440×900、390×844和360×800，手机配置开启触摸模拟。
+浏览器验收使用 `~/work/software/playwright-browsers/chromium-1237/chrome-linux64/chrome`，可通过 `PLAYWRIGHT_CHROMIUM_EXECUTABLE` 指向该目录内其他已有 Chromium。
+
+测试在本项目临时配置中设置 `chromiumSandbox:false` 以适配本机沙箱限制，不改变系统配置。验证最终 Go 程序嵌入的页面、真实 API 及独立伪终端模拟器；依次覆盖1440×900、390×844和360×800，手机配置开启触摸模拟。
 
 测试创建一次性管理员、数据目录、模拟串口和浏览器会话，完成后清理。使用18480端口，运行前需确认未被其他服务占用。截图与脱敏结果写入 `docs/evidence/`。手机视口与触摸模拟不等于实体手机验收；本机浏览器访问局域网地址不等于跨终端网络验证。
 
@@ -52,7 +54,11 @@ npm run test:hardware-cancel -- longwei-lw3010e
   --report ./docs/evidence/longwei-hardware.json
 ```
 
-`--read-only`只执行三个读取服务，不发送控制命令；报告默认按设备类型区分，不覆盖另一款设备证据。控制测试保存初始状态，执行5V/0.5A、开启输出、改9V、改1A、关闭输出，每个观察阶段约8秒；结束显式恢复初始设定及输出状态，IT6722另发送 `SYST:LOC`，龙威不发送SCPI命令。初始设定无法在设备边界内恢复时，在任何控制前拒绝测试。此恢复行为只存在于测试工具。默认单元测试、浏览器测试和服务启动不会运行该入口。恢复无法确认会返回非零状态并在证据中说明。
+`--read-only`只执行三个读取服务，不发送控制命令；报告默认按设备类型区分，不覆盖另一款设备证据。
+
+控制测试保存初始状态，执行5V/0.5A、开启输出、改9V、改1A、关闭输出，每个观察阶段约8秒；结束显式恢复初始设定及输出状态，IT6722另发送 `SYST:LOC`，龙威不发送SCPI命令。初始设定无法在设备边界内恢复时，在任何控制前拒绝测试。此恢复行为只存在于测试工具。
+
+默认单元测试、浏览器测试和服务启动不会运行该入口。恢复无法确认会返回非零状态并在证据中说明。
 
 两款电源的新Go实现均已完成空载实机验收。龙威2026-11-03测试后恢复12V/5A、输出开启，并用重新打开串口的只读查询复核。空载只验证电流限值设定和回读，不代表带载限流或独立仪表校准通过。
 

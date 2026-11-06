@@ -27,7 +27,12 @@
 | `npm run test:hardware-cancel` | 通过；伪终端模拟器上发送SIGINT，确认恢复初始状态并非零退出 | [中断恢复结果](evidence.mdoc#device:file:docs:evidence:hardware-cancel-report) |
 | `npm run test:hardware-cancel -- longwei-lw3010e` | 通过；龙威只读模式无06写入，SIGINT中断后恢复初始状态 | [龙威只读与中断恢复模拟](evidence.mdoc#device:file:docs:evidence:longwei-hardware-cancel-report) |
 
-自动化覆盖小数精度与默认参数、契约/文档一致性、共绑与改绑、revision、权限与CSRF、Token撤销、密码重置与会话失效、最后管理员保护、共享总线busy、状态上报完成前拒绝配置更新、独立串口并行、取消清理期间保持busy、删除后不复活、审计写入失败不控制设备、历史帧解码、CRC、异常功能码/地址/字节数、分段回复、超时断开、SCPI科学计数法/乱码/空行/超长回复/错误队列、设备身份替换拒绝等。
+自动化覆盖的检查按主题列出：
+
+- **数值与契约**：小数精度与默认参数、契约/文档一致性、共绑与改绑、revision。
+- **权限与凭据**：权限与 CSRF、Token 撤销、密码重置与会话失效、最后管理员保护。
+- **资源与生命周期**：共享总线 busy、状态上报完成前拒绝配置更新、独立串口并行、取消清理期间保持 busy、删除后不复活、审计写入失败不控制设备。
+- **设备协议**：历史帧解码、CRC、异常功能码/地址/字节数、分段回复、超时断开、SCPI 科学计数法/乱码/空行/超长回复/错误队列、设备身份替换拒绝等。
 
 历史原始记录保留在 [testdata/history](../history/protocol-evidence.mdoc)，是独立外部协议依据，不替代新Go代码的实机验收。
 
@@ -45,7 +50,13 @@
 | 手机 | 390×844 | 是 | 通过 | 0 / 0 |
 | 窄屏手机 | 360×800 | 是 | 通过 | 0 / 0 |
 
-三个模式均覆盖登录退出、用户创建/重置/禁用、设备创建/配置/只读探测、稳定串口候选选择及路径持久化、原设备重选串口后保留ID/项目绑定/原Token调用、项目服务绑定、参数范围拦截、操作回读、实时采集、busy提示、显式限频刷新、隐藏事件停止刷新、Markdown/OpenAPI下载、复制回退、Token创建及重复取回/完整Agent说明/旧原文补存/调用/撤销、成员权限、记录筛选与绑定快照、离线提示、本人改密与会话撤销、深链接刷新和横向溢出检查。
+三个模式均覆盖下列流程：
+
+- **账号与权限**：登录退出、用户创建/重置/禁用、成员权限、本人改密与会话撤销。
+- **设备与串口**：设备创建/配置/只读探测、稳定串口候选选择及路径持久化、原设备重选串口后保留 ID/项目绑定/原 Token 调用。
+- **服务与采集**：项目服务绑定、参数范围拦截、操作回读、实时采集、busy 提示、显式限频刷新、隐藏事件停止刷新。
+- **文档与 Token**：Markdown/OpenAPI 下载、复制回退、Token 创建及重复取回/完整 Agent 说明/旧原文补存/调用/撤销。
+- **记录与页面**：记录筛选与绑定快照、离线提示、深链接刷新和横向溢出检查。
 
 测试访问最终可执行程序提供的嵌入页面和真实API，设备端为独立伪终端模拟器。地址为当前服务器局域网IP `192.168.252.200:18480`。预期的未登录401、busy409和离线503单独记录，不当作意外错误。
 
@@ -103,7 +114,11 @@
 
 桌面1440×900、手机390×844与360×800均验证配置页面和原Token重选后调用。截图复核后将串口路径置于表单首项，并修复手机底部按钮遮挡；[手机重选页面](evidence.mdoc#device:file:docs:evidence:mobile-serial-reselect)、[窄屏重选页面](evidence.mdoc#device:file:docs:evidence:mobile-narrow-serial-reselect)、[桌面重选页面](evidence.mdoc#device:file:docs:evidence:desktop-serial-reselect) 已保存。
 
-当前CH340没有唯一USB序列号，泛化by-id候选被禁用，固定插口候选可用。真实龙威通过 `/dev/serial/by-path/pci-0000:80:14.0-usb-0:6:1.0-port0` 完成三个只读服务，只发送03查询，设定12V/5A、输出开启、CV；见 [稳定路径只读证据](evidence.mdoc#device:file:docs:evidence:serial-binding-hardware-readonly)。本次未物理拔插或实际制造编号变化，重枚举由文件系统、sysfs及协议模拟器验证。详细操作与升级说明见 [串口绑定说明](../../usage/operations/serial-binding.mdoc)。
+当前CH340没有唯一USB序列号，泛化by-id候选被禁用，固定插口候选可用。
+
+真实龙威通过 `/dev/serial/by-path/pci-0000:80:14.0-usb-0:6:1.0-port0` 完成三个只读服务，只发送03查询，设定12V/5A、输出开启、CV；见 [稳定路径只读证据](evidence.mdoc#device:file:docs:evidence:serial-binding-hardware-readonly)。
+
+本次未物理拔插或实际制造编号变化，重枚举由文件系统、sysfs及协议模拟器验证。详细操作与升级说明见 [串口绑定说明](../../usage/operations/serial-binding.mdoc)。
 
 ## 未验证与边界
 
@@ -120,23 +135,47 @@
 
 支持范围从原来保留Windows兼容收敛为仅Linux/amd64，版本统一由根目录VERSION维护。`npm run build`编译单程序，`npm run package`复用构建生成 `dist/dconsole-0.1.0-install.run`，发布与恢复步骤见[发布与安装](../../usage/operations/installation.mdoc)。
 
-安装验证使用真实自解压包和三个不同版本标记的当前代码构建、真实HTTP及SQLite。特权账号、chown和系统级systemctl在事务测试中替代，验证首次初始化失败、首次服务失败后的修复、重复安装、保留配置/服务定义/项目/设备ID/绑定/Session/Token的升级、同版本补登记、降级拒绝、备份失败、健康失败回退、格式变化后完整数据恢复，以及新服务无法停止时禁止覆盖数据。
+安装验证使用真实自解压包和三个不同版本标记的当前代码构建、真实HTTP及SQLite。
 
-另外在真实用户级systemd中创建临时服务，验证实际程序启动、版本匹配的健康检查、管理员登录、嵌入页面、目录内日志和停止清理；系统级模板通过systemd-analyze检查。该结果不等于系统级User/Group、SupplementaryGroups、ProtectSystem或开机启动已通过，当前无免密sudo且用户命名空间受限，未执行root部署。安装过程未操作真实设备或已有体验服务。
+特权账号、chown和系统级systemctl在事务测试中替代，验证首次初始化失败、首次服务失败后的修复、重复安装、保留配置/服务定义/项目/设备ID/绑定/Session/Token的升级、同版本补登记、降级拒绝、备份失败、健康失败回退、格式变化后完整数据恢复，以及新服务无法停止时禁止覆盖数据。
+
+用户级 systemd 与系统级部署的验证范围分别记录：
+
+| 范围 | 当时结果 |
+| --- | --- |
+| 真实用户级 systemd 临时服务 | 验证实际程序启动、版本匹配的健康检查、管理员登录、嵌入页面、目录内日志和停止清理 |
+| 系统级模板 | 通过 `systemd-analyze` 检查 |
+| 系统级 User/Group、SupplementaryGroups、ProtectSystem、开机启动及 root 部署 | 未完成；当时无免密 sudo，且用户命名空间受限，不能由用户级结果推导通过 |
+
+安装过程未操作真实设备或已有体验服务。
 
 安装包、事务与用户级systemd的逐项结果和限制见[结构化证据](evidence.mdoc#device:file:docs:evidence:install-report)。普通安装回归中的三个版本标记使用相同存储实现，模拟格式变化用于验证恢复分支；0.2.0另用真实旧格式程序验证实际迁移，见下文。新增验证没有改写前面的历史实机记录。
 
-最终补充检查：`go test -race -json ./...`通过78项基础测试，12个有测试包通过，无失败或数据竞争；[基础测试结构化结果](evidence.mdoc#device:file:docs:evidence:package-go-test)保留两个安装测试的条件跳过记录，对应专门脚本已提供真实程序后另行通过。`npm run test:install`通过33项检查，含完整事务、正式发布门禁、端口配置及用户级systemd；`npm run test:token-upgrade`、`go vet ./...`、ShellCheck与修改脚本的Node语法检查通过，`npm run test:runtime`在0.2.0重新通过。当前安装包为0.2.0开发构建，内嵌dirty=true，尚未创建正式发布标签或执行该版本目标机root升级。
+最终补充检查：`go test -race -json ./...`通过78项基础测试，12个有测试包通过，无失败或数据竞争；[基础测试结构化结果](evidence.mdoc#device:file:docs:evidence:package-go-test)保留两个安装测试的条件跳过记录，对应专门脚本已提供真实程序后另行通过。
 
-首次安装端口补充：交互默认8080，非法和占用端口重输；--port仅首次可用，非交互必须指定，配置写入所选端口，升级/修复保留原值。测试覆盖参数范围、真实端口占用在账号/目录准备前拒绝、不预取下一行密码、配置写入和已有实例参数拒绝；低端口仅增加CAP_NET_BIND_SERVICE的服务配置边界已检查。真实系统级低端口能力生效仍需目标机root验收，未以配置检查冒充权限实测。
+`npm run test:install`通过33项检查，含完整事务、正式发布门禁、端口配置及用户级systemd；`npm run test:token-upgrade`、`go vet ./...`、ShellCheck与修改脚本的Node语法检查通过，`npm run test:runtime`在0.2.0重新通过。
 
-0.1.1权限预检修复：根据实际/opt属主及写权限导致的安装阻断，取消安装器对已有路径root属主和不可写模式的要求，不修改/opt权限。新增可写路径检查回归，并在非root属主、0777父目录下执行同一首装事务，升级时以0777安装目录和0666配置/服务定义验证继续执行及权限保留。目录类型、原子替换、数据保留和失败恢复仍按原流程验证；这不等于已在目标机器执行root安装。
+当前安装包为0.2.0开发构建，内嵌dirty=true，尚未创建正式发布标签或执行该版本目标机root升级。
+
+首次安装端口补充：交互默认8080，非法和占用端口重输；--port仅首次可用，非交互必须指定，配置写入所选端口，升级/修复保留原值。
+
+测试覆盖参数范围、真实端口占用在账号/目录准备前拒绝、不预取下一行密码、配置写入和已有实例参数拒绝；低端口仅增加CAP_NET_BIND_SERVICE的服务配置边界已检查。真实系统级低端口能力生效仍需目标机root验收，未以配置检查冒充权限实测。
+
+0.1.1权限预检修复：根据实际/opt属主及写权限导致的安装阻断，取消安装器对已有路径root属主和不可写模式的要求，不修改/opt权限。
+
+新增可写路径检查回归，并在非root属主、0777父目录下执行同一首装事务，升级时以0777安装目录和0666配置/服务定义验证继续执行及权限保留。目录类型、原子替换、数据保留和失败恢复仍按原流程验证；这不等于已在目标机器执行root安装。
 
 ## 0.1.2浏览器端口修复与部署诊断
 
-用户在N4505选择10080安装0.1.1后，服务为enabled/active，但网页打不开。2026-11-03从192.168.252.200只读访问192.168.252.195，healthz及首页均HTTP200，确认服务和跨终端HTTP链路可达；Fetch在发请求前返回bad port。10080位于[WHATWG Fetch端口禁止表](https://fetch.spec.whatwg.org/#port-blocking)，无需据服务状态猜测或修改防火墙。[远端诊断证据](evidence.mdoc#device:file:docs:evidence:remote-port-diagnosis)保留了版本、提交及10080/10081的复核结果，未执行远程配置、重启、登录或硬件操作。
+用户在N4505选择10080安装0.1.1后，服务为enabled/active，但网页打不开。
 
-使用指定目录内Chromium152.0.7977.8及playwright-cli，独立HTTP对照服务在10080返回200，浏览器仍报net::ERR_UNSAFE_PORT；最终Go程序在可访问端口显示登录页，桌面1440×900和手机390×844触摸模拟通过，健康接口200。[浏览器结果](evidence.mdoc#device:file:docs:evidence:browser-port-report)、[桌面截图](evidence.mdoc#device:file:docs:evidence:browser-port-desktop)、[手机截图](evidence.mdoc#device:file:docs:evidence:browser-port-mobile)已保存并视觉复核。本次仅验证页面可访问，没有执行登录或设备操作。
+2026-11-03从192.168.252.200只读访问192.168.252.195，healthz及首页均HTTP200，确认服务和跨终端HTTP链路可达；Fetch在发请求前返回bad port。
+
+10080位于[WHATWG Fetch端口禁止表](https://fetch.spec.whatwg.org/#port-blocking)，无需据服务状态猜测或修改防火墙。[远端诊断证据](evidence.mdoc#device:file:docs:evidence:remote-port-diagnosis)保留了版本、提交及10080/10081的复核结果，未执行远程配置、重启、登录或硬件操作。
+
+使用指定目录内Chromium152.0.7977.8及playwright-cli，独立HTTP对照服务在10080返回200，浏览器仍报net::ERR_UNSAFE_PORT；最终Go程序在可访问端口显示登录页，桌面1440×900和手机390×844触摸模拟通过，健康接口200。
+
+[浏览器结果](evidence.mdoc#device:file:docs:evidence:browser-port-report)、[桌面截图](evidence.mdoc#device:file:docs:evidence:browser-port-desktop)、[手机截图](evidence.mdoc#device:file:docs:evidence:browser-port-mobile)已保存并视觉复核。本次仅验证页面可访问，没有执行登录或设备操作。
 
 0.1.2在首次端口输入和实际监听预检中拒绝禁用端口，并校验public_base_url的外部端口。代理的内部10080配合安全外部URL仍允许；配置回归覆盖这一边界。安装回归确认禁用端口在账号/目录准备前拒绝、错误的旧外部URL在升级停止服务前拒绝。已有部署的10080须先按[恢复步骤](../../usage/operations/troubleshooting.mdoc#device:usage:operations:troubleshooting)改为10081等端口，安装器不自动改写原配置。
 
@@ -146,9 +185,15 @@
 
 基础回归覆盖重复取回、重启恢复、密文损坏/替换、错误密钥、密钥缺失不重建、公开元数据脱敏、项目隔离、成员/项目Token/缺CSRF拒绝，以及撤销和过期后的拒绝。完整运行回归用停机数据副本恢复登录、绑定及原Token，并再次取回相同原文，见[运行与恢复证据](evidence.mdoc#device:file:docs:evidence:runtime-report)。
 
-`npm run test:token-upgrade`使用归档0.1.2安装包内数据库支持范围1～1的真实程序，创建旧数据后交给当前支持1～2的程序及安装事务：迁移后注入健康失败，验证恢复旧程序与格式1数据，并将新密钥随failed-data保留；成功升级时验证旧Token继续鉴权、补存同一原文和新Token加密取回。停机副本包含密钥；删除密钥时启动失败且不生成新密钥，恢复配套密钥后可取回原值；真实旧程序拒绝格式2。逐项结果见[跨格式升级与密钥恢复证据](evidence.mdoc#device:file:docs:evidence:token-upgrade-report)。这些检查使用临时目录、真实程序/SQLite/HTTP，系统账号、chown和系统级systemctl仍为替代实现，未在目标机root升级。
+`npm run test:token-upgrade`使用归档0.1.2安装包内数据库支持范围1～1的真实程序，创建旧数据后交给当前支持1～2的程序及安装事务：迁移后注入健康失败，验证恢复旧程序与格式1数据，并将新密钥随failed-data保留；成功升级时验证旧Token继续鉴权、补存同一原文和新Token加密取回。
 
-指定目录Chromium及playwright-cli重新完成桌面1440×900、手机390×844和窄屏360×800全流程。三个视口均验证新建后完整说明包含真实Token/地址/Bearer/curl、关闭后再次取回相同原文、文档页入口、局域网HTTP手动复制回退、旧Token补存后继续用原凭据；无意外控制台错误或页面异常。[页面结构化证据](evidence.mdoc#device:file:docs:evidence:browser-report)、[桌面完整说明](evidence.mdoc#device:file:docs:evidence:desktop-agent-guide)、[窄屏完整说明](evidence.mdoc#device:file:docs:evidence:mobile-narrow-agent-guide)及[手机旧Token补存后说明](evidence.mdoc#device:file:docs:evidence:mobile-legacy-token-guide)已保存并视觉复核，截图中的测试Token已脱敏。
+停机副本包含密钥；删除密钥时启动失败且不生成新密钥，恢复配套密钥后可取回原值；真实旧程序拒绝格式2。逐项结果见[跨格式升级与密钥恢复证据](evidence.mdoc#device:file:docs:evidence:token-upgrade-report)。这些检查使用临时目录、真实程序/SQLite/HTTP，系统账号、chown和系统级systemctl仍为替代实现，未在目标机root升级。
+
+指定目录Chromium及playwright-cli重新完成桌面1440×900、手机390×844和窄屏360×800全流程。
+
+三个视口均验证新建后完整说明包含真实Token/地址/Bearer/curl、关闭后再次取回相同原文、文档页入口、局域网HTTP手动复制回退、旧Token补存后继续用原凭据；无意外控制台错误或页面异常。
+
+[页面结构化证据](evidence.mdoc#device:file:docs:evidence:browser-report)、[桌面完整说明](evidence.mdoc#device:file:docs:evidence:desktop-agent-guide)、[窄屏完整说明](evidence.mdoc#device:file:docs:evidence:mobile-narrow-agent-guide)及[手机旧Token补存后说明](evidence.mdoc#device:file:docs:evidence:mobile-legacy-token-guide)已保存并视觉复核，截图中的测试Token已脱敏。
 
 `npm run package`已生成Linux/amd64的0.2.0安装包；`test:install`、`test:token-upgrade`、`test:browser`及`test:runtime`均在该构建上通过。本次未操作真实硬件或更改已有体验服务，也未宣称完成目标机root升级、实体手机或其他浏览器引擎验收。
 

@@ -1,6 +1,8 @@
 {% section id="device:usage:reference:api" title="HTTP API说明" %}
 
-所有下表路径相对于 `/api/v1`；存活检查单独为 `GET /healthz`，返回status、version和commit，设备离线不使其失败。具体路由和请求解码见HTTP实现（`internal/httpapi/http.go`），实体字段见核心模型（`internal/core/core.go`）、通用契约（`internal/contracts/contracts.go`）及认证模型（`internal/auth/auth.go`）。
+所有下表路径相对于 `/api/v1`；存活检查单独为 `GET /healthz`，返回status、version和commit，设备离线不使其失败。
+
+具体路由和请求解码见HTTP实现（`internal/httpapi/http.go`），实体字段见核心模型（`internal/core/core.go`）、通用契约（`internal/contracts/contracts.go`）及认证模型（`internal/auth/auth.go`）。
 
 {% section id="device:api:authentication" title="鉴权与请求" %}
 
@@ -8,7 +10,9 @@ Web登录返回用户与 `csrf`，设置 `dc_session` Cookie；`GET /auth/me`可
 
 Agent使用 `Authorization: Bearer <ACCESS_TOKEN>`，只访问该Token所属项目及获授scope。明确提供无效Bearer时不会退回Cookie。Token不通过URL参数传递，不能枚举项目或读取调用历史。
 
-JSON请求使用 `Content-Type: application/json`，大小不超过1MiB，只允许一个JSON对象，拒绝未知字段。调用的 `parameters`必须是对象，读取也发送 `{"parameters":{}}`。配置修改带当前revision，冲突后读取最新配置再由调用方处理，不盲目重试。PATCH接口按对应实体字段解码并保存，编辑时应提交当前完整可编辑配置，不假定任意缺省字段会自动保留。
+JSON请求使用 `Content-Type: application/json`，大小不超过1MiB，只允许一个JSON对象，拒绝未知字段。调用的 `parameters`必须是对象，读取也发送 `{"parameters":{}}`。
+
+配置修改带当前revision，冲突后读取最新配置再由调用方处理，不盲目重试。PATCH接口按对应实体字段解码并保存，编辑时应提交当前完整可编辑配置，不假定任意缺省字段会自动保留。
 
 {% /section %}
 
@@ -41,13 +45,23 @@ JSON请求使用 `Content-Type: application/json`，大小不超过1MiB，只允
 | `DELETE /admin/projects/{id}/tokens/{tokenId}` | 撤销Token |
 | `GET /admin/invocations` | 跨项目调用记录，可按project_id筛选 |
 
-设备创建请求为 `template_key`、`display_name`和 `connection_config`；更新为 `display_name`、`connection_config`及revision。连接配置字段以模板Schema为准。配置合法但暂时离线时仍保存设备并保留ID；参数非法、重复地址或总线冲突会拒绝。候选和原设备重选见[串口绑定说明](../operations/serial-binding.mdoc)。
+设备创建请求为 `template_key`、`display_name`和 `connection_config`；更新为 `display_name`、`connection_config`及revision。连接配置字段以模板Schema为准。
 
-项目可编辑字段为key、display_name、purpose、usage_instructions、notes、enabled，更新需revision且key不可改。项目服务字段为key、display_name、description、usage_instructions、device_id、device_service_key、default_parameters、parameter_constraints和enabled；更新需revision，key不可改。契约快照由绑定生成，客户端不能自定契约绕过校验。
+配置合法但暂时离线时仍保存设备并保留ID；参数非法、重复地址或总线冲突会拒绝。候选和原设备重选见[串口绑定说明](../operations/serial-binding.mdoc)。
 
-创建Token使用 `name`、`scopes`及可选RFC3339 `expires_at`，scope省略或为空时使用三项默认scope。创建响应含token元数据和secret原文；有效Token可由管理员通过reveal再次取回相同结构。列表只返回元数据及recoverable标记，不含secret、摘要或密文。重新生成通过撤销旧Token后创建实现。
+项目可编辑字段为key、display_name、purpose、usage_instructions、notes、enabled，更新需revision且key不可改。
 
-旧Token缺少密文时reveal返回409 CONFIG_CONFLICT；持有原文可用secret接口补存，摘要不匹配返回400，且不改变旧Token。已撤销或过期时拒绝取回/补存。普通用户和项目Token没有这两个管理接口的权限，Cookie请求缺CSRF返回403，响应Cache-Control为no-store。完整说明由管理员页面临时组合，普通项目Markdown/OpenAPI仍使用凭据占位符，详见[Token说明](../integration/tokens.mdoc)。
+项目服务字段为key、display_name、description、usage_instructions、device_id、device_service_key、default_parameters、parameter_constraints和enabled；更新需revision，key不可改。
+
+契约快照由绑定生成，客户端不能自定契约绕过校验。
+
+创建Token使用 `name`、`scopes`及可选RFC3339 `expires_at`，scope省略或为空时使用三项默认scope。创建响应含token元数据和secret原文；有效Token可由管理员通过reveal再次取回相同结构。
+
+列表只返回元数据及recoverable标记，不含secret、摘要或密文。重新生成通过撤销旧Token后创建实现。
+
+旧Token缺少密文时reveal返回409 CONFIG_CONFLICT；持有原文可用secret接口补存，摘要不匹配返回400，且不改变旧Token。已撤销或过期时拒绝取回/补存。
+
+普通用户和项目Token没有这两个管理接口的权限，Cookie请求缺CSRF返回403，响应Cache-Control为no-store。完整说明由管理员页面临时组合，普通项目Markdown/OpenAPI仍使用凭据占位符，详见[Token说明](../integration/tokens.mdoc)。
 
 {% /section %}
 
@@ -75,7 +89,9 @@ curl -X POST 'http://<服务器IP>:8080/api/v1/projects/board-test-a/services/bo
   --data '{"parameters":{"enabled":true}}'
 ```
 
-成功调用返回调用记录，含request_id、status、project、service、service_revision、绑定和主体快照、parameters、result、confirmation、source、observed_at及起止时间/duration_ms。具体result由服务Schema定义；设置成功的confirmation为verified，读取为read。设置确认只表示对应设定值或开关状态回读匹配。
+成功调用返回调用记录，含request_id、status、project、service、service_revision、绑定和主体快照、parameters、result、confirmation、source、observed_at及起止时间/duration_ms。
+
+具体result由服务Schema定义；设置成功的confirmation为verified，读取为read。设置确认只表示对应设定值或开关状态回读匹配。
 
 记录查询参数为page、page_size、service、subject、status、device_id、error_code；管理员还可指定project_id。分页响应为items、page、page_size、total。Token没有调用记录查询权限。
 

@@ -1,0 +1,303 @@
+{
+  "objects": [
+    {
+      "id": "device:visual:services:caller",
+      "kind": "node",
+      "label": "用户或 Agent",
+      "source": {
+        "file": "docs/usage/overview.mdoc",
+        "selector": "device:usage:overview"
+      }
+    },
+    {
+      "id": "device:visual:services:project",
+      "kind": "node",
+      "label": "项目服务",
+      "source": {
+        "file": "docs/usage/overview.mdoc",
+        "selector": "device:usage:overview"
+      }
+    },
+    {
+      "id": "device:visual:services:device",
+      "kind": "node",
+      "label": "设备服务",
+      "source": {
+        "file": "docs/usage/overview.mdoc",
+        "selector": "device:usage:overview"
+      }
+    },
+    {
+      "id": "device:visual:services:access",
+      "kind": "node",
+      "label": "串口接入模块",
+      "source": {
+        "file": "docs/usage/overview.mdoc",
+        "selector": "device:usage:overview"
+      }
+    },
+    {
+      "id": "device:visual:services:instrument",
+      "kind": "node",
+      "label": "实际仪器",
+      "source": {
+        "file": "docs/usage/overview.mdoc",
+        "selector": "device:usage:overview"
+      }
+    },
+    {
+      "id": "device:visual:invocation:auth",
+      "kind": "node",
+      "label": "权限与绑定",
+      "source": {
+        "file": "docs/usage/integration/invoking.mdoc",
+        "selector": "device:usage:integration:invoking"
+      }
+    },
+    {
+      "id": "device:visual:invocation:parameters",
+      "kind": "node",
+      "label": "参数与默认值",
+      "source": {
+        "file": "docs/usage/integration/invoking.mdoc",
+        "selector": "device:usage:integration:invoking"
+      }
+    },
+    {
+      "id": "device:visual:invocation:busy",
+      "kind": "node",
+      "label": "通信 busy",
+      "source": {
+        "file": "docs/usage/integration/invoking.mdoc",
+        "selector": "device:usage:integration:invoking"
+      }
+    },
+    {
+      "id": "device:visual:invocation:audit",
+      "kind": "node",
+      "label": "开始记录",
+      "source": {
+        "file": "docs/usage/integration/invoking.mdoc",
+        "selector": "device:usage:integration:invoking"
+      }
+    },
+    {
+      "id": "device:visual:invocation:io",
+      "kind": "node",
+      "label": "执行与回读",
+      "source": {
+        "file": "docs/usage/integration/invoking.mdoc",
+        "selector": "device:usage:integration:invoking"
+      }
+    },
+    {
+      "id": "device:visual:invocation:finish",
+      "kind": "node",
+      "label": "保存与清理",
+      "source": {
+        "file": "docs/usage/integration/invoking.mdoc",
+        "selector": "device:usage:integration:invoking"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "device:visual:services:caller-to-project",
+      "kind": "connection",
+      "class": "流程",
+      "label": "授权调用",
+      "endpoints": [
+        "device:visual:services:caller",
+        "device:visual:services:project"
+      ],
+      "direction": {
+        "sources": [
+          "device:visual:services:caller"
+        ],
+        "targets": [
+          "device:visual:services:project"
+        ]
+      },
+      "source": {
+        "file": "docs/usage/overview.mdoc",
+        "selector": "device:usage:overview"
+      }
+    },
+    {
+      "id": "device:visual:services:project-to-device",
+      "kind": "connection",
+      "class": "流程",
+      "label": "绑定",
+      "endpoints": [
+        "device:visual:services:project",
+        "device:visual:services:device"
+      ],
+      "direction": {
+        "sources": [
+          "device:visual:services:project"
+        ],
+        "targets": [
+          "device:visual:services:device"
+        ]
+      },
+      "source": {
+        "file": "docs/usage/overview.mdoc",
+        "selector": "device:usage:overview"
+      }
+    },
+    {
+      "id": "device:visual:services:device-to-access",
+      "kind": "connection",
+      "class": "流程",
+      "label": "契约",
+      "endpoints": [
+        "device:visual:services:device",
+        "device:visual:services:access"
+      ],
+      "direction": {
+        "sources": [
+          "device:visual:services:device"
+        ],
+        "targets": [
+          "device:visual:services:access"
+        ]
+      },
+      "source": {
+        "file": "docs/usage/overview.mdoc",
+        "selector": "device:usage:overview"
+      }
+    },
+    {
+      "id": "device:visual:services:access-to-instrument",
+      "kind": "connection",
+      "class": "流程",
+      "label": "协议",
+      "endpoints": [
+        "device:visual:services:access",
+        "device:visual:services:instrument"
+      ],
+      "direction": {
+        "sources": [
+          "device:visual:services:access"
+        ],
+        "targets": [
+          "device:visual:services:instrument"
+        ]
+      },
+      "source": {
+        "file": "docs/usage/overview.mdoc",
+        "selector": "device:usage:overview"
+      }
+    },
+    {
+      "id": "device:visual:invocation:auth-to-parameters",
+      "kind": "connection",
+      "class": "流程",
+      "label": "有效",
+      "endpoints": [
+        "device:visual:invocation:auth",
+        "device:visual:invocation:parameters"
+      ],
+      "direction": {
+        "sources": [
+          "device:visual:invocation:auth"
+        ],
+        "targets": [
+          "device:visual:invocation:parameters"
+        ]
+      },
+      "source": {
+        "file": "docs/usage/integration/invoking.mdoc",
+        "selector": "device:usage:integration:invoking"
+      }
+    },
+    {
+      "id": "device:visual:invocation:parameters-to-busy",
+      "kind": "connection",
+      "class": "流程",
+      "label": "参数合法",
+      "endpoints": [
+        "device:visual:invocation:parameters",
+        "device:visual:invocation:busy"
+      ],
+      "direction": {
+        "sources": [
+          "device:visual:invocation:parameters"
+        ],
+        "targets": [
+          "device:visual:invocation:busy"
+        ]
+      },
+      "source": {
+        "file": "docs/usage/integration/invoking.mdoc",
+        "selector": "device:usage:integration:invoking"
+      }
+    },
+    {
+      "id": "device:visual:invocation:busy-to-audit",
+      "kind": "connection",
+      "class": "流程",
+      "label": "资源空闲",
+      "endpoints": [
+        "device:visual:invocation:busy",
+        "device:visual:invocation:audit"
+      ],
+      "direction": {
+        "sources": [
+          "device:visual:invocation:busy"
+        ],
+        "targets": [
+          "device:visual:invocation:audit"
+        ]
+      },
+      "source": {
+        "file": "docs/usage/integration/invoking.mdoc",
+        "selector": "device:usage:integration:invoking"
+      }
+    },
+    {
+      "id": "device:visual:invocation:audit-to-io",
+      "kind": "connection",
+      "class": "流程",
+      "label": "记录成功",
+      "endpoints": [
+        "device:visual:invocation:audit",
+        "device:visual:invocation:io"
+      ],
+      "direction": {
+        "sources": [
+          "device:visual:invocation:audit"
+        ],
+        "targets": [
+          "device:visual:invocation:io"
+        ]
+      },
+      "source": {
+        "file": "docs/usage/integration/invoking.mdoc",
+        "selector": "device:usage:integration:invoking"
+      }
+    },
+    {
+      "id": "device:visual:invocation:io-to-finish",
+      "kind": "connection",
+      "class": "流程",
+      "label": "终态清理",
+      "endpoints": [
+        "device:visual:invocation:io",
+        "device:visual:invocation:finish"
+      ],
+      "direction": {
+        "sources": [
+          "device:visual:invocation:io"
+        ],
+        "targets": [
+          "device:visual:invocation:finish"
+        ]
+      },
+      "source": {
+        "file": "docs/usage/integration/invoking.mdoc",
+        "selector": "device:usage:integration:invoking"
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{% section id="device:development:acceptance:xiaomi:channels:20261106" title="米家五路通道与删除验证（2026-11-06）" %}
+
+范围：0.3.1开发工作区。用户反馈五路插座只出现少量开关且找不到删除入口。初版[米家接入验证](xiaomi-20261106.mdoc)保留其时间范围；本文记录本次修复和新增验证，不替代真实开关动作验收。
+
+## 原因与修复
+
+公开规格中 `oit.plug.cb7` 的标准属性是总控与指示灯，AC1～AC5位于 `oit-spec` 命名空间的 switch/on/bool，初版只匹配标准命名空间因而遗漏。现在明确识别同厂商命名空间 switch/outlet 服务的 on/bool，仍排除循环状态 status、点动设置和童锁等布尔属性。完整公开规格按原样保存在 `internal/access/xiaomi/testdata/`，来源与获取时间见同目录 README。
+
+卡片显示“5 路开关 · 总控 · 指示灯”，调试按通道分组。每路读取与设置生成两项服务，此型号合计7组14项服务。新增“刷新设备能力”可将新规格应用到已有设备；卡片与米家导入列表均提供删除按钮，引用中的设备仍拒绝删除。
+
+## 自动化与页面
+
+`npm run build`通过，包含 Vue 类型检查。`npm run test:race`完整通过，新增公开型号规格识别、权限/CSRF、能力刷新不调用属性或账号云接口、保留设备与绑定、增加修订、拒绝过时配置以及恢复后快照保持的验证。Go 原始输出见下方证据。
+
+米家隔离浏览器覆盖1440×900桌面与360×800手机：从旧能力快照升级为五路加总控及指示灯，原设备ID保持；验证卡片删除、导入列表删除、删除后重新导入和项目引用拒绝删除。设备与云端均为模拟；界面无横向溢出或未预期异常。普通串口、项目和Token页面另在新的回归目录验证，不覆盖旧记录。
+
+## 当前服务更新
+
+当前服务在保留完整停机备份后更新至0.3.1；已对两台已导入设备执行公开规格能力刷新，保留ID及名称。其中五路插座7组14项服务，另一设备1组2项服务。刷新前后设备调用记录数量未增加。本次没有读取真实开关状态、发送开关命令或删除用户设备；实际设备动作仍需单独明确范围后验证。
+
+生产数据、账号、DID、凭据与备份不进入证据目录，下面仅保留计数及范围。此处不把用户的真实账号导入反馈当成自动化实机验收。
+
+{% section id="device:acceptance:xiaomi:channels:browser" title="隔离米家页面报告" collapsed=true %}
+
+{% code file="docs/evidence/xiaomi-channels-20261106/report.json" language="json" /%}
+
+{% /section %}
+
+{% section id="device:acceptance:xiaomi:channels:go" title="Go race 原始结果" collapsed=true %}
+
+{% code file="docs/evidence/xiaomi-channels-20261106/go-race.txt" language="text" /%}
+
+{% /section %}
+
+{% section id="device:acceptance:xiaomi:channels:live" title="服务元数据更新结果" collapsed=true %}
+
+{% code file="docs/evidence/xiaomi-channels-20261106/live-metadata-refresh.json" language="json" /%}
+
+{% /section %}
+
+{% section id="device:acceptance:xiaomi:channels:regression" title="既有串口与项目页面回归" collapsed=true %}
+
+{% code file="docs/evidence/regression-xiaomi-channels-20261106/browser-report.json" language="json" /%}
+
+{% /section %}
+
+{% section id="device:acceptance:xiaomi:channels:preview" title="模拟五路插座界面" collapsed=true %}
+
+![桌面模拟五路通道](docs/evidence/xiaomi-channels-20261106/desktop-five-channels.png)
+
+![手机模拟导入列表删除入口](docs/evidence/xiaomi-channels-20261106/mobile-narrow-import-list-delete.png)
+
+{% /section %}
+
+{% /section %}

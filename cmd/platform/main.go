@@ -17,6 +17,8 @@ import (
 	"time"
 
 	"devconsole/internal/access/manager"
+	"devconsole/internal/access/router"
+	"devconsole/internal/access/xiaomi"
 	"devconsole/internal/auth"
 	"devconsole/internal/buildinfo"
 	"devconsole/internal/core"
@@ -127,10 +129,18 @@ func serve(args []string) error {
 		return e
 	}
 	m := manager.New(s, k)
-	k.Provisioner = m
-	k.Invoker = m
+	x := xiaomi.New(s, k, nil)
+	access := router.New(s,
+		router.Backend{Route: "builtin-access-1", Provisioner: m, Invoker: m},
+		router.Backend{Route: xiaomi.Route, Provisioner: x, Invoker: x})
+	k.Provisioner = access
+	k.Invoker = access
 	defer m.Close()
+	defer x.Close()
 	if e = m.Restore(context.Background()); e != nil {
+		return e
+	}
+	if e = x.Restore(context.Background()); e != nil {
 		return e
 	}
 	devices, e := k.Devices()
@@ -138,11 +148,15 @@ func serve(args []string) error {
 		return e
 	}
 	for _, d := range devices {
-		if e = m.Test(context.Background(), d.ID); e != nil {
+		// 米家云状态由显式读取或连接测试更新；启动不登录、不轮询云端。
+		if d.AccessRoute == xiaomi.Route {
+			continue
+		}
+		if e = access.Test(context.Background(), d.ID); e != nil {
 			slog.Warn("设备连接探测未通过", "设备", d.DisplayName, "原因", e.Error())
 		}
 	}
-	httpServer := &http.Server{Addr: cfg.Listen, Handler: httpapi.New(k, auth.New(s), cfg.PublicBaseURL, web.Assets()), ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 15 * time.Second, WriteTimeout: 20 * time.Second, IdleTimeout: 60 * time.Second, MaxHeaderBytes: 32 * 1024}
+	httpServer := &http.Server{Addr: cfg.Listen, Handler: httpapi.New(k, auth.New(s), cfg.PublicBaseURL, web.Assets(), httpapi.WithXiaomi(x)), ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 15 * time.Second, WriteTimeout: 20 * time.Second, IdleTimeout: 60 * time.Second, MaxHeaderBytes: 32 * 1024}
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer stop()
 	done := make(chan error, 1)

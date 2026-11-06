@@ -28,6 +28,7 @@ func AsError(err error) *Error {
 
 type Schema struct {
 	Type                 string            `json:"type"`
+	Title                string            `json:"title,omitempty"`
 	Properties           map[string]Schema `json:"properties,omitempty"`
 	Required             []string          `json:"required,omitempty"`
 	AdditionalProperties bool              `json:"additionalProperties"`
@@ -196,6 +197,9 @@ func Keys[T any](m map[string]T) []string {
 }
 
 type Service struct {
+	GroupKey             string `json:"group_key,omitempty"`
+	GroupTitle           string `json:"group_title,omitempty"`
+	GroupKind            string `json:"group_kind,omitempty"`
 	Key                  string `json:"key"`
 	Contract             string `json:"contract"`
 	ContractVersion      int    `json:"contract_version"`
@@ -206,6 +210,7 @@ type Service struct {
 	Output               Schema `json:"output_schema"`
 	TimeoutMS            int    `json:"timeout_ms"`
 	SupportsVerification bool   `json:"supports_verification"`
+	ResultSource         string `json:"result_source,omitempty"`
 }
 type Device struct {
 	TemplateKey  string    `json:"template_key"`
@@ -218,10 +223,12 @@ type Device struct {
 	Revision     int       `json:"revision"`
 }
 type Template struct {
-	Key             string `json:"key"`
-	Title           string `json:"title"`
-	ConfigSchema    Schema `json:"config_schema"`
-	ConnectionField string `json:"connection_field,omitempty"`
+	CanRefreshCapabilities bool   `json:"can_refresh_capabilities,omitempty"`
+	Key                    string `json:"key"`
+	Title                  string `json:"title"`
+	ConfigSchema           Schema `json:"config_schema"`
+	ConnectionField        string `json:"connection_field,omitempty"`
+	CreationMode           string `json:"creation_mode,omitempty"`
 }
 type ConnectionChoice struct {
 	Value        string `json:"value"`
@@ -251,6 +258,12 @@ type DeviceRegistrar interface {
 type DeviceInvoker interface {
 	Invoke(context.Context, Invocation) (Result, error)
 }
+
+// DeviceCapabilityRefresher prepares a short-lived configuration without holding the core lock.
+type DeviceCapabilityRefresher interface {
+	PrepareCapabilityRefresh(context.Context, string, int) (json.RawMessage, error)
+}
+
 type DeviceProvisioner interface {
 	ListTemplates(context.Context) []Template
 	DiscoverConnections(context.Context, string) ([]ConnectionChoice, error)

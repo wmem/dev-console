@@ -13,6 +13,7 @@ run('playwright-cli',['--version']);if(!existsSync('dist/platform-linux-amd64'))
 mkdirSync('.cache',{recursive:true});mkdirSync('docs/evidence',{recursive:true});run('go',['build','-o','.cache/browser-simulator','./cmd/simulator']);run('go',['build','-o','.cache/browser-fixtures','scripts/browser-fixtures.go']);
 const localIP=Object.values(networkInterfaces()).flat().find(a=>a&&a.family==='IPv4'&&!a.internal)?.address||'127.0.0.1';
 const results=[];
+const evidenceDir=path.resolve(process.env.DCONSOLE_EVIDENCE_DIR||path.join(root,'docs/evidence/browser-'+new Date().toISOString().replace(/[:.]/g,'-')));mkdirSync(evidenceDir,{recursive:true});
 const allSecrets=[];
 function redact(text){for(const secret of allSecrets)text=text.replaceAll(secret,'<REDACTED>');return text.replace(/dc_[a-f0-9]{64}/g,'<REDACTED_TOKEN>')}
 
@@ -32,7 +33,7 @@ for(const mode of ['desktop','mobile','mobile-narrow']){
   let ready=false;for(let n=0;n<50;n++){try{if((await fetch(baseURL+'/healthz')).ok){ready=true;break}}catch{};await new Promise(r=>setTimeout(r,100))};if(!ready)throw Error('验收服务启动失败');
   const browserConfig=path.join(work,'playwright.json');writeFileSync(browserConfig,JSON.stringify({browser:{browserName:'chromium',launchOptions:{executablePath:executable,headless:true,chromiumSandbox:false},contextOptions:{viewport,isMobile:mobile,hasTouch:mobile,deviceScaleFactor:1}},outputDir:path.join(work,'playwright-output')}));
   run('playwright-cli',['-s='+session,'open',baseURL,'--config',browserConfig]);
-  const fixture={mode,mobile,legacyRaw,serial,stableSerial,reselectedSerial,username:'browser-admin',password:secrets[0],memberPassword:secrets[1],resetPassword:secrets[2],baseURL,evidence:path.join(root,'docs/evidence')};
+  const fixture={mode,mobile,legacyRaw,serial,stableSerial,reselectedSerial,username:'browser-admin',password:secrets[0],memberPassword:secrets[1],resetPassword:secrets[2],baseURL,evidence:evidenceDir};
   const code=readFileSync('scripts/browser-flow.js','utf8').replace('__FIXTURE__',JSON.stringify(fixture));const filename=path.join(work,'flow.js');writeFileSync(filename,code,{mode:0o600});
   let output;try{output=run('playwright-cli',['-s='+session,'run-code','--filename='+filename])}catch(e){let message=e.message;for(const s of secrets)message=message.replaceAll(s,'<REDACTED>');throw Error(message.replace(/dc_[a-f0-9]{64}/g,'<REDACTED_TOKEN>'))}
   writeFileSync(path.join(work,'cli-output-redacted.log'),redact(output));
@@ -44,5 +45,5 @@ for(const mode of ['desktop','mobile','mobile-narrow']){
   rmSync(work,{recursive:true,force:true});
  }
 }
-writeFileSync('docs/evidence/browser-report.json',JSON.stringify({finished_at:new Date().toISOString(),browser_executable:executable,scope:'Chromium桌面与手机视口及触摸模拟；未使用实体手机或第二台终端',results},null,2));
-console.log('已保存浏览器结果与脱敏截图：docs/evidence/');
+writeFileSync(path.join(evidenceDir,'browser-report.json'),JSON.stringify({finished_at:new Date().toISOString(),browser_executable:executable,scope:'Chromium桌面与手机视口及触摸模拟；未使用实体手机或第二台终端',results},null,2));
+console.log('已保存浏览器结果与脱敏截图：'+path.relative(root,evidenceDir));

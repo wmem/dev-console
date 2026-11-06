@@ -7,14 +7,14 @@
 把run文件复制到目标机器后：
 
 ```sh
-sudo bash dconsole-0.2.0-install.run
+sudo bash dconsole-0.3.1-install.run
 
 # 首次安装也可以显式指定端口，跳过端口提问，仍需设置管理员密码
-sudo bash dconsole-0.2.0-install.run --port 9000
+sudo bash dconsole-0.3.1-install.run --port 9000
 
 # 串口需要补充组权限时，先查看实际节点所属组，再明确传入，例如：
 ls -l /dev/ttyUSB0
-sudo bash dconsole-0.2.0-install.run --serial-group dialout
+sudo bash dconsole-0.3.1-install.run --serial-group dialout
 ```
 
 `dialout`仅为示例，安装器不会猜测或修改设备节点权限。指定组必须已存在。模板不隐藏/dev，因此ttyUSB、ttyACM、by-id和by-path均可按原有规则使用；不会创建udev规则。
@@ -73,10 +73,10 @@ sudo tail -n 100 /opt/dconsole/logs/dconsole.log
 执行较新版本的同类安装包即可：
 
 ```sh
-sudo bash dconsole-0.2.1-install.run
+sudo bash dconsole-0.3.1-install.run
 
 # 同版本重复执行默认无操作；显式修复程序/服务登记：
-sudo bash dconsole-0.2.0-install.run --reinstall
+sudo bash dconsole-0.3.1-install.run --reinstall
 ```
 
 升级先预检，再停服。预检核对版本、配置、固定数据目录和数据库格式；默认拒绝降级，`data_dir` 必须解析到 `/opt/dconsole/data`。
@@ -91,7 +91,19 @@ sudo bash dconsole-0.2.0-install.run --reinstall
 
 安装器不能把数据迁移到固定目录之外。
 
-正常升级不覆盖config.yaml、dconsole.service和data，不重建管理员或清空业务数据；数据库可能由新程序按独立迁移规则更新，不能把“保留数据”理解为SQLite文件字节完全不变。原设备ID、项目、绑定、Token与登录Session保留；重启仍只读探测，不恢复历史电源输出。
+正常升级不覆盖config.yaml、dconsole.service和data，不重建管理员或清空业务数据；数据库可能由新程序按独立迁移规则更新，不能把“保留数据”理解为SQLite文件字节完全不变。原设备ID、项目、绑定、Token与登录Session保留；串口设备重启只读探测，米家设备只恢复本地登记，不恢复历史输出。
+
+### 升级到0.3.1后的米家设备
+
+0.3.1补齐五路插座的厂商开关通道，并在设备卡片及米家导入列表增加删除入口。数据库格式仍为3，从0.3.0升级不增加数据库格式版本。
+
+已导入设备沿用原来的能力快照。升级后如果五路通道仍未显示，在原设备卡片点击“刷新设备能力”，无需删除重导；设备ID、名称及项目绑定保留。刷新只获取公开规格，不读取或设置实际开关状态。具体操作见[米家开关接入](xiaomi.mdoc)。
+
+### 将开发体验服务的数据带到目标机
+
+安装包只包含程序，不包含当前开发实例的账号、设备或密钥。目标机首次安装后，如果需要保留开发实例中的米家账号、设备、项目和Token，应按[停机备份与恢复](backup-restore.mdoc)迁移完整数据目录：源实例与目标服务都停止后，备份目标现场，恢复源实例整份data（包含token.key及可能存在的SQLite配套文件），设置目标dconsole用户权限，再启动并验证。不能只复制platform.db，也不能用目标新生成的token.key替换源密钥。
+
+目标配置保留目标机器的监听地址和固定data_dir；显式设置过public_base_url时应填写目标机器的实际访问地址。恢复源数据后使用源实例的管理员账号和密码，首次安装时创建的目标管理员会随数据库替换。单纯安装或升级程序不会自动迁移其他实例的数据。
 
 --port仅用于首次安装，已安装实例传入该参数会明确拒绝，包括同版本和--reinstall。需要改端口时由管理员编辑config.yaml并重启，不通过升级参数覆盖原配置。
 

@@ -34,8 +34,8 @@ func TestLegacyInstallerTokenUpgradeRollback(t *testing.T) {
 		t.Fatal("需要真实格式1程序", err)
 	}
 	newInfo, err := readInfo(current)
-	if err != nil || newInfo.DatabaseMax != 2 {
-		t.Fatal("需要当前格式2程序", err)
+	if err != nil || newInfo.DatabaseMax != storage.CurrentVersion {
+		t.Fatal("需要当前数据库格式的程序", err)
 	}
 	base := t.TempDir()
 	root := filepath.Join(base, "dconsole")
@@ -176,7 +176,7 @@ func TestLegacyInstallerTokenUpgradeRollback(t *testing.T) {
 	call("GET", "/projects/legacy-live/docs", nil, oldRaw, 200)
 	e.checkHealth = health
 	if err = e.apply(); err != nil {
-		t.Fatal("格式1升级格式2失败", err)
+		t.Fatal("格式1升级当前格式失败", err)
 	}
 	call("GET", "/projects/legacy-live/docs", nil, oldRaw, 200)
 	path := "/admin/projects/" + pid + "/tokens/" + oldID
@@ -235,6 +235,6 @@ func TestLegacyInstallerTokenUpgradeRollback(t *testing.T) {
 	stderr.Reset()
 	oldStart.Stderr = &stderr
 	if err = oldStart.Run(); err == nil || !strings.Contains(stderr.String(), "数据库版本") {
-		t.Fatal("真实旧程序未拒绝格式2数据库")
+		t.Fatal("真实旧程序未拒绝当前格式数据库")
 	}
 }

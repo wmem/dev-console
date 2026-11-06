@@ -13,7 +13,7 @@ import (
 )
 
 const MinVersion = 1
-const CurrentVersion = 2
+const CurrentVersion = 3
 
 // InspectVersion只读检查已有数据库，不建目录、不迁移，供升级与回退判断兼容性。
 func InspectVersion(dir string) (int, error) {
@@ -34,7 +34,7 @@ func InspectVersion(dir string) (int, error) {
 	return version, nil
 }
 
-var tables = []string{"users", "sessions", "projects", "project_members", "devices", "device_services", "project_services", "access_tokens", "token_secrets", "access_configs", "invocations"}
+var tables = []string{"users", "sessions", "projects", "project_members", "devices", "device_services", "project_services", "access_tokens", "token_secrets", "access_configs", "invocations", "xiaomi_accounts", "xiaomi_credentials", "xiaomi_devices"}
 
 type Store struct {
 	DB      *sql.DB
@@ -79,7 +79,7 @@ func Open(dir string) (*Store, error) {
 		}
 	}
 	var encrypted int
-	if e = tx.QueryRow("SELECT COUNT(*) FROM token_secrets").Scan(&encrypted); e != nil {
+	if e = tx.QueryRow("SELECT (SELECT COUNT(*) FROM token_secrets) + (SELECT COUNT(*) FROM xiaomi_credentials)").Scan(&encrypted); e != nil {
 		tx.Rollback()
 		db.Close()
 		return nil, e

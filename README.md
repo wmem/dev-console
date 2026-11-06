@@ -2,6 +2,8 @@
 
 一个 Go 可执行文件提供 Vue 中文 Web、项目服务 API、SQLite 和串口设备接入。支持 Linux/amd64，首批设备为龙威 LW-3010E 与 ITECH IT6722；具体协议位于 `internal/access/`，平台通过统一设备服务契约组织调用。
 
+支持通过社区协议扫码连接中国大陆米家账号，预览并勾选导入开关设备，见[米家开关接入](docs/usage/operations/xiaomi.mdoc)。该接入已完成隔离模拟验证，并据公开型号规格补齐五路插座通道；实际开关动作仍须按明确授权的设备范围验收。
+
 目标机安装、管理员初始化和第一次项目调用见[快速开始](docs/usage/start/index.mdoc)。开发者在仓库根执行：
 
 ```sh

@@ -1,0 +1,442 @@
+{"Time":"2026-11-06T12:06:31.797559834+08:00","Action":"start","Package":"devconsole/cmd/platform"}
+{"Time":"2026-11-06T12:06:31.797687063+08:00","Action":"start","Package":"devconsole/cmd/simulator"}
+{"Time":"2026-11-06T12:06:31.797700891+08:00","Action":"output","Package":"devconsole/cmd/simulator","Output":"?   \tdevconsole/cmd/simulator\t[no test files]\n"}
+{"Time":"2026-11-06T12:06:31.797708426+08:00","Action":"skip","Package":"devconsole/cmd/simulator","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797713038+08:00","Action":"start","Package":"devconsole/deploy"}
+{"Time":"2026-11-06T12:06:31.797715811+08:00","Action":"output","Package":"devconsole/deploy","Output":"?   \tdevconsole/deploy\t[no test files]\n"}
+{"Time":"2026-11-06T12:06:31.797718568+08:00","Action":"skip","Package":"devconsole/deploy","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797723717+08:00","Action":"start","Package":"devconsole/internal/access/manager"}
+{"Time":"2026-11-06T12:06:31.797747802+08:00","Action":"run","Package":"devconsole/internal/access/manager","Test":"TestStableAliasReconnectAndRejectDuplicate"}
+{"Time":"2026-11-06T12:06:31.797749841+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestStableAliasReconnectAndRejectDuplicate","Output":"=== RUN   TestStableAliasReconnectAndRejectDuplicate\n"}
+{"Time":"2026-11-06T12:06:31.797753936+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestStableAliasReconnectAndRejectDuplicate","Output":"--- PASS: TestStableAliasReconnectAndRejectDuplicate (0.33s)\n"}
+{"Time":"2026-11-06T12:06:31.797755869+08:00","Action":"pass","Package":"devconsole/internal/access/manager","Test":"TestStableAliasReconnectAndRejectDuplicate","Elapsed":0.33}
+{"Time":"2026-11-06T12:06:31.797759111+08:00","Action":"run","Package":"devconsole/internal/access/manager","Test":"TestUSBChoicesAndIdentityValidation"}
+{"Time":"2026-11-06T12:06:31.797760595+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestUSBChoicesAndIdentityValidation","Output":"=== RUN   TestUSBChoicesAndIdentityValidation\n"}
+{"Time":"2026-11-06T12:06:31.797768607+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestUSBChoicesAndIdentityValidation","Output":"--- PASS: TestUSBChoicesAndIdentityValidation (0.32s)\n"}
+{"Time":"2026-11-06T12:06:31.797770406+08:00","Action":"pass","Package":"devconsole/internal/access/manager","Test":"TestUSBChoicesAndIdentityValidation","Elapsed":0.32}
+{"Time":"2026-11-06T12:06:31.797772017+08:00","Action":"run","Package":"devconsole/internal/access/manager","Test":"TestAliasMoveBusyAndIndependentTargetSnapshot"}
+{"Time":"2026-11-06T12:06:31.797773485+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestAliasMoveBusyAndIndependentTargetSnapshot","Output":"=== RUN   TestAliasMoveBusyAndIndependentTargetSnapshot\n"}
+{"Time":"2026-11-06T12:06:31.797775452+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestAliasMoveBusyAndIndependentTargetSnapshot","Output":"--- PASS: TestAliasMoveBusyAndIndependentTargetSnapshot (0.30s)\n"}
+{"Time":"2026-11-06T12:06:31.7977772+08:00","Action":"pass","Package":"devconsole/internal/access/manager","Test":"TestAliasMoveBusyAndIndependentTargetSnapshot","Elapsed":0.3}
+{"Time":"2026-11-06T12:06:31.797778932+08:00","Action":"run","Package":"devconsole/internal/access/manager","Test":"TestReselectKeepsInstrumentSerialGuard"}
+{"Time":"2026-11-06T12:06:31.797780451+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestReselectKeepsInstrumentSerialGuard","Output":"=== RUN   TestReselectKeepsInstrumentSerialGuard\n"}
+{"Time":"2026-11-06T12:06:31.797782237+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestReselectKeepsInstrumentSerialGuard","Output":"--- PASS: TestReselectKeepsInstrumentSerialGuard (0.26s)\n"}
+{"Time":"2026-11-06T12:06:31.797783878+08:00","Action":"pass","Package":"devconsole/internal/access/manager","Test":"TestReselectKeepsInstrumentSerialGuard","Elapsed":0.26}
+{"Time":"2026-11-06T12:06:31.797790357+08:00","Action":"run","Package":"devconsole/internal/access/manager","Test":"TestUniqueUSBIdentityFollowsRenumberedACM"}
+{"Time":"2026-11-06T12:06:31.797792055+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestUniqueUSBIdentityFollowsRenumberedACM","Output":"=== RUN   TestUniqueUSBIdentityFollowsRenumberedACM\n"}
+{"Time":"2026-11-06T12:06:31.797794098+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestUniqueUSBIdentityFollowsRenumberedACM","Output":"--- PASS: TestUniqueUSBIdentityFollowsRenumberedACM (0.25s)\n"}
+{"Time":"2026-11-06T12:06:31.797795767+08:00","Action":"pass","Package":"devconsole/internal/access/manager","Test":"TestUniqueUSBIdentityFollowsRenumberedACM","Elapsed":0.25}
+{"Time":"2026-11-06T12:06:31.79779747+08:00","Action":"run","Package":"devconsole/internal/access/manager","Test":"TestUSBReplacementBetweenResolutionAndOpenIsRejected"}
+{"Time":"2026-11-06T12:06:31.797798894+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestUSBReplacementBetweenResolutionAndOpenIsRejected","Output":"=== RUN   TestUSBReplacementBetweenResolutionAndOpenIsRejected\n"}
+{"Time":"2026-11-06T12:06:31.797801039+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestUSBReplacementBetweenResolutionAndOpenIsRejected","Output":"--- PASS: TestUSBReplacementBetweenResolutionAndOpenIsRejected (0.34s)\n"}
+{"Time":"2026-11-06T12:06:31.79780389+08:00","Action":"pass","Package":"devconsole/internal/access/manager","Test":"TestUSBReplacementBetweenResolutionAndOpenIsRejected","Elapsed":0.34}
+{"Time":"2026-11-06T12:06:31.79780567+08:00","Action":"run","Package":"devconsole/internal/access/manager","Test":"TestRestartWithConvergedAliasesCanBeReconfigured"}
+{"Time":"2026-11-06T12:06:31.797807113+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestRestartWithConvergedAliasesCanBeReconfigured","Output":"=== RUN   TestRestartWithConvergedAliasesCanBeReconfigured\n"}
+{"Time":"2026-11-06T12:06:31.797809223+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestRestartWithConvergedAliasesCanBeReconfigured","Output":"--- PASS: TestRestartWithConvergedAliasesCanBeReconfigured (0.34s)\n"}
+{"Time":"2026-11-06T12:06:31.797810962+08:00","Action":"pass","Package":"devconsole/internal/access/manager","Test":"TestRestartWithConvergedAliasesCanBeReconfigured","Elapsed":0.34}
+{"Time":"2026-11-06T12:06:31.797812583+08:00","Action":"run","Package":"devconsole/internal/access/manager","Test":"TestOfflineByIDRequiresIdentityBeforeFirstOpen"}
+{"Time":"2026-11-06T12:06:31.797813995+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestOfflineByIDRequiresIdentityBeforeFirstOpen","Output":"=== RUN   TestOfflineByIDRequiresIdentityBeforeFirstOpen\n"}
+{"Time":"2026-11-06T12:06:31.797815955+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestOfflineByIDRequiresIdentityBeforeFirstOpen","Output":"--- PASS: TestOfflineByIDRequiresIdentityBeforeFirstOpen (0.20s)\n"}
+{"Time":"2026-11-06T12:06:31.797817642+08:00","Action":"pass","Package":"devconsole/internal/access/manager","Test":"TestOfflineByIDRequiresIdentityBeforeFirstOpen","Elapsed":0.2}
+{"Time":"2026-11-06T12:06:31.797819263+08:00","Action":"run","Package":"devconsole/internal/access/manager","Test":"TestSharedBusAndConfigurationLifecycle"}
+{"Time":"2026-11-06T12:06:31.79782063+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestSharedBusAndConfigurationLifecycle","Output":"=== RUN   TestSharedBusAndConfigurationLifecycle\n"}
+{"Time":"2026-11-06T12:06:31.797822575+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestSharedBusAndConfigurationLifecycle","Output":"--- PASS: TestSharedBusAndConfigurationLifecycle (0.26s)\n"}
+{"Time":"2026-11-06T12:06:31.797824208+08:00","Action":"pass","Package":"devconsole/internal/access/manager","Test":"TestSharedBusAndConfigurationLifecycle","Elapsed":0.26}
+{"Time":"2026-11-06T12:06:31.797827599+08:00","Action":"run","Package":"devconsole/internal/access/manager","Test":"TestCanonicalAliasDuplicate"}
+{"Time":"2026-11-06T12:06:31.797829143+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestCanonicalAliasDuplicate","Output":"=== RUN   TestCanonicalAliasDuplicate\n"}
+{"Time":"2026-11-06T12:06:31.797831681+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestCanonicalAliasDuplicate","Output":"--- PASS: TestCanonicalAliasDuplicate (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.797834297+08:00","Action":"pass","Package":"devconsole/internal/access/manager","Test":"TestCanonicalAliasDuplicate","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797836882+08:00","Action":"run","Package":"devconsole/internal/access/manager","Test":"TestItechIdentitySurvivesRestartAndRejectsReplacement"}
+{"Time":"2026-11-06T12:06:31.797834746+08:00","Action":"start","Package":"devconsole/internal/access/power"}
+{"Time":"2026-11-06T12:06:31.797839026+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestItechIdentitySurvivesRestartAndRejectsReplacement","Output":"=== RUN   TestItechIdentitySurvivesRestartAndRejectsReplacement\n"}
+{"Time":"2026-11-06T12:06:31.79784665+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestHistoricalFrames"}
+{"Time":"2026-11-06T12:06:31.797846352+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestItechIdentitySurvivesRestartAndRejectsReplacement","Output":"--- PASS: TestItechIdentitySurvivesRestartAndRejectsReplacement (0.25s)\n"}
+{"Time":"2026-11-06T12:06:31.797849185+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestHistoricalFrames","Output":"=== RUN   TestHistoricalFrames\n"}
+{"Time":"2026-11-06T12:06:31.797850964+08:00","Action":"pass","Package":"devconsole/internal/access/manager","Test":"TestItechIdentitySurvivesRestartAndRejectsReplacement","Elapsed":0.25}
+{"Time":"2026-11-06T12:06:31.797853647+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestHistoricalFrames","Output":"--- PASS: TestHistoricalFrames (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.797854238+08:00","Action":"run","Package":"devconsole/internal/access/manager","Test":"TestConfigurationCannotOvertakeAvailabilityReport"}
+{"Time":"2026-11-06T12:06:31.797855784+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestHistoricalFrames","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797857055+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestConfigurationCannotOvertakeAvailabilityReport","Output":"=== RUN   TestConfigurationCannotOvertakeAvailabilityReport\n"}
+{"Time":"2026-11-06T12:06:31.797860606+08:00","Action":"start","Package":"devconsole/internal/access/router"}
+{"Time":"2026-11-06T12:06:31.79785801+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation"}
+{"Time":"2026-11-06T12:06:31.797863816+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation","Output":"=== RUN   TestProtocolFragmentation\n"}
+{"Time":"2026-11-06T12:06:31.797864339+08:00","Action":"output","Package":"devconsole/internal/access/router","Output":"?   \tdevconsole/internal/access/router\t[no test files]\n"}
+{"Time":"2026-11-06T12:06:31.797865602+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/settings.read"}
+{"Time":"2026-11-06T12:06:31.797866885+08:00","Action":"skip","Package":"devconsole/internal/access/router","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797867193+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/settings.read","Output":"=== RUN   TestProtocolFragmentation/scpi/settings.read\n"}
+{"Time":"2026-11-06T12:06:31.797870225+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/settings.read","Output":"--- PASS: TestProtocolFragmentation/scpi/settings.read (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.797874759+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/settings.read","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797876648+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/measurement.read"}
+{"Time":"2026-11-06T12:06:31.797878043+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/measurement.read","Output":"=== RUN   TestProtocolFragmentation/scpi/measurement.read\n"}
+{"Time":"2026-11-06T12:06:31.797879897+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/measurement.read","Output":"--- PASS: TestProtocolFragmentation/scpi/measurement.read (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.797881604+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/measurement.read","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797883132+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/output.read"}
+{"Time":"2026-11-06T12:06:31.797884477+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/output.read","Output":"=== RUN   TestProtocolFragmentation/scpi/output.read\n"}
+{"Time":"2026-11-06T12:06:31.797886308+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/output.read","Output":"--- PASS: TestProtocolFragmentation/scpi/output.read (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.797887933+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/output.read","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.79788946+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/voltage.set"}
+{"Time":"2026-11-06T12:06:31.797890779+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/voltage.set","Output":"=== RUN   TestProtocolFragmentation/scpi/voltage.set\n"}
+{"Time":"2026-11-06T12:06:31.797892467+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/voltage.set","Output":"--- PASS: TestProtocolFragmentation/scpi/voltage.set (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.797894114+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/voltage.set","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797895594+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/current_limit.set"}
+{"Time":"2026-11-06T12:06:31.797896997+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/current_limit.set","Output":"=== RUN   TestProtocolFragmentation/scpi/current_limit.set\n"}
+{"Time":"2026-11-06T12:06:31.797899735+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/current_limit.set","Output":"--- PASS: TestProtocolFragmentation/scpi/current_limit.set (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.797901455+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/current_limit.set","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.79790314+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/output.set"}
+{"Time":"2026-11-06T12:06:31.797904605+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/output.set","Output":"=== RUN   TestProtocolFragmentation/scpi/output.set\n"}
+{"Time":"2026-11-06T12:06:31.797906336+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/output.set","Output":"--- PASS: TestProtocolFragmentation/scpi/output.set (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.797910139+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/scpi/output.set","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797913219+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/settings.read"}
+{"Time":"2026-11-06T12:06:31.797914174+08:00","Action":"run","Package":"devconsole/cmd/platform","Test":"TestLANConfigAndPublicURL"}
+{"Time":"2026-11-06T12:06:31.797918522+08:00","Action":"output","Package":"devconsole/cmd/platform","Test":"TestLANConfigAndPublicURL","Output":"=== RUN   TestLANConfigAndPublicURL\n"}
+{"Time":"2026-11-06T12:06:31.797921645+08:00","Action":"output","Package":"devconsole/cmd/platform","Test":"TestLANConfigAndPublicURL","Output":"--- PASS: TestLANConfigAndPublicURL (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.79792365+08:00","Action":"pass","Package":"devconsole/cmd/platform","Test":"TestLANConfigAndPublicURL","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797925925+08:00","Action":"run","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy"}
+{"Time":"2026-11-06T12:06:31.797927387+08:00","Action":"output","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy","Output":"=== RUN   TestPublicBrowserPortAndReverseProxy\n"}
+{"Time":"2026-11-06T12:06:31.797929081+08:00","Action":"run","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/generated_blocked"}
+{"Time":"2026-11-06T12:06:31.79793049+08:00","Action":"output","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/generated_blocked","Output":"=== RUN   TestPublicBrowserPortAndReverseProxy/generated_blocked\n"}
+{"Time":"2026-11-06T12:06:31.797932703+08:00","Action":"output","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/generated_blocked","Output":"--- PASS: TestPublicBrowserPortAndReverseProxy/generated_blocked (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.797934548+08:00","Action":"pass","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/generated_blocked","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797936176+08:00","Action":"run","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/explicit_blocked"}
+{"Time":"2026-11-06T12:06:31.797937788+08:00","Action":"output","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/explicit_blocked","Output":"=== RUN   TestPublicBrowserPortAndReverseProxy/explicit_blocked\n"}
+{"Time":"2026-11-06T12:06:31.797940677+08:00","Action":"output","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/explicit_blocked","Output":"--- PASS: TestPublicBrowserPortAndReverseProxy/explicit_blocked (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.797942537+08:00","Action":"pass","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/explicit_blocked","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797944132+08:00","Action":"run","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/invalid_public_port"}
+{"Time":"2026-11-06T12:06:31.79794555+08:00","Action":"output","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/invalid_public_port","Output":"=== RUN   TestPublicBrowserPortAndReverseProxy/invalid_public_port\n"}
+{"Time":"2026-11-06T12:06:31.797947508+08:00","Action":"output","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/invalid_public_port","Output":"--- PASS: TestPublicBrowserPortAndReverseProxy/invalid_public_port (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.797949186+08:00","Action":"pass","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/invalid_public_port","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797951783+08:00","Action":"run","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/allowed_port"}
+{"Time":"2026-11-06T12:06:31.797953269+08:00","Action":"output","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/allowed_port","Output":"=== RUN   TestPublicBrowserPortAndReverseProxy/allowed_port\n"}
+{"Time":"2026-11-06T12:06:31.797958429+08:00","Action":"output","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/allowed_port","Output":"--- PASS: TestPublicBrowserPortAndReverseProxy/allowed_port (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.797960388+08:00","Action":"pass","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/allowed_port","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797962019+08:00","Action":"run","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/proxy_internal_port"}
+{"Time":"2026-11-06T12:06:31.797963444+08:00","Action":"output","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/proxy_internal_port","Output":"=== RUN   TestPublicBrowserPortAndReverseProxy/proxy_internal_port\n"}
+{"Time":"2026-11-06T12:06:31.797965434+08:00","Action":"output","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/proxy_internal_port","Output":"--- PASS: TestPublicBrowserPortAndReverseProxy/proxy_internal_port (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.797967208+08:00","Action":"pass","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy/proxy_internal_port","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797970055+08:00","Action":"output","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy","Output":"--- PASS: TestPublicBrowserPortAndReverseProxy (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.797972128+08:00","Action":"pass","Package":"devconsole/cmd/platform","Test":"TestPublicBrowserPortAndReverseProxy","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797973763+08:00","Action":"run","Package":"devconsole/cmd/platform","Test":"TestHardwareModeRequiresExplicitSupportedSelection"}
+{"Time":"2026-11-06T12:06:31.797860798+08:00","Action":"output","Package":"devconsole/internal/access/manager","Test":"TestConfigurationCannotOvertakeAvailabilityReport","Output":"--- PASS: TestConfigurationCannotOvertakeAvailabilityReport (0.18s)\n"}
+{"Time":"2026-11-06T12:06:31.797975233+08:00","Action":"output","Package":"devconsole/cmd/platform","Test":"TestHardwareModeRequiresExplicitSupportedSelection","Output":"=== RUN   TestHardwareModeRequiresExplicitSupportedSelection\n"}
+{"Time":"2026-11-06T12:06:31.797977221+08:00","Action":"pass","Package":"devconsole/internal/access/manager","Test":"TestConfigurationCannotOvertakeAvailabilityReport","Elapsed":0.18}
+{"Time":"2026-11-06T12:06:31.79797856+08:00","Action":"output","Package":"devconsole/cmd/platform","Test":"TestHardwareModeRequiresExplicitSupportedSelection","Output":"--- PASS: TestHardwareModeRequiresExplicitSupportedSelection (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.797979989+08:00","Action":"output","Package":"devconsole/internal/access/manager","Output":"PASS\n"}
+{"Time":"2026-11-06T12:06:31.797980922+08:00","Action":"pass","Package":"devconsole/cmd/platform","Test":"TestHardwareModeRequiresExplicitSupportedSelection","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797981841+08:00","Action":"output","Package":"devconsole/internal/access/manager","Output":"ok  \tdevconsole/internal/access/manager\t(cached)\n"}
+{"Time":"2026-11-06T12:06:31.797982758+08:00","Action":"output","Package":"devconsole/cmd/platform","Output":"PASS\n"}
+{"Time":"2026-11-06T12:06:31.797984399+08:00","Action":"pass","Package":"devconsole/internal/access/manager","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797915878+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/settings.read","Output":"=== RUN   TestProtocolFragmentation/modbus/settings.read\n"}
+{"Time":"2026-11-06T12:06:31.797987749+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/settings.read","Output":"--- PASS: TestProtocolFragmentation/modbus/settings.read (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.797989645+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/settings.read","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797992957+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/measurement.read"}
+{"Time":"2026-11-06T12:06:31.7979945+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/measurement.read","Output":"=== RUN   TestProtocolFragmentation/modbus/measurement.read\n"}
+{"Time":"2026-11-06T12:06:31.7979964+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/measurement.read","Output":"--- PASS: TestProtocolFragmentation/modbus/measurement.read (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.797998068+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/measurement.read","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.797999615+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/output.read"}
+{"Time":"2026-11-06T12:06:31.798001052+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/output.read","Output":"=== RUN   TestProtocolFragmentation/modbus/output.read\n"}
+{"Time":"2026-11-06T12:06:31.798002905+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/output.read","Output":"--- PASS: TestProtocolFragmentation/modbus/output.read (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798004541+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/output.read","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798006102+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/voltage.set"}
+{"Time":"2026-11-06T12:06:31.798007493+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/voltage.set","Output":"=== RUN   TestProtocolFragmentation/modbus/voltage.set\n"}
+{"Time":"2026-11-06T12:06:31.798009206+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/voltage.set","Output":"--- PASS: TestProtocolFragmentation/modbus/voltage.set (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798010793+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/voltage.set","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798012385+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/current_limit.set"}
+{"Time":"2026-11-06T12:06:31.798013735+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/current_limit.set","Output":"=== RUN   TestProtocolFragmentation/modbus/current_limit.set\n"}
+{"Time":"2026-11-06T12:06:31.798015623+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/current_limit.set","Output":"--- PASS: TestProtocolFragmentation/modbus/current_limit.set (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798017309+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/current_limit.set","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798018905+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/output.set"}
+{"Time":"2026-11-06T12:06:31.798022166+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/output.set","Output":"=== RUN   TestProtocolFragmentation/modbus/output.set\n"}
+{"Time":"2026-11-06T12:06:31.798025349+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/output.set","Output":"--- PASS: TestProtocolFragmentation/modbus/output.set (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798027463+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation/modbus/output.set","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798031433+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation","Output":"--- PASS: TestProtocolFragmentation (0.01s)\n"}
+{"Time":"2026-11-06T12:06:31.798033218+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestProtocolFragmentation","Elapsed":0.01}
+{"Time":"2026-11-06T12:06:31.798035234+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies"}
+{"Time":"2026-11-06T12:06:31.798036577+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies","Output":"=== RUN   TestSCPIInvalidReplies\n"}
+{"Time":"2026-11-06T12:06:31.798038107+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/*IDN?UNKNO"}
+{"Time":"2026-11-06T12:06:31.798039435+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/*IDN?UNKNO","Output":"=== RUN   TestSCPIInvalidReplies/*IDN?UNKNO\n"}
+{"Time":"2026-11-06T12:06:31.798041178+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/*IDN?UNKNO","Output":"--- PASS: TestSCPIInvalidReplies/*IDN?UNKNO (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798042807+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/*IDN?UNKNO","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798044302+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?NaN"}
+{"Time":"2026-11-06T12:06:31.798045655+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?NaN","Output":"=== RUN   TestSCPIInvalidReplies/VOLT?NaN\n"}
+{"Time":"2026-11-06T12:06:31.798048213+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?NaN","Output":"--- PASS: TestSCPIInvalidReplies/VOLT?NaN (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798049856+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?NaN","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798051471+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?_"}
+{"Time":"2026-11-06T12:06:31.798052809+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?_","Output":"=== RUN   TestSCPIInvalidReplies/VOLT?_\n"}
+{"Time":"2026-11-06T12:06:31.79805453+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?_","Output":"--- PASS: TestSCPIInvalidReplies/VOLT?_ (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.7980563+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?_","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798057765+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?_#01"}
+{"Time":"2026-11-06T12:06:31.79805914+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?_#01","Output":"=== RUN   TestSCPIInvalidReplies/VOLT?_#01\n"}
+{"Time":"2026-11-06T12:06:31.798060899+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?_#01","Output":"--- PASS: TestSCPIInvalidReplies/VOLT?_#01 (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798062464+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?_#01","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798064643+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?�"}
+{"Time":"2026-11-06T12:06:31.79806642+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?�","Output":"=== RUN   TestSCPIInvalidReplies/VOLT?�\n"}
+{"Time":"2026-11-06T12:06:31.798068617+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?�","Output":"--- PASS: TestSCPIInvalidReplies/VOLT?� (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798072158+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?�","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798073861+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?11111"}
+{"Time":"2026-11-06T12:06:31.798075284+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?11111","Output":"=== RUN   TestSCPIInvalidReplies/VOLT?11111\n"}
+{"Time":"2026-11-06T12:06:31.798077356+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?11111","Output":"--- PASS: TestSCPIInvalidReplies/VOLT?11111 (0.01s)\n"}
+{"Time":"2026-11-06T12:06:31.798084715+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/VOLT?11111","Elapsed":0.01}
+{"Time":"2026-11-06T12:06:31.7978711+08:00","Action":"start","Package":"devconsole/internal/access/transport"}
+{"Time":"2026-11-06T12:06:31.798086628+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/SYST:ERR?-100,"}
+{"Time":"2026-11-06T12:06:31.79809129+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/SYST:ERR?-100,","Output":"=== RUN   TestSCPIInvalidReplies/SYST:ERR?-100,\n"}
+{"Time":"2026-11-06T12:06:31.797984524+08:00","Action":"output","Package":"devconsole/cmd/platform","Output":"ok  \tdevconsole/cmd/platform\t(cached)\n"}
+{"Time":"2026-11-06T12:06:31.798093157+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/SYST:ERR?-100,","Output":"--- PASS: TestSCPIInvalidReplies/SYST:ERR?-100, (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798097898+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies/SYST:ERR?-100,","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798099658+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies","Output":"--- PASS: TestSCPIInvalidReplies (0.01s)\n"}
+{"Time":"2026-11-06T12:06:31.798101255+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestSCPIInvalidReplies","Elapsed":0.01}
+{"Time":"2026-11-06T12:06:31.798099572+08:00","Action":"pass","Package":"devconsole/cmd/platform","Elapsed":0.001}
+{"Time":"2026-11-06T12:06:31.798095291+08:00","Action":"run","Package":"devconsole/internal/access/transport","Test":"TestUSBAndACMDiscoveryKeepsEndpointIdentity"}
+{"Time":"2026-11-06T12:06:31.79810281+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestTimeoutAndControlUnknown"}
+{"Time":"2026-11-06T12:06:31.798106367+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestTimeoutAndControlUnknown","Output":"=== RUN   TestTimeoutAndControlUnknown\n"}
+{"Time":"2026-11-06T12:06:31.798105728+08:00","Action":"output","Package":"devconsole/internal/access/transport","Test":"TestUSBAndACMDiscoveryKeepsEndpointIdentity","Output":"=== RUN   TestUSBAndACMDiscoveryKeepsEndpointIdentity\n"}
+{"Time":"2026-11-06T12:06:31.798108058+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestTimeoutAndControlUnknown","Output":"--- PASS: TestTimeoutAndControlUnknown (0.40s)\n"}
+{"Time":"2026-11-06T12:06:31.79811077+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestTimeoutAndControlUnknown","Elapsed":0.4}
+{"Time":"2026-11-06T12:06:31.798111314+08:00","Action":"output","Package":"devconsole/internal/access/transport","Test":"TestUSBAndACMDiscoveryKeepsEndpointIdentity","Output":"--- PASS: TestUSBAndACMDiscoveryKeepsEndpointIdentity (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798112365+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestModbusBadCRC"}
+{"Time":"2026-11-06T12:06:31.798115865+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestModbusBadCRC","Output":"=== RUN   TestModbusBadCRC\n"}
+{"Time":"2026-11-06T12:06:31.798120418+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestModbusBadCRC","Output":"--- PASS: TestModbusBadCRC (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798120949+08:00","Action":"start","Package":"devconsole/internal/access/xiaomi"}
+{"Time":"2026-11-06T12:06:31.798122389+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestModbusBadCRC","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798144969+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestHistoricalReadOnlyDecoding"}
+{"Time":"2026-11-06T12:06:31.798149159+08:00","Action":"start","Package":"devconsole/internal/auth"}
+{"Time":"2026-11-06T12:06:31.798156178+08:00","Action":"run","Package":"devconsole/internal/auth","Test":"TestRecoverableTokensAndLegacyImport"}
+{"Time":"2026-11-06T12:06:31.7981589+08:00","Action":"output","Package":"devconsole/internal/auth","Test":"TestRecoverableTokensAndLegacyImport","Output":"=== RUN   TestRecoverableTokensAndLegacyImport\n"}
+{"Time":"2026-11-06T12:06:31.798162358+08:00","Action":"output","Package":"devconsole/internal/auth","Test":"TestRecoverableTokensAndLegacyImport","Output":"--- PASS: TestRecoverableTokensAndLegacyImport (1.56s)\n"}
+{"Time":"2026-11-06T12:06:31.798164851+08:00","Action":"pass","Package":"devconsole/internal/auth","Test":"TestRecoverableTokensAndLegacyImport","Elapsed":1.56}
+{"Time":"2026-11-06T12:06:31.798167981+08:00","Action":"output","Package":"devconsole/internal/auth","Output":"PASS\n"}
+{"Time":"2026-11-06T12:06:31.798170268+08:00","Action":"output","Package":"devconsole/internal/auth","Output":"ok  \tdevconsole/internal/auth\t(cached)\n"}
+{"Time":"2026-11-06T12:06:31.798172937+08:00","Action":"pass","Package":"devconsole/internal/auth","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798150453+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestHistoricalReadOnlyDecoding","Output":"=== RUN   TestHistoricalReadOnlyDecoding\n"}
+{"Time":"2026-11-06T12:06:31.798199519+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestHistoricalReadOnlyDecoding/settings.read"}
+{"Time":"2026-11-06T12:06:31.798201858+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestHistoricalReadOnlyDecoding/settings.read","Output":"=== RUN   TestHistoricalReadOnlyDecoding/settings.read\n"}
+{"Time":"2026-11-06T12:06:31.798203981+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestHistoricalReadOnlyDecoding/settings.read","Output":"--- PASS: TestHistoricalReadOnlyDecoding/settings.read (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798205657+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestHistoricalReadOnlyDecoding/settings.read","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798207281+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestHistoricalReadOnlyDecoding/measurement.read"}
+{"Time":"2026-11-06T12:06:31.798208635+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestHistoricalReadOnlyDecoding/measurement.read","Output":"=== RUN   TestHistoricalReadOnlyDecoding/measurement.read\n"}
+{"Time":"2026-11-06T12:06:31.798210426+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestHistoricalReadOnlyDecoding/measurement.read","Output":"--- PASS: TestHistoricalReadOnlyDecoding/measurement.read (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798212175+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestHistoricalReadOnlyDecoding/measurement.read","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798213799+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestHistoricalReadOnlyDecoding/output.read"}
+{"Time":"2026-11-06T12:06:31.798215195+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestHistoricalReadOnlyDecoding/output.read","Output":"=== RUN   TestHistoricalReadOnlyDecoding/output.read\n"}
+{"Time":"2026-11-06T12:06:31.798219351+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestHistoricalReadOnlyDecoding/output.read","Output":"--- PASS: TestHistoricalReadOnlyDecoding/output.read (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798221114+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestHistoricalReadOnlyDecoding/output.read","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798222925+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestHistoricalReadOnlyDecoding","Output":"--- PASS: TestHistoricalReadOnlyDecoding (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798225105+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestHistoricalReadOnlyDecoding","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798227215+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength"}
+{"Time":"2026-11-06T12:06:31.798228614+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength","Output":"=== RUN   TestModbusExceptionAddressFunctionAndLength\n"}
+{"Time":"2026-11-06T12:06:31.798230326+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength/018302"}
+{"Time":"2026-11-06T12:06:31.798231766+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength/018302","Output":"=== RUN   TestModbusExceptionAddressFunctionAndLength/018302\n"}
+{"Time":"2026-11-06T12:06:31.798114584+08:00","Action":"pass","Package":"devconsole/internal/access/transport","Test":"TestUSBAndACMDiscoveryKeepsEndpointIdentity","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798233617+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength/018302","Output":"--- PASS: TestModbusExceptionAddressFunctionAndLength/018302 (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798236733+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength/018302","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798238321+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength/0203020001"}
+{"Time":"2026-11-06T12:06:31.798236837+08:00","Action":"start","Package":"devconsole/internal/buildinfo"}
+{"Time":"2026-11-06T12:06:31.798237038+08:00","Action":"run","Package":"devconsole/internal/access/transport","Test":"TestBusyHeldUntilCancellationCleanup"}
+{"Time":"2026-11-06T12:06:31.798239731+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength/0203020001","Output":"=== RUN   TestModbusExceptionAddressFunctionAndLength/0203020001\n"}
+{"Time":"2026-11-06T12:06:31.798244106+08:00","Action":"output","Package":"devconsole/internal/access/transport","Test":"TestBusyHeldUntilCancellationCleanup","Output":"=== RUN   TestBusyHeldUntilCancellationCleanup\n"}
+{"Time":"2026-11-06T12:06:31.79824568+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength/0203020001","Output":"--- PASS: TestModbusExceptionAddressFunctionAndLength/0203020001 (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798247666+08:00","Action":"output","Package":"devconsole/internal/access/transport","Test":"TestBusyHeldUntilCancellationCleanup","Output":"--- PASS: TestBusyHeldUntilCancellationCleanup (0.10s)\n"}
+{"Time":"2026-11-06T12:06:31.798247989+08:00","Action":"start","Package":"devconsole/internal/contracts"}
+{"Time":"2026-11-06T12:06:31.79824957+08:00","Action":"pass","Package":"devconsole/internal/access/transport","Test":"TestBusyHeldUntilCancellationCleanup","Elapsed":0.1}
+{"Time":"2026-11-06T12:06:31.798251626+08:00","Action":"output","Package":"devconsole/internal/access/transport","Output":"PASS\n"}
+{"Time":"2026-11-06T12:06:31.798253648+08:00","Action":"output","Package":"devconsole/internal/access/transport","Output":"ok  \tdevconsole/internal/access/transport\t(cached)\n"}
+{"Time":"2026-11-06T12:06:31.798259222+08:00","Action":"pass","Package":"devconsole/internal/access/transport","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798248791+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength/0203020001","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798264087+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength/0104020001"}
+{"Time":"2026-11-06T12:06:31.798251632+08:00","Action":"run","Package":"devconsole/internal/contracts","Test":"TestDecimalAndBounds"}
+{"Time":"2026-11-06T12:06:31.798278627+08:00","Action":"output","Package":"devconsole/internal/contracts","Test":"TestDecimalAndBounds","Output":"=== RUN   TestDecimalAndBounds\n"}
+{"Time":"2026-11-06T12:06:31.798295969+08:00","Action":"output","Package":"devconsole/internal/contracts","Test":"TestDecimalAndBounds","Output":"--- PASS: TestDecimalAndBounds (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798298666+08:00","Action":"pass","Package":"devconsole/internal/contracts","Test":"TestDecimalAndBounds","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798303052+08:00","Action":"output","Package":"devconsole/internal/contracts","Output":"PASS\n"}
+{"Time":"2026-11-06T12:06:31.798304764+08:00","Action":"output","Package":"devconsole/internal/contracts","Output":"ok  \tdevconsole/internal/contracts\t(cached)\n"}
+{"Time":"2026-11-06T12:06:31.798316229+08:00","Action":"pass","Package":"devconsole/internal/contracts","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798258876+08:00","Action":"start","Package":"devconsole/internal/core"}
+{"Time":"2026-11-06T12:06:31.798336182+08:00","Action":"output","Package":"devconsole/internal/core","Output":"?   \tdevconsole/internal/core\t[no test files]\n"}
+{"Time":"2026-11-06T12:06:31.798342691+08:00","Action":"skip","Package":"devconsole/internal/core","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798266815+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength/0104020001","Output":"=== RUN   TestModbusExceptionAddressFunctionAndLength/0104020001\n"}
+{"Time":"2026-11-06T12:06:31.798349894+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength/0104020001","Output":"--- PASS: TestModbusExceptionAddressFunctionAndLength/0104020001 (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.79835355+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength/0104020001","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.79835635+08:00","Action":"run","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength/0103020001"}
+{"Time":"2026-11-06T12:06:31.798358534+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength/0103020001","Output":"=== RUN   TestModbusExceptionAddressFunctionAndLength/0103020001\n"}
+{"Time":"2026-11-06T12:06:31.798361737+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength/0103020001","Output":"--- PASS: TestModbusExceptionAddressFunctionAndLength/0103020001 (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798364793+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength/0103020001","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798367855+08:00","Action":"output","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength","Output":"--- PASS: TestModbusExceptionAddressFunctionAndLength (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.798370917+08:00","Action":"pass","Package":"devconsole/internal/access/power","Test":"TestModbusExceptionAddressFunctionAndLength","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798373263+08:00","Action":"output","Package":"devconsole/internal/access/power","Output":"PASS\n"}
+{"Time":"2026-11-06T12:06:31.798379128+08:00","Action":"output","Package":"devconsole/internal/access/power","Output":"ok  \tdevconsole/internal/access/power\t(cached)\n"}
+{"Time":"2026-11-06T12:06:31.798383003+08:00","Action":"pass","Package":"devconsole/internal/access/power","Elapsed":0.001}
+{"Time":"2026-11-06T12:06:31.798245172+08:00","Action":"run","Package":"devconsole/internal/buildinfo","Test":"TestVersionOrderAndValidation"}
+{"Time":"2026-11-06T12:06:31.798405786+08:00","Action":"output","Package":"devconsole/internal/buildinfo","Test":"TestVersionOrderAndValidation","Output":"=== RUN   TestVersionOrderAndValidation\n"}
+{"Time":"2026-11-06T12:06:31.79841217+08:00","Action":"output","Package":"devconsole/internal/buildinfo","Test":"TestVersionOrderAndValidation","Output":"--- PASS: TestVersionOrderAndValidation (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.7984144+08:00","Action":"pass","Package":"devconsole/internal/buildinfo","Test":"TestVersionOrderAndValidation","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.798416563+08:00","Action":"output","Package":"devconsole/internal/buildinfo","Output":"PASS\n"}
+{"Time":"2026-11-06T12:06:31.798418209+08:00","Action":"output","Package":"devconsole/internal/buildinfo","Output":"ok  \tdevconsole/internal/buildinfo\t(cached)\n"}
+{"Time":"2026-11-06T12:06:31.798420806+08:00","Action":"pass","Package":"devconsole/internal/buildinfo","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.805528249+08:00","Action":"run","Package":"devconsole/internal/access/xiaomi","Test":"TestLoginURLBoundary"}
+{"Time":"2026-11-06T12:06:31.805554054+08:00","Action":"output","Package":"devconsole/internal/access/xiaomi","Test":"TestLoginURLBoundary","Output":"=== RUN   TestLoginURLBoundary\n"}
+{"Time":"2026-11-06T12:06:31.805580659+08:00","Action":"output","Package":"devconsole/internal/access/xiaomi","Test":"TestLoginURLBoundary","Output":"--- PASS: TestLoginURLBoundary (0.00s)\n"}
+{"Time":"2026-11-06T12:06:31.805591195+08:00","Action":"pass","Package":"devconsole/internal/access/xiaomi","Test":"TestLoginURLBoundary","Elapsed":0}
+{"Time":"2026-11-06T12:06:31.805605088+08:00","Action":"run","Package":"devconsole/internal/access/xiaomi","Test":"TestCancellationAndResultAuditFailure"}
+{"Time":"2026-11-06T12:06:31.805607883+08:00","Action":"output","Package":"devconsole/internal/access/xiaomi","Test":"TestCancellationAndResultAuditFailure","Output":"=== RUN   TestCancellationAndResultAuditFailure\n"}
+{"Time":"2026-11-06T12:06:32.001842094+08:00","Action":"start","Package":"devconsole/internal/httpapi"}
+{"Time":"2026-11-06T12:06:32.001877575+08:00","Action":"start","Package":"devconsole/internal/installer"}
+{"Time":"2026-11-06T12:06:32.001888738+08:00","Action":"run","Package":"devconsole/internal/installer","Test":"TestWritableInstallationPathsAccepted"}
+{"Time":"2026-11-06T12:06:32.001891055+08:00","Action":"output","Package":"devconsole/internal/installer","Test":"TestWritableInstallationPathsAccepted","Output":"=== RUN   TestWritableInstallationPathsAccepted\n"}
+{"Time":"2026-11-06T12:06:32.001896796+08:00","Action":"output","Package":"devconsole/internal/installer","Test":"TestWritableInstallationPathsAccepted","Output":"--- PASS: TestWritableInstallationPathsAccepted (0.00s)\n"}
+{"Time":"2026-11-06T12:06:32.001899445+08:00","Action":"pass","Package":"devconsole/internal/installer","Test":"TestWritableInstallationPathsAccepted","Elapsed":0}
+{"Time":"2026-11-06T12:06:32.001919958+08:00","Action":"run","Package":"devconsole/internal/installer","Test":"TestInstallationLockAndUnsafeFiles"}
+{"Time":"2026-11-06T12:06:32.001921449+08:00","Action":"output","Package":"devconsole/internal/installer","Test":"TestInstallationLockAndUnsafeFiles","Output":"=== RUN   TestInstallationLockAndUnsafeFiles\n"}
+{"Time":"2026-11-06T12:06:32.001932332+08:00","Action":"output","Package":"devconsole/internal/installer","Test":"TestInstallationLockAndUnsafeFiles","Output":"--- PASS: TestInstallationLockAndUnsafeFiles (0.00s)\n"}
+{"Time":"2026-11-06T12:06:32.001934514+08:00","Action":"pass","Package":"devconsole/internal/installer","Test":"TestInstallationLockAndUnsafeFiles","Elapsed":0}
+{"Time":"2026-11-06T12:06:32.00194293+08:00","Action":"run","Package":"devconsole/internal/installer","Test":"TestInstallLifecycle"}
+{"Time":"2026-11-06T12:06:32.001944728+08:00","Action":"output","Package":"devconsole/internal/installer","Test":"TestInstallLifecycle","Output":"=== RUN   TestInstallLifecycle\n"}
+{"Time":"2026-11-06T12:06:32.001942403+08:00","Action":"start","Package":"devconsole/internal/secretbox"}
+{"Time":"2026-11-06T12:06:32.001952694+08:00","Action":"run","Package":"devconsole/internal/secretbox","Test":"TestAuthenticatedEncryptionAndKeyLifecycle"}
+{"Time":"2026-11-06T12:06:32.001947043+08:00","Action":"output","Package":"devconsole/internal/installer","Test":"TestInstallLifecycle","Output":"    installer_linux_test.go:100: 由npm run test:install构建三个独立版本后执行\n"}
+{"Time":"2026-11-06T12:06:32.002145356+08:00","Action":"output","Package":"devconsole/internal/installer","Test":"TestInstallLifecycle","Output":"--- SKIP: TestInstallLifecycle (0.00s)\n"}
+{"Time":"2026-11-06T12:06:32.002158013+08:00","Action":"skip","Package":"devconsole/internal/installer","Test":"TestInstallLifecycle","Elapsed":0}
+{"Time":"2026-11-06T12:06:32.00216044+08:00","Action":"run","Package":"devconsole/internal/installer","Test":"TestLegacyInstallerTokenUpgradeRollback"}
+{"Time":"2026-11-06T12:06:32.002161925+08:00","Action":"output","Package":"devconsole/internal/installer","Test":"TestLegacyInstallerTokenUpgradeRollback","Output":"=== RUN   TestLegacyInstallerTokenUpgradeRollback\n"}
+{"Time":"2026-11-06T12:06:32.002163773+08:00","Action":"output","Package":"devconsole/internal/installer","Test":"TestLegacyInstallerTokenUpgradeRollback","Output":"    legacy_token_upgrade_test.go:30: 由npm run test:token-upgrade提供旧版安装包与当前程序\n"}
+{"Time":"2026-11-06T12:06:32.002167134+08:00","Action":"output","Package":"devconsole/internal/installer","Test":"TestLegacyInstallerTokenUpgradeRollback","Output":"--- SKIP: TestLegacyInstallerTokenUpgradeRollback (0.00s)\n"}
+{"Time":"2026-11-06T12:06:32.00216896+08:00","Action":"skip","Package":"devconsole/internal/installer","Test":"TestLegacyInstallerTokenUpgradeRollback","Elapsed":0}
+{"Time":"2026-11-06T12:06:32.002171068+08:00","Action":"run","Package":"devconsole/internal/installer","Test":"TestPortParsing"}
+{"Time":"2026-11-06T12:06:32.002173449+08:00","Action":"output","Package":"devconsole/internal/installer","Test":"TestPortParsing","Output":"=== RUN   TestPortParsing\n"}
+{"Time":"2026-11-06T12:06:32.002175604+08:00","Action":"output","Package":"devconsole/internal/installer","Test":"TestPortParsing","Output":"--- PASS: TestPortParsing (0.00s)\n"}
+{"Time":"2026-11-06T12:06:32.002177546+08:00","Action":"pass","Package":"devconsole/internal/installer","Test":"TestPortParsing","Elapsed":0}
+{"Time":"2026-11-06T12:06:32.00217936+08:00","Action":"run","Package":"devconsole/internal/installer","Test":"TestPortPromptPreservesNextInput"}
+{"Time":"2026-11-06T12:06:32.001956361+08:00","Action":"output","Package":"devconsole/internal/secretbox","Test":"TestAuthenticatedEncryptionAndKeyLifecycle","Output":"=== RUN   TestAuthenticatedEncryptionAndKeyLifecycle\n"}
+{"Time":"2026-11-06T12:06:32.002205385+08:00","Action":"output","Package":"devconsole/internal/secretbox","Test":"TestAuthenticatedEncryptionAndKeyLifecycle","Output":"--- PASS: TestAuthenticatedEncryptionAndKeyLifecycle (0.05s)\n"}
+{"Time":"2026-11-06T12:06:32.002209908+08:00","Action":"pass","Package":"devconsole/internal/secretbox","Test":"TestAuthenticatedEncryptionAndKeyLifecycle","Elapsed":0.05}
+{"Time":"2026-11-06T12:06:32.0022128+08:00","Action":"output","Package":"devconsole/internal/secretbox","Output":"PASS\n"}
+{"Time":"2026-11-06T12:06:32.002214533+08:00","Action":"output","Package":"devconsole/internal/secretbox","Output":"ok  \tdevconsole/internal/secretbox\t(cached)\n"}
+{"Time":"2026-11-06T12:06:32.002222033+08:00","Action":"pass","Package":"devconsole/internal/secretbox","Elapsed":0}
+{"Time":"2026-11-06T12:06:32.001961574+08:00","Action":"start","Package":"devconsole/internal/settings"}
+{"Time":"2026-11-06T12:06:32.002264923+08:00","Action":"output","Package":"devconsole/internal/settings","Output":"?   \tdevconsole/internal/settings\t[no test files]\n"}
+{"Time":"2026-11-06T12:06:32.002272647+08:00","Action":"skip","Package":"devconsole/internal/settings","Elapsed":0}
+{"Time":"2026-11-06T12:06:32.002316783+08:00","Action":"start","Package":"devconsole/internal/storage"}
+{"Time":"2026-11-06T12:06:32.002327596+08:00","Action":"run","Package":"devconsole/internal/storage","Test":"TestReadOnlySchemaInspection"}
+{"Time":"2026-11-06T12:06:32.002331759+08:00","Action":"output","Package":"devconsole/internal/storage","Test":"TestReadOnlySchemaInspection","Output":"=== RUN   TestReadOnlySchemaInspection\n"}
+{"Time":"2026-11-06T12:06:32.002336809+08:00","Action":"output","Package":"devconsole/internal/storage","Test":"TestReadOnlySchemaInspection","Output":"--- PASS: TestReadOnlySchemaInspection (0.23s)\n"}
+{"Time":"2026-11-06T12:06:32.00233997+08:00","Action":"pass","Package":"devconsole/internal/storage","Test":"TestReadOnlySchemaInspection","Elapsed":0.23}
+{"Time":"2026-11-06T12:06:32.00234416+08:00","Action":"run","Package":"devconsole/internal/storage","Test":"TestRefuseNewerDatabase"}
+{"Time":"2026-11-06T12:06:32.00234684+08:00","Action":"output","Package":"devconsole/internal/storage","Test":"TestRefuseNewerDatabase","Output":"=== RUN   TestRefuseNewerDatabase\n"}
+{"Time":"2026-11-06T12:06:32.002350946+08:00","Action":"output","Package":"devconsole/internal/storage","Test":"TestRefuseNewerDatabase","Output":"--- PASS: TestRefuseNewerDatabase (0.21s)\n"}
+{"Time":"2026-11-06T12:06:32.002356331+08:00","Action":"pass","Package":"devconsole/internal/storage","Test":"TestRefuseNewerDatabase","Elapsed":0.21}
+{"Time":"2026-11-06T12:06:32.00235926+08:00","Action":"run","Package":"devconsole/internal/storage","Test":"TestVersionOneMigrationPreservesLegacyToken"}
+{"Time":"2026-11-06T12:06:32.002361788+08:00","Action":"output","Package":"devconsole/internal/storage","Test":"TestVersionOneMigrationPreservesLegacyToken","Output":"=== RUN   TestVersionOneMigrationPreservesLegacyToken\n"}
+{"Time":"2026-11-06T12:06:32.002365609+08:00","Action":"output","Package":"devconsole/internal/storage","Test":"TestVersionOneMigrationPreservesLegacyToken","Output":"--- PASS: TestVersionOneMigrationPreservesLegacyToken (1.09s)\n"}
+{"Time":"2026-11-06T12:06:32.002369068+08:00","Action":"pass","Package":"devconsole/internal/storage","Test":"TestVersionOneMigrationPreservesLegacyToken","Elapsed":1.09}
+{"Time":"2026-11-06T12:06:32.002372595+08:00","Action":"run","Package":"devconsole/internal/storage","Test":"TestVersionTwoMigrationPreservesEncryptedPayloadAndKey"}
+{"Time":"2026-11-06T12:06:32.002375277+08:00","Action":"output","Package":"devconsole/internal/storage","Test":"TestVersionTwoMigrationPreservesEncryptedPayloadAndKey","Output":"=== RUN   TestVersionTwoMigrationPreservesEncryptedPayloadAndKey\n"}
+{"Time":"2026-11-06T12:06:32.002180852+08:00","Action":"output","Package":"devconsole/internal/installer","Test":"TestPortPromptPreservesNextInput","Output":"=== RUN   TestPortPromptPreservesNextInput\n"}
+{"Time":"2026-11-06T12:06:32.002380163+08:00","Action":"output","Package":"devconsole/internal/storage","Test":"TestVersionTwoMigrationPreservesEncryptedPayloadAndKey","Output":"--- PASS: TestVersionTwoMigrationPreservesEncryptedPayloadAndKey (0.51s)\n"}
+{"Time":"2026-11-06T12:06:32.002382259+08:00","Action":"output","Package":"devconsole/internal/installer","Test":"TestPortPromptPreservesNextInput","Output":"--- PASS: TestPortPromptPreservesNextInput (0.00s)\n"}
+{"Time":"2026-11-06T12:06:32.002385397+08:00","Action":"pass","Package":"devconsole/internal/installer","Test":"TestPortPromptPreservesNextInput","Elapsed":0}
+{"Time":"2026-11-06T12:06:32.002387345+08:00","Action":"run","Package":"devconsole/internal/installer","Test":"TestPortServicePrivileges"}
+{"Time":"2026-11-06T12:06:32.002388954+08:00","Action":"output","Package":"devconsole/internal/installer","Test":"TestPortServicePrivileges","Output":"=== RUN   TestPortServicePrivileges\n"}
+{"Time":"2026-11-06T12:06:32.002392647+08:00","Action":"start","Package":"devconsole/internal/testdevice"}
+{"Time":"2026-11-06T12:06:32.002394811+08:00","Action":"output","Package":"devconsole/internal/installer","Test":"TestPortServicePrivileges","Output":"--- PASS: TestPortServicePrivileges (0.00s)\n"}
+{"Time":"2026-11-06T12:06:32.002397175+08:00","Action":"pass","Package":"devconsole/internal/installer","Test":"TestPortServicePrivileges","Elapsed":0}
+{"Time":"2026-11-06T12:06:32.002397856+08:00","Action":"output","Package":"devconsole/internal/testdevice","Output":"?   \tdevconsole/internal/testdevice\t[no test files]\n"}
+{"Time":"2026-11-06T12:06:32.002398805+08:00","Action":"output","Package":"devconsole/internal/installer","Output":"PASS\n"}
+{"Time":"2026-11-06T12:06:32.002400542+08:00","Action":"skip","Package":"devconsole/internal/testdevice","Elapsed":0}
+{"Time":"2026-11-06T12:06:32.002401806+08:00","Action":"output","Package":"devconsole/internal/installer","Output":"ok  \tdevconsole/internal/installer\t(cached)\n"}
+{"Time":"2026-11-06T12:06:32.002405074+08:00","Action":"start","Package":"devconsole/internal/testxiaomi"}
+{"Time":"2026-11-06T12:06:32.002408572+08:00","Action":"pass","Package":"devconsole/internal/installer","Elapsed":0.001}
+{"Time":"2026-11-06T12:06:32.002409113+08:00","Action":"output","Package":"devconsole/internal/testxiaomi","Output":"?   \tdevconsole/internal/testxiaomi\t[no test files]\n"}
+{"Time":"2026-11-06T12:06:32.002416449+08:00","Action":"skip","Package":"devconsole/internal/testxiaomi","Elapsed":0}
+{"Time":"2026-11-06T12:06:32.002419965+08:00","Action":"start","Package":"devconsole/internal/webport"}
+{"Time":"2026-11-06T12:06:32.002426279+08:00","Action":"run","Package":"devconsole/internal/webport","Test":"TestBrowserHTTPPorts"}
+{"Time":"2026-11-06T12:06:32.002427949+08:00","Action":"output","Package":"devconsole/internal/webport","Test":"TestBrowserHTTPPorts","Output":"=== RUN   TestBrowserHTTPPorts\n"}
+{"Time":"2026-11-06T12:06:32.002430628+08:00","Action":"output","Package":"devconsole/internal/webport","Test":"TestBrowserHTTPPorts","Output":"--- PASS: TestBrowserHTTPPorts (0.00s)\n"}
+{"Time":"2026-11-06T12:06:32.002433709+08:00","Action":"pass","Package":"devconsole/internal/webport","Test":"TestBrowserHTTPPorts","Elapsed":0}
+{"Time":"2026-11-06T12:06:32.002437288+08:00","Action":"output","Package":"devconsole/internal/webport","Output":"PASS\n"}
+{"Time":"2026-11-06T12:06:32.002440222+08:00","Action":"output","Package":"devconsole/internal/webport","Output":"ok  \tdevconsole/internal/webport\t(cached)\n"}
+{"Time":"2026-11-06T12:06:32.002442857+08:00","Action":"pass","Package":"devconsole/internal/webport","Elapsed":0}
+{"Time":"2026-11-06T12:06:32.002384529+08:00","Action":"pass","Package":"devconsole/internal/storage","Test":"TestVersionTwoMigrationPreservesEncryptedPayloadAndKey","Elapsed":0.51}
+{"Time":"2026-11-06T12:06:32.002472493+08:00","Action":"output","Package":"devconsole/internal/storage","Output":"PASS\n"}
+{"Time":"2026-11-06T12:06:32.002476016+08:00","Action":"output","Package":"devconsole/internal/storage","Output":"ok  \tdevconsole/internal/storage\t(cached)\n"}
+{"Time":"2026-11-06T12:06:32.00247872+08:00","Action":"pass","Package":"devconsole/internal/storage","Elapsed":0}
+{"Time":"2026-11-06T12:06:32.002478424+08:00","Action":"start","Package":"devconsole/web"}
+{"Time":"2026-11-06T12:06:32.002490038+08:00","Action":"output","Package":"devconsole/web","Output":"?   \tdevconsole/web\t[no test files]\n"}
+{"Time":"2026-11-06T12:06:32.002495936+08:00","Action":"skip","Package":"devconsole/web","Elapsed":0}
+{"Time":"2026-11-06T12:06:32.009517812+08:00","Action":"run","Package":"devconsole/internal/httpapi","Test":"TestProjectFlowAndAuthorization"}
+{"Time":"2026-11-06T12:06:32.009556182+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestProjectFlowAndAuthorization","Output":"=== RUN   TestProjectFlowAndAuthorization\n"}
+{"Time":"2026-11-06T12:06:32.18331171+08:00","Action":"output","Package":"devconsole/internal/access/xiaomi","Test":"TestCancellationAndResultAuditFailure","Output":"--- PASS: TestCancellationAndResultAuditFailure (0.38s)\n"}
+{"Time":"2026-11-06T12:06:32.183356016+08:00","Action":"pass","Package":"devconsole/internal/access/xiaomi","Test":"TestCancellationAndResultAuditFailure","Elapsed":0.38}
+{"Time":"2026-11-06T12:06:32.183361132+08:00","Action":"run","Package":"devconsole/internal/access/xiaomi","Test":"TestAccountDiscoverySwitchesAndProjectContract"}
+{"Time":"2026-11-06T12:06:32.183362754+08:00","Action":"output","Package":"devconsole/internal/access/xiaomi","Test":"TestAccountDiscoverySwitchesAndProjectContract","Output":"=== RUN   TestAccountDiscoverySwitchesAndProjectContract\n"}
+{"Time":"2026-11-06T12:06:32.634082803+08:00","Action":"output","Package":"devconsole/internal/access/xiaomi","Test":"TestAccountDiscoverySwitchesAndProjectContract","Output":"--- PASS: TestAccountDiscoverySwitchesAndProjectContract (0.45s)\n"}
+{"Time":"2026-11-06T12:06:32.634106498+08:00","Action":"pass","Package":"devconsole/internal/access/xiaomi","Test":"TestAccountDiscoverySwitchesAndProjectContract","Elapsed":0.45}
+{"Time":"2026-11-06T12:06:32.634112793+08:00","Action":"run","Package":"devconsole/internal/access/xiaomi","Test":"TestBusyCoversAllChannelsAndAllowsOtherDevices"}
+{"Time":"2026-11-06T12:06:32.634114566+08:00","Action":"output","Package":"devconsole/internal/access/xiaomi","Test":"TestBusyCoversAllChannelsAndAllowsOtherDevices","Output":"=== RUN   TestBusyCoversAllChannelsAndAllowsOtherDevices\n"}
+{"Time":"2026-11-06T12:06:32.879733841+08:00","Action":"output","Package":"devconsole/internal/access/xiaomi","Test":"TestBusyCoversAllChannelsAndAllowsOtherDevices","Output":"--- PASS: TestBusyCoversAllChannelsAndAllowsOtherDevices (0.25s)\n"}
+{"Time":"2026-11-06T12:06:32.879757761+08:00","Action":"pass","Package":"devconsole/internal/access/xiaomi","Test":"TestBusyCoversAllChannelsAndAllowsOtherDevices","Elapsed":0.25}
+{"Time":"2026-11-06T12:06:32.879764116+08:00","Action":"run","Package":"devconsole/internal/access/xiaomi","Test":"TestUnknownOutcomeNeverRetriesOrReplaysOnRestore"}
+{"Time":"2026-11-06T12:06:32.879766002+08:00","Action":"output","Package":"devconsole/internal/access/xiaomi","Test":"TestUnknownOutcomeNeverRetriesOrReplaysOnRestore","Output":"=== RUN   TestUnknownOutcomeNeverRetriesOrReplaysOnRestore\n"}
+{"Time":"2026-11-06T12:06:33.119333447+08:00","Action":"output","Package":"devconsole/internal/access/xiaomi","Test":"TestUnknownOutcomeNeverRetriesOrReplaysOnRestore","Output":"--- PASS: TestUnknownOutcomeNeverRetriesOrReplaysOnRestore (0.24s)\n"}
+{"Time":"2026-11-06T12:06:33.119354375+08:00","Action":"pass","Package":"devconsole/internal/access/xiaomi","Test":"TestUnknownOutcomeNeverRetriesOrReplaysOnRestore","Elapsed":0.24}
+{"Time":"2026-11-06T12:06:33.119360284+08:00","Action":"run","Package":"devconsole/internal/access/xiaomi","Test":"TestReauthorizationIdentityAndTokenRefresh"}
+{"Time":"2026-11-06T12:06:33.119363463+08:00","Action":"output","Package":"devconsole/internal/access/xiaomi","Test":"TestReauthorizationIdentityAndTokenRefresh","Output":"=== RUN   TestReauthorizationIdentityAndTokenRefresh\n"}
+{"Time":"2026-11-06T12:06:33.416493122+08:00","Action":"output","Package":"devconsole/internal/access/xiaomi","Test":"TestReauthorizationIdentityAndTokenRefresh","Output":"--- PASS: TestReauthorizationIdentityAndTokenRefresh (0.30s)\n"}
+{"Time":"2026-11-06T12:06:33.416518347+08:00","Action":"pass","Package":"devconsole/internal/access/xiaomi","Test":"TestReauthorizationIdentityAndTokenRefresh","Elapsed":0.3}
+{"Time":"2026-11-06T12:06:33.416529053+08:00","Action":"run","Package":"devconsole/internal/access/xiaomi","Test":"TestCancelLoginAndBadPropertyReply"}
+{"Time":"2026-11-06T12:06:33.41653279+08:00","Action":"output","Package":"devconsole/internal/access/xiaomi","Test":"TestCancelLoginAndBadPropertyReply","Output":"=== RUN   TestCancelLoginAndBadPropertyReply\n"}
+{"Time":"2026-11-06T12:06:33.645735895+08:00","Action":"output","Package":"devconsole/internal/access/xiaomi","Test":"TestCancelLoginAndBadPropertyReply","Output":"--- PASS: TestCancelLoginAndBadPropertyReply (0.23s)\n"}
+{"Time":"2026-11-06T12:06:33.64577705+08:00","Action":"pass","Package":"devconsole/internal/access/xiaomi","Test":"TestCancelLoginAndBadPropertyReply","Elapsed":0.23}
+{"Time":"2026-11-06T12:06:33.645785048+08:00","Action":"run","Package":"devconsole/internal/access/xiaomi","Test":"TestAccountSecretsEncryptedAndKeyRequired"}
+{"Time":"2026-11-06T12:06:33.645788379+08:00","Action":"output","Package":"devconsole/internal/access/xiaomi","Test":"TestAccountSecretsEncryptedAndKeyRequired","Output":"=== RUN   TestAccountSecretsEncryptedAndKeyRequired\n"}
+{"Time":"2026-11-06T12:06:33.794009438+08:00","Action":"output","Package":"devconsole/internal/access/xiaomi","Test":"TestAccountSecretsEncryptedAndKeyRequired","Output":"--- PASS: TestAccountSecretsEncryptedAndKeyRequired (0.15s)\n"}
+{"Time":"2026-11-06T12:06:33.794037725+08:00","Action":"pass","Package":"devconsole/internal/access/xiaomi","Test":"TestAccountSecretsEncryptedAndKeyRequired","Elapsed":0.15}
+{"Time":"2026-11-06T12:06:33.794047636+08:00","Action":"output","Package":"devconsole/internal/access/xiaomi","Output":"PASS\n"}
+{"Time":"2026-11-06T12:06:34.796780211+08:00","Action":"output","Package":"devconsole/internal/access/xiaomi","Output":"ok  \tdevconsole/internal/access/xiaomi\t2.998s\n"}
+{"Time":"2026-11-06T12:06:34.797752043+08:00","Action":"pass","Package":"devconsole/internal/access/xiaomi","Elapsed":3}
+{"Time":"2026-11-06T12:06:35.858220316+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestProjectFlowAndAuthorization","Output":"--- PASS: TestProjectFlowAndAuthorization (3.85s)\n"}
+{"Time":"2026-11-06T12:06:35.858251164+08:00","Action":"pass","Package":"devconsole/internal/httpapi","Test":"TestProjectFlowAndAuthorization","Elapsed":3.85}
+{"Time":"2026-11-06T12:06:35.858258427+08:00","Action":"run","Package":"devconsole/internal/httpapi","Test":"TestBusyAcrossServicesAndIndependentPorts"}
+{"Time":"2026-11-06T12:06:35.858260601+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestBusyAcrossServicesAndIndependentPorts","Output":"=== RUN   TestBusyAcrossServicesAndIndependentPorts\n"}
+{"Time":"2026-11-06T12:06:39.192905678+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestBusyAcrossServicesAndIndependentPorts","Output":"--- PASS: TestBusyAcrossServicesAndIndependentPorts (3.33s)\n"}
+{"Time":"2026-11-06T12:06:39.192941895+08:00","Action":"pass","Package":"devconsole/internal/httpapi","Test":"TestBusyAcrossServicesAndIndependentPorts","Elapsed":3.33}
+{"Time":"2026-11-06T12:06:39.192954741+08:00","Action":"run","Package":"devconsole/internal/httpapi","Test":"TestRestartAndDeletion"}
+{"Time":"2026-11-06T12:06:39.192959901+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestRestartAndDeletion","Output":"=== RUN   TestRestartAndDeletion\n"}
+{"Time":"2026-11-06T12:06:42.873661147+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestRestartAndDeletion","Output":"--- PASS: TestRestartAndDeletion (3.68s)\n"}
+{"Time":"2026-11-06T12:06:42.873689044+08:00","Action":"pass","Package":"devconsole/internal/httpapi","Test":"TestRestartAndDeletion","Elapsed":3.68}
+{"Time":"2026-11-06T12:06:42.873694931+08:00","Action":"run","Package":"devconsole/internal/httpapi","Test":"TestBindingDefaultsRevisionsAndOffline"}
+{"Time":"2026-11-06T12:06:42.873697155+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestBindingDefaultsRevisionsAndOffline","Output":"=== RUN   TestBindingDefaultsRevisionsAndOffline\n"}
+{"Time":"2026-11-06T12:06:44.839814733+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestBindingDefaultsRevisionsAndOffline","Output":"--- PASS: TestBindingDefaultsRevisionsAndOffline (1.97s)\n"}
+{"Time":"2026-11-06T12:06:44.839840456+08:00","Action":"pass","Package":"devconsole/internal/httpapi","Test":"TestBindingDefaultsRevisionsAndOffline","Elapsed":1.97}
+{"Time":"2026-11-06T12:06:44.83985127+08:00","Action":"run","Package":"devconsole/internal/httpapi","Test":"TestHTTPStaticAndErrorBoundaries"}
+{"Time":"2026-11-06T12:06:44.839853568+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestHTTPStaticAndErrorBoundaries","Output":"=== RUN   TestHTTPStaticAndErrorBoundaries\n"}
+{"Time":"2026-11-06T12:06:46.070307695+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestHTTPStaticAndErrorBoundaries","Output":"--- PASS: TestHTTPStaticAndErrorBoundaries (1.23s)\n"}
+{"Time":"2026-11-06T12:06:46.070331329+08:00","Action":"pass","Package":"devconsole/internal/httpapi","Test":"TestHTTPStaticAndErrorBoundaries","Elapsed":1.23}
+{"Time":"2026-11-06T12:06:46.070335646+08:00","Action":"run","Package":"devconsole/internal/httpapi","Test":"TestAuditFailurePreventsPhysicalWrite"}
+{"Time":"2026-11-06T12:06:46.070337319+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestAuditFailurePreventsPhysicalWrite","Output":"=== RUN   TestAuditFailurePreventsPhysicalWrite\n"}
+{"Time":"2026-11-06T12:06:47.938774553+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestAuditFailurePreventsPhysicalWrite","Output":"--- PASS: TestAuditFailurePreventsPhysicalWrite (1.87s)\n"}
+{"Time":"2026-11-06T12:06:47.938797905+08:00","Action":"pass","Package":"devconsole/internal/httpapi","Test":"TestAuditFailurePreventsPhysicalWrite","Elapsed":1.87}
+{"Time":"2026-11-06T12:06:47.938802945+08:00","Action":"run","Package":"devconsole/internal/httpapi","Test":"TestDocsDefaultsMatchRuntimeAndDeviceRangeRevision"}
+{"Time":"2026-11-06T12:06:47.938804508+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestDocsDefaultsMatchRuntimeAndDeviceRangeRevision","Output":"=== RUN   TestDocsDefaultsMatchRuntimeAndDeviceRangeRevision\n"}
+{"Time":"2026-11-06T12:06:49.867245944+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestDocsDefaultsMatchRuntimeAndDeviceRangeRevision","Output":"--- PASS: TestDocsDefaultsMatchRuntimeAndDeviceRangeRevision (1.93s)\n"}
+{"Time":"2026-11-06T12:06:49.867269628+08:00","Action":"pass","Package":"devconsole/internal/httpapi","Test":"TestDocsDefaultsMatchRuntimeAndDeviceRangeRevision","Elapsed":1.93}
+{"Time":"2026-11-06T12:06:49.8672743+08:00","Action":"run","Package":"devconsole/internal/httpapi","Test":"TestReassignPortKeepsDeviceBindingsAndToken"}
+{"Time":"2026-11-06T12:06:49.86727664+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestReassignPortKeepsDeviceBindingsAndToken","Output":"=== RUN   TestReassignPortKeepsDeviceBindingsAndToken\n"}
+{"Time":"2026-11-06T12:06:52.446225124+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestReassignPortKeepsDeviceBindingsAndToken","Output":"--- PASS: TestReassignPortKeepsDeviceBindingsAndToken (2.58s)\n"}
+{"Time":"2026-11-06T12:06:52.446250196+08:00","Action":"pass","Package":"devconsole/internal/httpapi","Test":"TestReassignPortKeepsDeviceBindingsAndToken","Elapsed":2.58}
+{"Time":"2026-11-06T12:06:52.446257165+08:00","Action":"run","Package":"devconsole/internal/httpapi","Test":"TestConnectionDiscoveryIsAdminOnly"}
+{"Time":"2026-11-06T12:06:52.446259676+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestConnectionDiscoveryIsAdminOnly","Output":"=== RUN   TestConnectionDiscoveryIsAdminOnly\n"}
+{"Time":"2026-11-06T12:06:54.294330921+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestConnectionDiscoveryIsAdminOnly","Output":"--- PASS: TestConnectionDiscoveryIsAdminOnly (1.85s)\n"}
+{"Time":"2026-11-06T12:06:54.294354926+08:00","Action":"pass","Package":"devconsole/internal/httpapi","Test":"TestConnectionDiscoveryIsAdminOnly","Elapsed":1.85}
+{"Time":"2026-11-06T12:06:54.294359552+08:00","Action":"run","Package":"devconsole/internal/httpapi","Test":"TestAdminTokenRecoveryPermissionsAndRedaction"}
+{"Time":"2026-11-06T12:06:54.294361444+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestAdminTokenRecoveryPermissionsAndRedaction","Output":"=== RUN   TestAdminTokenRecoveryPermissionsAndRedaction\n"}
+{"Time":"2026-11-06T12:06:56.131176524+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestAdminTokenRecoveryPermissionsAndRedaction","Output":"2026/11/06 12:06:56 INFO 管理员读取项目Token 用户ID=cc9ec647a9293ee68b591ad5 项目ID=aa784e81e6cdc3839c6df601 TokenID=9053217afe9467245b202f26\n"}
+{"Time":"2026-11-06T12:06:56.132918362+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestAdminTokenRecoveryPermissionsAndRedaction","Output":"2026/11/06 12:06:56 INFO 管理员读取项目Token 用户ID=cc9ec647a9293ee68b591ad5 项目ID=aa784e81e6cdc3839c6df601 TokenID=9053217afe9467245b202f26\n"}
+{"Time":"2026-11-06T12:06:57.330335745+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestAdminTokenRecoveryPermissionsAndRedaction","Output":"2026/11/06 12:06:57 INFO 管理员补存旧Token原文 用户ID=cc9ec647a9293ee68b591ad5 项目ID=aa784e81e6cdc3839c6df601 TokenID=d113d9e02b6cf4897b37260a\n"}
+{"Time":"2026-11-06T12:06:57.332113018+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestAdminTokenRecoveryPermissionsAndRedaction","Output":"2026/11/06 12:06:57 INFO 管理员读取项目Token 用户ID=cc9ec647a9293ee68b591ad5 项目ID=aa784e81e6cdc3839c6df601 TokenID=d113d9e02b6cf4897b37260a\n"}
+{"Time":"2026-11-06T12:06:57.371724238+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestAdminTokenRecoveryPermissionsAndRedaction","Output":"--- PASS: TestAdminTokenRecoveryPermissionsAndRedaction (3.08s)\n"}
+{"Time":"2026-11-06T12:06:57.371744445+08:00","Action":"pass","Package":"devconsole/internal/httpapi","Test":"TestAdminTokenRecoveryPermissionsAndRedaction","Elapsed":3.08}
+{"Time":"2026-11-06T12:06:57.371748318+08:00","Action":"run","Package":"devconsole/internal/httpapi","Test":"TestXiaomiAdminImportAndProjectInvocation"}
+{"Time":"2026-11-06T12:06:57.371751986+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestXiaomiAdminImportAndProjectInvocation","Output":"=== RUN   TestXiaomiAdminImportAndProjectInvocation\n"}
+{"Time":"2026-11-06T12:07:01.658454104+08:00","Action":"output","Package":"devconsole/internal/httpapi","Test":"TestXiaomiAdminImportAndProjectInvocation","Output":"--- PASS: TestXiaomiAdminImportAndProjectInvocation (4.29s)\n"}
+{"Time":"2026-11-06T12:07:01.658486083+08:00","Action":"pass","Package":"devconsole/internal/httpapi","Test":"TestXiaomiAdminImportAndProjectInvocation","Elapsed":4.29}
+{"Time":"2026-11-06T12:07:01.658493984+08:00","Action":"output","Package":"devconsole/internal/httpapi","Output":"PASS\n"}
+{"Time":"2026-11-06T12:07:02.661960089+08:00","Action":"output","Package":"devconsole/internal/httpapi","Output":"ok  \tdevconsole/internal/httpapi\t30.660s\n"}
+{"Time":"2026-11-06T12:07:02.665355461+08:00","Action":"pass","Package":"devconsole/internal/httpapi","Elapsed":30.664}

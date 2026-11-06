@@ -1,0 +1,26 @@
+{
+  "updated_at": "2026-11-06T06:14:04.037798+00:00",
+  "version": "0.3.1",
+  "device_count": 2,
+  "device_identity_preserved": true,
+  "capabilities": [
+    {
+      "services": 14,
+      "groups": 7,
+      "roles": {
+        "indicator": 1,
+        "master": 1,
+        "switch": 5
+      }
+    },
+    {
+      "services": 2,
+      "groups": 1,
+      "roles": {
+        "switch": 1
+      }
+    }
+  ],
+  "device_invocation_delta": 0,
+  "scope": "Production restart and explicit public-spec capability refresh only. No property read/write, deletion, or actual switch validation."
+}

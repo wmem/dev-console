@@ -1,0 +1,81 @@
+{
+  "finished_at": "2026-11-06T06:13:08.121Z",
+  "scope": "真实核心、HTTP与嵌入Vue页面；米家云、扫码确认、设备与二维码图片均为隔离模拟；未访问真实账号或设备",
+  "browser_executable": "/home/mem/work/software/playwright-browsers/chromium-1237/chrome-linux64/chrome",
+  "results": [
+    {
+      "passed": true,
+      "mode": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "browser": "152.0.7977.8",
+      "pageErrors": [],
+      "expectedErrorResponses": [
+        {
+          "status": 400,
+          "path": "/api/v1/admin/xiaomi/accounts/092bb633fc6e6e006a57edcc/preview"
+        },
+        {
+          "status": 409,
+          "path": "/api/v1/admin/devices/38f638429423a6c629054155"
+        }
+      ],
+      "checks": [
+        "隔离二维码登录与账号持久化",
+        "家庭与房间设备列表",
+        "多路开关能力预览",
+        "不支持设备的明确提示",
+        "勾选导入与重复导入限制",
+        "缓存状态来源显示",
+        "设置明确布尔状态与接收确认",
+        "设备改名保留身份",
+        "五路厂商开关与总控、指示灯分组",
+        "刷新能力保留设备身份与原项目绑定",
+        "卡片和导入列表删除入口",
+        "引用中的设备拒绝删除",
+        "项目绑定与统一调用",
+        "凭据列表脱敏",
+        "桌面及360像素手机无横向溢出"
+      ]
+    },
+    {
+      "passed": true,
+      "mode": "mobile-narrow",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "browser": "152.0.7977.8",
+      "pageErrors": [],
+      "expectedErrorResponses": [
+        {
+          "status": 400,
+          "path": "/api/v1/admin/xiaomi/accounts/2f6167af34861a5de0e50754/preview"
+        },
+        {
+          "status": 409,
+          "path": "/api/v1/admin/devices/4ac550cfd0ff633cdda9184d"
+        }
+      ],
+      "checks": [
+        "隔离二维码登录与账号持久化",
+        "家庭与房间设备列表",
+        "多路开关能力预览",
+        "不支持设备的明确提示",
+        "勾选导入与重复导入限制",
+        "缓存状态来源显示",
+        "设置明确布尔状态与接收确认",
+        "设备改名保留身份",
+        "五路厂商开关与总控、指示灯分组",
+        "刷新能力保留设备身份与原项目绑定",
+        "卡片和导入列表删除入口",
+        "引用中的设备拒绝删除",
+        "项目绑定与统一调用",
+        "凭据列表脱敏",
+        "桌面及360像素手机无横向溢出"
+      ]
+    }
+  ]
+}

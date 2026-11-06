@@ -1,0 +1,25 @@
+
+> test:race
+> go test -race ./...
+
+ok  	devconsole/cmd/platform	1.013s
+?   	devconsole/cmd/simulator	[no test files]
+?   	devconsole/deploy	[no test files]
+ok  	devconsole/internal/access/manager	2.890s
+ok  	devconsole/internal/access/power	(cached)
+?   	devconsole/internal/access/router	[no test files]
+ok  	devconsole/internal/access/transport	(cached)
+ok  	devconsole/internal/access/xiaomi	3.389s
+ok  	devconsole/internal/auth	(cached)
+ok  	devconsole/internal/buildinfo	(cached)
+ok  	devconsole/internal/contracts	(cached)
+?   	devconsole/internal/core	[no test files]
+ok  	devconsole/internal/httpapi	29.111s
+ok  	devconsole/internal/installer	(cached)
+ok  	devconsole/internal/secretbox	(cached)
+?   	devconsole/internal/settings	[no test files]
+ok  	devconsole/internal/storage	(cached)
+?   	devconsole/internal/testdevice	[no test files]
+?   	devconsole/internal/testxiaomi	[no test files]
+ok  	devconsole/internal/webport	(cached)
+?   	devconsole/web	[no test files]

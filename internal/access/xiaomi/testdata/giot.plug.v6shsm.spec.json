@@ -1,0 +1,249 @@
+{
+  "type": "urn:miot-spec-v2:device:outlet:0000A002:giot-v6shsm:1:0000D030",
+  "description": "giot plug v6shsm",
+  "services": [
+    {
+      "iid": 1,
+      "type": "urn:miot-spec-v2:service:device-information:00007801:giot-v6shsm:1:0000D030",
+      "description": "Device Information",
+      "properties": [
+        {
+          "iid": 1,
+          "type": "urn:miot-spec-v2:property:manufacturer:00000001:giot-v6shsm:1:0000D030",
+          "description": "Device Manufacturer",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "source": 1,
+          "gatt-access": [],
+          "comment": "企业标志"
+        },
+        {
+          "iid": 2,
+          "type": "urn:miot-spec-v2:property:model:00000002:giot-v6shsm:1:0000D030",
+          "description": "Device Model",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "source": 1,
+          "gatt-access": [],
+          "comment": "产品模型"
+        },
+        {
+          "iid": 3,
+          "type": "urn:miot-spec-v2:property:serial-number:00000003:giot-v6shsm:1:0000D030",
+          "description": "Device Serial Number",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "source": 1,
+          "gatt-access": [],
+          "comment": "设备ID"
+        },
+        {
+          "iid": 4,
+          "type": "urn:miot-spec-v2:property:firmware-revision:00000005:giot-v6shsm:1:0000D030",
+          "description": "Current Firmware Version",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "source": 1,
+          "gatt-access": [],
+          "comment": "固件版本号"
+        }
+      ],
+      "comment": "设备信息"
+    },
+    {
+      "iid": 2,
+      "type": "urn:miot-spec-v2:service:switch:0000780C:giot-v6shsm:1:0000D030",
+      "description": "Switch",
+      "properties": [
+        {
+          "iid": 1,
+          "type": "urn:miot-spec-v2:property:on:00000006:giot-v6shsm:1:0000D030",
+          "description": "Switch Status",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "source": 1,
+          "gatt-access": [],
+          "comment": "开关"
+        },
+        {
+          "iid": 4,
+          "type": "urn:miot-spec-v2:property:mode:00000008:giot-v6shsm:1",
+          "description": "Mode",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "value-list": [
+            {
+              "value": 0,
+              "description": "Normal",
+              "comment": "普通模式"
+            },
+            {
+              "value": 1,
+              "description": "Dot",
+              "comment": "点动模式"
+            }
+          ],
+          "source": 4,
+          "gatt-access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "comment": "模式"
+        },
+        {
+          "iid": 5,
+          "type": "urn:miot-spec-v2:property:default-power-on-state:00000105:giot-v6shsm:1",
+          "description": "Default Power On State",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "value-list": [
+            {
+              "value": 0,
+              "description": "Off",
+              "comment": "上电关闭"
+            },
+            {
+              "value": 1,
+              "description": "On",
+              "comment": "上电打开"
+            },
+            {
+              "value": 2,
+              "description": "Default",
+              "comment": "断电记忆"
+            }
+          ],
+          "source": 4,
+          "gatt-access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "comment": "默认上电状态"
+        }
+      ],
+      "actions": [
+        {
+          "iid": 1,
+          "type": "urn:miot-spec-v2:action:toggle:00002811:giot-v6shsm:1:0000D030",
+          "description": "Toggle",
+          "in": [],
+          "out": [],
+          "comment": "开关状态切换"
+        }
+      ],
+      "comment": "开关"
+    },
+    {
+      "iid": 6,
+      "type": "urn:giot-spec:service:setting:00007801:giot-v6shsm:1",
+      "description": "setting",
+      "properties": [
+        {
+          "iid": 1,
+          "type": "urn:giot-spec:property:inchingswitch:00000001:giot-v6shsm:1",
+          "description": "inchingswitch",
+          "format": "bool",
+          "access": [
+            "write",
+            "read",
+            "notify"
+          ],
+          "source": 4,
+          "gatt-access": [
+            "notify",
+            "read",
+            "write"
+          ],
+          "comment": "点动模式默认状态"
+        },
+        {
+          "iid": 2,
+          "type": "urn:giot-spec:property:inchingtime:00000002:giot-v6shsm:1",
+          "description": "",
+          "format": "uint16",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "unit": "seconds",
+          "value-range": [
+            1,
+            7200,
+            1
+          ],
+          "source": 4,
+          "gatt-access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "comment": "点动模式按下持续时长"
+        },
+        {
+          "iid": 3,
+          "type": "urn:giot-spec:property:led-normal:00000003:giot-v6shsm:1",
+          "description": "",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "value-list": [
+            {
+              "value": 0,
+              "description": "Follow",
+              "comment": "Follow"
+            },
+            {
+              "value": 1,
+              "description": "Opposite",
+              "comment": "Opposite"
+            },
+            {
+              "value": 2,
+              "description": "Off",
+              "comment": "Off"
+            },
+            {
+              "value": 3,
+              "description": "On",
+              "comment": "On"
+            }
+          ],
+          "source": 4,
+          "gatt-access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "comment": "普通模式指示灯状态"
+        }
+      ],
+      "comment": "设置"
+    }
+  ]
+}

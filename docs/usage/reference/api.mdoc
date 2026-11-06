@@ -2,7 +2,7 @@
 
 所有下表路径相对于 `/api/v1`；存活检查单独为 `GET /healthz`，返回status、version和commit，设备离线不使其失败。
 
-具体路由和请求解码见HTTP实现（`internal/httpapi/http.go`），实体字段见核心模型（`internal/core/core.go`）、通用契约（`internal/contracts/contracts.go`）及认证模型（`internal/auth/auth.go`）。
+具体路由和请求解码见HTTP实现（`internal/httpapi/http.go`、`internal/httpapi/xiaomi.go`），实体字段见核心模型（`internal/core/core.go`）、通用契约（`internal/contracts/contracts.go`）及认证模型（`internal/auth/auth.go`）。
 
 {% section id="device:api:authentication" title="鉴权与请求" %}
 
@@ -32,8 +32,18 @@ JSON请求使用 `Content-Type: application/json`，大小不超过1MiB，只允
 | `GET, POST /admin/devices` | 设备列表或创建设备 |
 | `GET, PATCH, DELETE /admin/devices/{id}` | 详情、修改配置或删除 |
 | `POST /admin/devices/{id}/connection-test` | 有界只读连接测试 |
+| `POST /admin/devices/{id}/refresh-capabilities` | 显式刷新支持此功能的设备规格，保留设备身份，不调用开关属性 |
 | `GET /admin/devices/{id}/services` | 已注册设备服务 |
 | `POST /admin/devices/{id}/services/{key}/invoke` | 管理员人工调试已注册服务 |
+| `GET /admin/xiaomi/accounts` | 小米账号元数据，不含凭据 |
+| `POST /admin/xiaomi/logins` | 发起中国大陆账号扫码，返回本地扫码会话 |
+| `GET, DELETE /admin/xiaomi/logins/{id}` | 查询或取消本人发起的扫码会话 |
+| `GET /admin/xiaomi/logins/{id}/qr` | 本人扫码会话的二维码图片，no-store |
+| `DELETE /admin/xiaomi/accounts/{id}` | 移除无已导入设备引用的账号 |
+| `POST /admin/xiaomi/accounts/{id}/refresh` | 只刷新登录态，不控制设备 |
+| `POST /admin/xiaomi/accounts/{id}/discovery` | 刷新本账号的只读设备发现清单 |
+| `POST /admin/xiaomi/accounts/{id}/preview` | 预览本次清单中指定设备的开关服务 |
+| `POST /admin/xiaomi/accounts/{id}/imports` | 导入已预览的所选设备，逐台返回结果 |
 | `GET, POST /admin/projects` | 项目列表或创建 |
 | `PATCH, DELETE /admin/projects/{id}` | 编辑、启停或删除项目 |
 | `GET, PUT /admin/projects/{id}/members` | 读取或以 `member_ids`、`revision`设置成员 |
@@ -44,6 +54,10 @@ JSON请求使用 `Content-Type: application/json`，大小不超过1MiB，只允
 | `PUT /admin/projects/{id}/tokens/{tokenId}/secret` | 以secret字段验证并补存旧Token原文，要求Cookie及CSRF |
 | `DELETE /admin/projects/{id}/tokens/{tokenId}` | 撤销Token |
 | `GET /admin/invocations` | 跨项目调用记录，可按project_id筛选 |
+
+米家账号接口同样要求管理员Cookie和写请求CSRF；扫码会话另外校验发起用户。扫码与导入操作见[米家开关接入](../operations/xiaomi.mdoc)。接入模板creation_mode=discovery表示应通过发现、预览与勾选流程创建，不把账号凭据作为普通设备配置。
+
+模板can_refresh_capabilities为true时可显式刷新能力，请求体发送空对象。刷新成功返回更新后的设备定义；核心校验准备时的设备修订，配置变化或通信忙碌时拒绝应用，不自动重试。服务group_key、group_title和group_kind为可选展示分组，读取与设置服务可以属于同一开关通道；实际调用仍以服务key和Schema为准。
 
 设备创建请求为 `template_key`、`display_name`和 `connection_config`；更新为 `display_name`、`connection_config`及revision。连接配置字段以模板Schema为准。
 
@@ -91,7 +105,7 @@ curl -X POST 'http://<服务器IP>:8080/api/v1/projects/board-test-a/services/bo
 
 成功调用返回调用记录，含request_id、status、project、service、service_revision、绑定和主体快照、parameters、result、confirmation、source、observed_at及起止时间/duration_ms。
 
-具体result由服务Schema定义；设置成功的confirmation为verified，读取为read。设置确认只表示对应设定值或开关状态回读匹配。
+具体result由服务Schema定义；读取的confirmation为read，设置以verified表示回读匹配，以acknowledged表示仅接收请求。source=live为实时采集，cache为可能滞后的保存状态，cloud为云端响应。observed_at只在来源提供有效属性时间时出现，不用本次HTTP响应时间替代。米家开关的接收确认不表示实际动作已核验。
 
 记录查询参数为page、page_size、service、subject、status、device_id、error_code；管理员还可指定project_id。分页响应为items、page、page_size、total。Token没有调用记录查询权限。
 

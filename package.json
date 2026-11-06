@@ -9,6 +9,7 @@
     "test": "go test ./...",
     "test:race": "go test -race ./...",
     "test:browser": "node scripts/browser-test.mjs",
+    "test:xiaomi-browser": "node scripts/xiaomi-browser-check.mjs",
     "test:browser-port": "node scripts/port-browser-check.mjs",
     "test:runtime": "node scripts/runtime-check.mjs",
     "test:hardware-cancel": "node scripts/hardware-cancel-check.mjs",

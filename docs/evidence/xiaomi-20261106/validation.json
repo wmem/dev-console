@@ -1,0 +1,44 @@
+{
+  "finished_at": "2026-11-06T04:08:06.982937+00:00",
+  "version": "0.3.0",
+  "scope": "本地代码、隔离数据库、独立串口和米家模拟器、已有Chromium；没有真实账号或硬件操作",
+  "go": {
+    "go-test": {
+      "tests_passed": 88,
+      "packages_passed": 13,
+      "report": "docs/evidence/xiaomi-20261106/go-test.jsonl"
+    },
+    "go-race": {
+      "tests_passed": 88,
+      "packages_passed": 13,
+      "report": "docs/evidence/xiaomi-20261106/go-race.jsonl"
+    }
+  },
+  "xiaomi_browser": "docs/evidence/xiaomi-20261106/report.json",
+  "serial_and_project_browser": "docs/evidence/regression-xiaomi-20261106/browser-report.json",
+  "documentation": {
+    "check": "passed",
+    "build": "passed"
+  },
+  "not_validated": [
+    "真实小米账号与手机扫码",
+    "真实设备、固件及网关",
+    "长期令牌续期和云端限流",
+    "海外地区",
+    "目标机root安装与真实旧版格式2二进制回退"
+  ],
+  "package": {
+    "path": "dist/dconsole-0.3.0-install.run",
+    "sha256": "f957d7c71c178add9e009681f898829d2d41e244697964c33773c87db4e2ad91",
+    "version_info": {
+      "version": "0.3.0",
+      "commit": "08d4715d08a1c2176644e700214d965c62167956",
+      "dirty": true,
+      "target": "linux/amd64",
+      "database_min": 1,
+      "database_max": 3
+    },
+    "version_check": "passed",
+    "deployment": "not performed"
+  }
+}

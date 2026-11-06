@@ -14,6 +14,7 @@ import (
 	"strings"
 	"time"
 
+	"devconsole/internal/access/xiaomi"
 	"devconsole/internal/auth"
 	"devconsole/internal/buildinfo"
 	c "devconsole/internal/contracts"
@@ -26,10 +27,18 @@ type Server struct {
 	BaseURL string
 	Assets  fs.FS
 	mux     *http.ServeMux
+	xiaomi  *xiaomi.Manager
 }
 
-func New(k *core.Core, a *auth.Auth, base string, assets fs.FS) *Server {
+type Option func(*Server)
+
+func WithXiaomi(m *xiaomi.Manager) Option { return func(s *Server) { s.xiaomi = m } }
+
+func New(k *core.Core, a *auth.Auth, base string, assets fs.FS, options ...Option) *Server {
 	s := &Server{Core: k, Auth: a, BaseURL: strings.TrimRight(base, "/"), Assets: assets, mux: http.NewServeMux()}
+	for _, option := range options {
+		option(s)
+	}
 	s.routes()
 	return s
 }
@@ -324,6 +333,13 @@ func (s *Server) routes() {
 		respond(w, 200, map[string]any{"ok": true})
 		return nil
 	})
+	s.handle("POST /api/v1/admin/devices/{id}/refresh-capabilities", true, func(w http.ResponseWriter, r *http.Request, p auth.Principal) error {
+		v, e := s.Core.RefreshDeviceCapabilities(r.Context(), r.PathValue("id"))
+		if e == nil {
+			respond(w, 200, v)
+		}
+		return e
+	})
 	s.handle("POST /api/v1/admin/devices/{id}/connection-test", true, func(w http.ResponseWriter, r *http.Request, p auth.Principal) error {
 		if e := s.Core.Provisioner.Test(r.Context(), r.PathValue("id")); e != nil {
 			return e
@@ -352,6 +368,7 @@ func (s *Server) routes() {
 		return s.invocation(w, v, e)
 	})
 	s.projectRoutes()
+	s.xiaomiRoutes()
 	s.mux.HandleFunc("/api/", func(w http.ResponseWriter, r *http.Request) {
 		s.fail(w, c.Fail("NOT_FOUND", "API不存在或请求方法不支持"))
 	})

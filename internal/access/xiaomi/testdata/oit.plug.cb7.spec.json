@@ -1,0 +1,463 @@
+{
+  "type": "urn:miot-spec-v2:device:outlet:0000A002:oit-cb7:1:0000D030",
+  "description": "oit plug cb7",
+  "services": [
+    {
+      "iid": 1,
+      "type": "urn:miot-spec-v2:service:device-information:00007801:oit-cb7:1:0000D030",
+      "description": "Device Information",
+      "properties": [
+        {
+          "iid": 1,
+          "type": "urn:miot-spec-v2:property:manufacturer:00000001:oit-cb7:1:0000D030",
+          "description": "Device Manufacturer",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "source": 1,
+          "comment": "企业标志"
+        },
+        {
+          "iid": 2,
+          "type": "urn:miot-spec-v2:property:model:00000002:oit-cb7:1:0000D030",
+          "description": "Device Model",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "source": 1,
+          "comment": "产品模型"
+        },
+        {
+          "iid": 3,
+          "type": "urn:miot-spec-v2:property:serial-number:00000003:oit-cb7:1:0000D030",
+          "description": "Device Serial Number",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "source": 1,
+          "comment": "设备ID"
+        },
+        {
+          "iid": 4,
+          "type": "urn:miot-spec-v2:property:firmware-revision:00000005:oit-cb7:1:0000D030",
+          "description": "Current Firmware Version",
+          "format": "string",
+          "access": [
+            "read"
+          ],
+          "source": 1,
+          "comment": "固件版本号"
+        }
+      ],
+      "comment": "设备信息"
+    },
+    {
+      "iid": 2,
+      "type": "urn:miot-spec-v2:service:switch:0000780C:oit-cb7:1:0000D030",
+      "description": "Switch",
+      "properties": [
+        {
+          "iid": 1,
+          "type": "urn:miot-spec-v2:property:on:00000006:oit-cb7:1:0000D030",
+          "description": "Switch Status",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "source": 1,
+          "comment": "开关"
+        },
+        {
+          "iid": 2,
+          "type": "urn:miot-spec-v2:property:default-power-on-state:00000105:oit-cb7:1:0000D030",
+          "description": "Default Power On State",
+          "format": "uint8",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "value-list": [
+            {
+              "value": 0,
+              "description": "Default",
+              "comment": "断电记忆"
+            },
+            {
+              "value": 1,
+              "description": "Off",
+              "comment": "上电关闭"
+            },
+            {
+              "value": 2,
+              "description": "On",
+              "comment": "上电打开"
+            }
+          ],
+          "source": 1,
+          "comment": "默认上电状态"
+        },
+        {
+          "iid": 3,
+          "type": "urn:miot-spec-v2:property:fault:00000009:oit-cb7:1:0000D030",
+          "description": "Device Fault",
+          "format": "uint8",
+          "access": [
+            "read",
+            "notify"
+          ],
+          "value-list": [
+            {
+              "value": 0,
+              "description": "No Fault",
+              "comment": "无故障"
+            },
+            {
+              "value": 1,
+              "description": "Over Temperature",
+              "comment": "过温"
+            },
+            {
+              "value": 2,
+              "description": "Overload",
+              "comment": "过载"
+            }
+          ],
+          "source": 1,
+          "comment": "设备故障"
+        }
+      ],
+      "actions": [
+        {
+          "iid": 1,
+          "type": "urn:miot-spec-v2:action:toggle:00002811:oit-cb7:1:0000D030",
+          "description": "Toggle",
+          "in": [],
+          "out": [],
+          "comment": "开关状态切换"
+        }
+      ],
+      "comment": "总控开关"
+    },
+    {
+      "iid": 3,
+      "type": "urn:miot-spec-v2:service:indicator-light:00007803:oit-cb7:1:0000D030",
+      "description": "Indicator Light",
+      "properties": [
+        {
+          "iid": 1,
+          "type": "urn:miot-spec-v2:property:on:00000006:oit-cb7:1:0000D030",
+          "description": "Switch Status",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "source": 1,
+          "gatt-access": [],
+          "comment": "指示灯开关"
+        }
+      ],
+      "comment": "指示灯"
+    },
+    {
+      "iid": 4,
+      "type": "urn:miot-spec-v2:service:physical-controls-locked:00007807:oit-cb7:1:0000D030",
+      "description": "Physical Controls Locked",
+      "properties": [
+        {
+          "iid": 1,
+          "type": "urn:miot-spec-v2:property:physical-controls-locked:0000001D:oit-cb7:1:0000D030",
+          "description": "Physical Controls Locked",
+          "format": "bool",
+          "access": [
+            "read",
+            "write",
+            "notify"
+          ],
+          "source": 1,
+          "comment": "物理控制锁"
+        }
+      ],
+      "comment": "物理控制锁"
+    },
+    {
+      "iid": 6,
+      "type": "urn:oit-spec:service:switch:00007801:oit-cb7:1",
+      "description": "switch",
+      "properties": [
+        {
+          "iid": 1,
+          "type": "urn:oit-spec:property:on:00000001:oit-cb7:1",
+          "description": "on",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "gatt-access": [],
+          "comment": "AC1开关"
+        },
+        {
+          "iid": 2,
+          "type": "urn:oit-spec:property:status:00000002:oit-cb7:1",
+          "description": "",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "comment": "循环状态"
+        },
+        {
+          "iid": 3,
+          "type": "urn:oit-spec:property:data-value:00000003:oit-cb7:1",
+          "description": "",
+          "format": "string",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "comment": "循环数据"
+        }
+      ],
+      "actions": [
+        {
+          "iid": 1,
+          "type": "urn:oit-spec:action:toggle:00002801:oit-cb7:1",
+          "description": "toggle",
+          "in": [],
+          "out": [],
+          "comment": "开/关"
+        }
+      ],
+      "comment": "AC1"
+    },
+    {
+      "iid": 7,
+      "type": "urn:oit-spec:service:switch:00007802:oit-cb7:1",
+      "description": "switch",
+      "properties": [
+        {
+          "iid": 1,
+          "type": "urn:oit-spec:property:on:00000001:oit-cb7:1",
+          "description": "on",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "gatt-access": [],
+          "comment": "AC2开关"
+        },
+        {
+          "iid": 2,
+          "type": "urn:oit-spec:property:status:00000002:oit-cb7:1",
+          "description": "",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "comment": "循环状态"
+        },
+        {
+          "iid": 3,
+          "type": "urn:oit-spec:property:data-value:00000003:oit-cb7:1",
+          "description": "",
+          "format": "string",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "comment": "循环数据"
+        }
+      ],
+      "actions": [
+        {
+          "iid": 1,
+          "type": "urn:oit-spec:action:toggle:00002801:oit-cb7:1",
+          "description": "toggle",
+          "in": [],
+          "out": [],
+          "comment": "开/关"
+        }
+      ],
+      "comment": "AC2"
+    },
+    {
+      "iid": 8,
+      "type": "urn:oit-spec:service:switch:00007803:oit-cb7:1",
+      "description": "switch",
+      "properties": [
+        {
+          "iid": 1,
+          "type": "urn:oit-spec:property:on:00000001:oit-cb7:1",
+          "description": "",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "comment": "开关"
+        },
+        {
+          "iid": 2,
+          "type": "urn:oit-spec:property:status:00000002:oit-cb7:1",
+          "description": "",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "comment": "循环状态"
+        },
+        {
+          "iid": 3,
+          "type": "urn:oit-spec:property:data-value:00000003:oit-cb7:1",
+          "description": "",
+          "format": "string",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "comment": "循环数据"
+        }
+      ],
+      "actions": [
+        {
+          "iid": 1,
+          "type": "urn:oit-spec:action:toggle:00002801:oit-cb7:1",
+          "description": "toggle",
+          "in": [],
+          "out": [],
+          "comment": "开/关"
+        }
+      ],
+      "comment": "AC3"
+    },
+    {
+      "iid": 9,
+      "type": "urn:oit-spec:service:switch:00007804:oit-cb7:1",
+      "description": "switch",
+      "properties": [
+        {
+          "iid": 1,
+          "type": "urn:oit-spec:property:on:00000001:oit-cb7:1",
+          "description": "",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "comment": "开关"
+        },
+        {
+          "iid": 2,
+          "type": "urn:oit-spec:property:status:00000002:oit-cb7:1",
+          "description": "",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "comment": "循环状态"
+        },
+        {
+          "iid": 3,
+          "type": "urn:oit-spec:property:data-value:00000003:oit-cb7:1",
+          "description": "",
+          "format": "string",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "comment": "循环数据"
+        }
+      ],
+      "actions": [
+        {
+          "iid": 1,
+          "type": "urn:oit-spec:action:toggle:00002801:oit-cb7:1",
+          "description": "toggle",
+          "in": [],
+          "out": [],
+          "comment": "开/关"
+        }
+      ],
+      "comment": "AC4"
+    },
+    {
+      "iid": 10,
+      "type": "urn:oit-spec:service:switch:00007805:oit-cb7:1",
+      "description": "switch",
+      "properties": [
+        {
+          "iid": 1,
+          "type": "urn:oit-spec:property:on:00000001:oit-cb7:1",
+          "description": "",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "comment": "开关"
+        },
+        {
+          "iid": 2,
+          "type": "urn:oit-spec:property:status:00000002:oit-cb7:1",
+          "description": "",
+          "format": "bool",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "comment": "循环状态"
+        },
+        {
+          "iid": 3,
+          "type": "urn:oit-spec:property:data-value:00000003:oit-cb7:1",
+          "description": "",
+          "format": "string",
+          "access": [
+            "read",
+            "notify",
+            "write"
+          ],
+          "comment": "循环数据"
+        }
+      ],
+      "actions": [
+        {
+          "iid": 1,
+          "type": "urn:oit-spec:action:toggle:00002801:oit-cb7:1",
+          "description": "toggle",
+          "in": [],
+          "out": [],
+          "comment": "开/关"
+        }
+      ],
+      "comment": "AC5"
+    }
+  ]
+}

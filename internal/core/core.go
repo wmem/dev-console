@@ -213,6 +213,22 @@ func (k *Core) UpdateDevice(ctx context.Context, id, name string, config json.Ra
 	e = k.Store.Batch(changes...)
 	return d, e
 }
+func (k *Core) RefreshDeviceCapabilities(ctx context.Context, id string) (c.Device, error) {
+	d, err := k.Device(id)
+	if err != nil {
+		return d, err
+	}
+	p, ok := k.Provisioner.(c.DeviceCapabilityRefresher)
+	if !ok {
+		return d, c.Fail("INVALID_ARGUMENT", "该接入不支持刷新能力")
+	}
+	config, err := p.PrepareCapabilityRefresh(ctx, id, d.Revision)
+	if err != nil {
+		return d, err
+	}
+	return k.UpdateDevice(ctx, id, d.DisplayName, config, d.Revision)
+}
+
 func (k *Core) DeleteDevice(ctx context.Context, id string) error {
 	k.mu.Lock()
 	defer k.mu.Unlock()
@@ -393,7 +409,7 @@ func (k *Core) DeleteProject(id string) error {
 	return k.Store.Batch(cs...)
 }
 func compatible(a, b c.Service) bool {
-	if a.Contract != b.Contract || a.ContractVersion != b.ContractVersion || len(a.Input.Properties) != len(b.Input.Properties) {
+	if a.Contract != b.Contract || a.ContractVersion != b.ContractVersion || a.Kind != b.Kind || a.SupportsVerification != b.SupportsVerification || a.ResultSource != b.ResultSource || len(a.Input.Properties) != len(b.Input.Properties) {
 		return false
 	}
 	for key, v := range a.Input.Properties {
@@ -604,7 +620,7 @@ func (k *Core) Invoke(ctx context.Context, p auth.Principal, projectKey, service
 		return Record{}, e
 	}
 	r := Record{RequestID: auth.ID(), SubjectID: p.ID, SubjectKind: p.Kind, ProjectID: project.ID, ProjectKey: project.Key, ServiceKey: b.Key, ServiceRevision: b.Revision, DeviceID: b.DeviceID, DeviceServiceKey: b.DeviceServiceKey, Parameters: m, Status: "running", StartedAt: time.Now().UTC()}
-	e = k.Store.Put("invocations", r.RequestID, r)
+	r, e = k.begin(r)
 	k.mu.Unlock()
 	if e != nil {
 		return r, e
@@ -628,11 +644,22 @@ func (k *Core) InvokeDevice(ctx context.Context, p auth.Principal, id, key strin
 		return Record{}, e
 	}
 	r := Record{RequestID: auth.ID(), SubjectID: p.ID, SubjectKind: p.Kind, ServiceKey: key, ServiceRevision: d.Revision, DeviceID: id, DeviceServiceKey: key, Parameters: m, Status: "running", StartedAt: time.Now().UTC()}
-	if e = k.Store.Put("invocations", r.RequestID, r); e != nil {
+	if r, e = k.begin(r); e != nil {
 		return r, e
 	}
 	return k.execute(ctx, r, s)
 }
+
+func (k *Core) begin(r Record) (Record, error) {
+	if err := k.Store.Put("invocations", r.RequestID, r); err != nil {
+		now := time.Now().UTC()
+		r.Status, r.FinishedAt = "failed", &now
+		r.Error = &c.Error{Code: "INTERNAL_ERROR", Message: "调用开始记录无法保存，未发送设备请求", Outcome: "not_started"}
+		return r, r.Error
+	}
+	return r, nil
+}
+
 func (k *Core) execute(ctx context.Context, r Record, s c.Service) (Record, error) {
 	timeout := time.Duration(s.TimeoutMS) * time.Millisecond
 	if timeout <= 0 {
@@ -656,10 +683,14 @@ func (k *Core) execute(ctx context.Context, r Record, s c.Service) (Record, erro
 		r.Result = result.Output
 		r.Confirmation = result.Confirmation
 		r.Source = result.Source
-		r.ObservedAt = &result.ObservedAt
+		if !result.ObservedAt.IsZero() {
+			r.ObservedAt = &result.ObservedAt
+		}
 	}
 	if se := k.Store.Put("invocations", r.RequestID, r); se != nil {
-		return r, &c.Error{Code: "INTERNAL_ERROR", Message: "设备调用已结束，但结果持久化失败，请按请求ID核查", Outcome: "unknown"}
+		err := &c.Error{Code: "INTERNAL_ERROR", Message: "设备调用已结束，但结果持久化失败，请按请求ID核查", Outcome: "unknown"}
+		r.Status, r.Error = "failed", err
+		return r, err
 	}
 	return r, e
 }

@@ -1,0 +1,71 @@
+{% section id="device:development:acceptance:xiaomi:20261106" title="米家开关接入验证（2026-11-06）" %}
+
+范围：0.3.0开发工作区，中国大陆米家社区协议的扫码、账号存储、设备发现与标准开关通道。当前实现和使用入口分别见[米家接入实现](../xiaomi.mdoc)与[操作说明](../../usage/operations/xiaomi.mdoc)。本记录不替代首批串口设备的历史实机证据。
+
+## 已执行验证
+
+`npm test`与完整 `go test -race ./...`通过，各有88个测试通过、13个测试包通过。最终复核另保留 `go test -json ./...` 和 `go test -race -json ./...` 的原始JSONL输出。模拟请求在Transport内映射到本地独立HTTP服务，没有回落到真实云端。
+
+`npm run build`与`npm run package`通过，生成0.3.0的Linux/amd64静态单程序与开发安装包；Vue类型检查通过。程序和安装包的version输出一致，支持数据库格式1～3，dirty=true，没有发布标签或替换现有运行实例。`npm run docs:check`、`npm run docs:build`通过；文档验证不等于真实云端或硬件验收。
+
+| 验证对象 | 本次实际检查 |
+| --- | --- |
+| 扫码 | 二维码代理、后台确认、取消、管理员归属隔离；不同账号重新扫码拒绝替换原身份 |
+| 发现与导入 | 家庭/房间、设备分页、共享去重、原始设备Token不外泄、预览前禁止导入、任意did拒绝、重复登记拒绝 |
+| 通道与契约 | 标准on/bool的独立通道读写、其他布尔属性不作为开关、不支持设备明确失败、项目绑定与生成文档 |
+| 执行 | 同设备跨通道busy、独立设备并发、忙碌时拒绝编辑/删除、取消与丢失写响应不重发、未知结果隔离 |
+| 结果 | cache与cloud来源、acknowledged不冒充verified、源属性时间保留、缺时间不虚构采样时刻、属性响应标识核对 |
+| 审计 | 开始记录保存失败不发送控制，结束记录失败返回failed与unknown且不重发 |
+| 生命周期与存储 | 恢复不访问云或恢复输出、设备ID保持、引用阻止删除、登录态续期、密文存储、仅有小米密文时丢失密钥拒绝启动 |
+| 迁移 | 格式1原Token保持可用，格式2密文和密钥原样迁移到格式3 |
+| 权限 | 管理员Cookie与CSRF；匿名、普通成员、项目Bearer不能管理账号或导入设备 |
+
+## 浏览器
+
+已执行 `DCONSOLE_EVIDENCE_DIR=docs/evidence/xiaomi-20261106 npm run test:xiaomi-browser`。使用已有Chromium，桌面1440×900与360×800触摸模拟通过，核对了二维码显示、账号确认、设备勾选、多路能力预览、不支持设备提示、导入、缓存来源显示、接收确认、改名保留身份、项目调用及页面刷新后防重复导入。页面及弹窗没有横向溢出，没有未预期页面异常。
+
+原有 `npm run test:browser` 也使用本次新目录 `docs/evidence/regression-xiaomi-20261106` 完成桌面1440×900、390×844及360×800触摸模拟回归，覆盖串口模拟器、项目、Token、原设备重选串口与原绑定保持。所有已提交历史截图和报告未覆盖。
+
+[本次浏览器报告](#device:acceptance:xiaomi:browser-report)记录浏览器版本、时间、视口和检查项；[手机预览](#device:acceptance:xiaomi:mobile-preview)、[桌面接收确认](#device:acceptance:xiaomi:desktop-acknowledged)保留模拟页面。二维码图片是模拟图案，不是实际小米登录二维码。
+
+{% section id="device:acceptance:xiaomi:browser-report" title="隔离米家浏览器报告" collapsed=true %}
+
+{% code file="docs/evidence/xiaomi-20261106/report.json" language="json" /%}
+
+{% /section %}
+
+{% section id="device:acceptance:xiaomi:validation-summary" title="本次验证摘要与Go原始输出" collapsed=true %}
+
+{% code file="docs/evidence/xiaomi-20261106/validation.json" language="json" /%}
+
+{% code file="docs/evidence/xiaomi-20261106/go-test.jsonl" language="text" /%}
+
+{% code file="docs/evidence/xiaomi-20261106/go-race.jsonl" language="text" /%}
+
+{% /section %}
+
+{% section id="device:acceptance:xiaomi:regression-browser" title="原有串口与项目页面回归报告" collapsed=true %}
+
+{% code file="docs/evidence/regression-xiaomi-20261106/browser-report.json" language="json" /%}
+
+{% /section %}
+
+{% section id="device:acceptance:xiaomi:mobile-preview" title="360像素手机能力预览" collapsed=true %}
+
+![米家开关模拟预览](docs/evidence/xiaomi-20261106/mobile-narrow-capability-preview.png)
+
+{% /section %}
+
+{% section id="device:acceptance:xiaomi:desktop-acknowledged" title="桌面云端接收确认" collapsed=true %}
+
+![云端接收未冒充设备核验](docs/evidence/xiaomi-20261106/desktop-acknowledged.png)
+
+{% /section %}
+
+## 未验证范围
+
+没有登录真实小米账号，没有执行真实开关操作，没有使用已连接串口设备。尚未验证真实手机扫码、额外身份校验、具体设备/固件/网关、长期登录续期、云端限流和海外地区。模拟器不能证明小米服务此刻接受该客户端协议，也不能证明云端状态就是设备实际状态。
+
+本次前端为最终Vue构建并嵌入Go测试宿主，宿主使用真实核心与HTTP，只有南向米家服务是模拟器；不冒充生产程序与真实云端的端到端实测。手机视口与触摸模拟不等于实体手机验收。
+
+{% /section %}

@@ -1,0 +1,65 @@
+{
+  "finished_at": "2026-11-06T04:02:09.906Z",
+  "scope": "真实核心、HTTP与嵌入Vue页面；米家云、扫码确认、设备与二维码图片均为隔离模拟；未访问真实账号或设备",
+  "browser_executable": "/home/mem/work/software/playwright-browsers/chromium-1237/chrome-linux64/chrome",
+  "results": [
+    {
+      "passed": true,
+      "mode": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "browser": "152.0.7977.8",
+      "pageErrors": [],
+      "expectedErrorResponses": [
+        {
+          "status": 400,
+          "path": "/api/v1/admin/xiaomi/accounts/a2dcf9764b1e0673e6ee9336/preview"
+        }
+      ],
+      "checks": [
+        "隔离二维码登录与账号持久化",
+        "家庭与房间设备列表",
+        "多路开关能力预览",
+        "不支持设备的明确提示",
+        "勾选导入与重复导入限制",
+        "缓存状态来源显示",
+        "设置明确布尔状态与接收确认",
+        "设备改名保留身份",
+        "项目绑定与统一调用",
+        "凭据列表脱敏",
+        "桌面及360像素手机无横向溢出"
+      ]
+    },
+    {
+      "passed": true,
+      "mode": "mobile-narrow",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "browser": "152.0.7977.8",
+      "pageErrors": [],
+      "expectedErrorResponses": [
+        {
+          "status": 400,
+          "path": "/api/v1/admin/xiaomi/accounts/e3f4b15b053195994896f16c/preview"
+        }
+      ],
+      "checks": [
+        "隔离二维码登录与账号持久化",
+        "家庭与房间设备列表",
+        "多路开关能力预览",
+        "不支持设备的明确提示",
+        "勾选导入与重复导入限制",
+        "缓存状态来源显示",
+        "设置明确布尔状态与接收确认",
+        "设备改名保留身份",
+        "项目绑定与统一调用",
+        "凭据列表脱敏",
+        "桌面及360像素手机无横向溢出"
+      ]
+    }
+  ]
+}
